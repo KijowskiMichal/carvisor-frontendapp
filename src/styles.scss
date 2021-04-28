@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap');
-/* You can add global styles to this file, and also import other style files */
+
+$ColorWhite: #FFFFFF;
+$ColorPink: #ef476f;
+$ColorPinkHover: #f58294;
+$ColorYellow: #FFD166;
+$ColorGreen: #06D6A0;
+$ColorBlue: #118AB2;
+$ColorNavy: #0D243C;
+$ColorGrayLight: #EAECF0;
+$ColorGrayAnother: #C4C4C4;
+$ColorGrayBlueish: #9EA7B1;
+$ColorGrayBlueishHover: #CAD0D7;
+$ColorGrayDark: #474747;
+$ColorGrayDarker: #1A1F2B;
+$ColorBlack: #000000;
+$ColorGrayHover: #323232;
+
+@mixin manropeFont($weight, $size) {
+  font-family: Manrope, serif;
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+}
+
 html, body {
 width: 100%;
 min-height: 100vh;
