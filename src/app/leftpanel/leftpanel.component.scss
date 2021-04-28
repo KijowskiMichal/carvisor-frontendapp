@@ -1,0 +1,63 @@
+@import "./../../styles.scss";
+
+#leftPanel {
+  background: $ColorGrayDark;
+  height: 100vh;
+  width: 15%;
+  padding: 20px;
+}
+
+#leftPanelWrapper {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+#panelLogo {
+  width: 100%;
+  margin-bottom: 120px;
+  margin-top: 70px;
+}
+
+.menuItem {
+  color: $ColorWhite;
+  @include manropeFont(500, 24px);
+  line-height: 33px;
+  padding: 15px 25px;
+  border-radius: 16px;
+  cursor: pointer ;
+  margin-bottom: 10px;
+}
+
+.menuItem > i {
+  color: $ColorGrayBlueish;
+  margin-right: 25px;
+}
+
+.menuItem:hover {
+  background-color: $ColorGrayHover;
+}
+
+.activeMenuItem {
+  background-color: $ColorGrayHover;
+}
+
+#leftPanelFooter {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+}
+
+#leftPanelFooter > i {
+  font-size: 40px;
+  color: $ColorGrayBlueish;
+  margin: 0 30px;
+  cursor: pointer ;
+}
+
+#leftPanelFooter > i:hover {
+  color: $ColorGrayBlueishHover;
+}
+

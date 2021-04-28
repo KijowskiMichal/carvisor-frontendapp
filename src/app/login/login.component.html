@@ -1,0 +1,23 @@
+<div id="bgImage">
+    <div id="loginBox">
+      <div id="loginWrapper">
+        <img src="./../../assets/logo.png" id="logo">
+        <div class="pageWrapper">
+          <i class="fas fa-user"></i>
+          <input type="text" id="login" placeholder="Login" #login>
+        </div>
+        <div class="pageWrapper" >
+            <i class="fas fa-key"></i>
+            <input type="password" id="password" placeholder="Hasło" #password>
+        </div>
+        <div id="loginText">
+          Nie posiadasz konta?
+          <br>
+          <strong>Skontaktuj się z administratorem systemu.</strong>
+        </div>
+        <div id="loginButton" (click)="signIn(login.value, password.value)">
+          Zaloguj się
+        </div>
+      </div>
+    </div>
+</div>
