@@ -3,8 +3,10 @@
 #leftPanel {
   background: $ColorGrayDark;
   height: 100vh;
-  width: 15%;
+  width: 14%;
   padding: 20px;
+  box-sizing: border-box;
+  float: left;
 }
 
 #leftPanelWrapper {
@@ -15,18 +17,18 @@
 
 #panelLogo {
   width: 100%;
-  margin-bottom: 120px;
-  margin-top: 70px;
+  margin-bottom: 100px;
+  margin-top: 40px;
 }
 
 .menuItem {
   color: $ColorWhite;
-  @include manropeFont(500, 24px);
-  line-height: 33px;
-  padding: 15px 25px;
+  @include manropeFont(500, 18px);
+  line-height: 30px;
+  padding: 10px 15px;
   border-radius: 16px;
   cursor: pointer ;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .menuItem > i {
@@ -44,14 +46,14 @@
 
 #leftPanelFooter {
   position: absolute;
-  bottom: 80px;
+  bottom: 40px;
   left: 0;
   text-align: center;
   width: 100%;
 }
 
 #leftPanelFooter > i {
-  font-size: 40px;
+  font-size: 30px;
   color: $ColorGrayBlueish;
   margin: 0 30px;
   cursor: pointer ;

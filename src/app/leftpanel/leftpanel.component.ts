@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Router } from '@angular/router';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-leftpanel',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftpanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  logout() {
+    this.http.get('/API/authorization/logout').subscribe(
+      data => {},
+      () => {},
+      () => { this.router.navigate(['./']); }
+    );
+  }
 }

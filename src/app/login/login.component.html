@@ -3,19 +3,19 @@
       <div id="loginWrapper">
         <img src="./../../assets/logo.png" id="logo">
         <div class="pageWrapper">
-          <i class="fas fa-user"></i>
-          <input type="text" id="login" placeholder="Login" #login>
+          <i class="fas fa-user" #user></i>
+          <input type="text" id="login" placeholder="Login" #login (keyup.enter)="signIn(login, password, user, key)">
         </div>
         <div class="pageWrapper" >
-            <i class="fas fa-key"></i>
-            <input type="password" id="password" placeholder="Hasło" #password>
+            <i class="fas fa-key" #key></i>
+            <input type="password" id="password" placeholder="Hasło" #password (keyup.enter)="signIn(login, password, user, key)">
         </div>
         <div id="loginText">
           Nie posiadasz konta?
           <br>
           <strong>Skontaktuj się z administratorem systemu.</strong>
         </div>
-        <div id="loginButton" (click)="signIn(login.value, password.value)">
+        <div id="loginButton" (click)="signIn(login, password, user, key)">
           Zaloguj się
         </div>
       </div>

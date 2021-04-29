@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { Router } from '@angular/router';
+import { Observable } from "rxjs";
+
+interface LoginStatus{
+  Logged:boolean,
+  Nickname:string
+}
 
 @Component({
   selector: 'app-login',
@@ -8,29 +15,39 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
 
-
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
+    this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
+      if (value.Logged==true)
+      {
+        this.router.navigate(['./users']);
+      }
+    });
   }
 
-  signIn(login:String, password:String)
+  signIn(login:any, password:any, user:any, key:any)
   {
-    this.http.post("https://michal.vps.kronmar.net/API/authorization/authorize",
+    this.http.post('/API/authorization/authorize',
       {
-        "login": login,
-        "password": password
+        "login": login.value,
+        "password": password.value
       })
       .subscribe(
         (val) => {
-          console.log("POST call successful value returned in body",
-            val);
         },
         response => {
-          console.log("POST call in error", response);
+          (user as HTMLElement).style.color = '#ef476f';
+          (key as HTMLElement).style.color = '#ef476f';
+          (login as HTMLElement).style.border = 'solid #ef476f 1px';
+          login.value = '';
+          (login as HTMLElement).setAttribute('placeholder', 'Błędne dane logowania!');
+          (password as HTMLElement).style.border = 'solid #ef476f 1px';
+          password.value = '';
+          (password as HTMLElement).setAttribute('placeholder', 'Błędne dane logowania!');
         },
         () => {
-          console.log("The POST observable is now completed.");
+          this.router.navigate(['./users']);
         });
   }
 
