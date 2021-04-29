@@ -8,13 +8,15 @@ import { UsersComponent } from './users/users.component';
 import { LeftpanelComponent } from './leftpanel/leftpanel.component';
 
 import { HttpClientModule } from "@angular/common/http";
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UsersComponent,
-    LeftpanelComponent
+    LeftpanelComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,121 @@
+@import "./../../styles.scss";
+
+#editUser {
+  width: 85%;
+  height: 100vh;
+  background-image: url("./../../assets/dots.png");
+  float: left;
+  box-sizing: border-box;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  position: relative;
+}
+
+.panel {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 20px;
+  float: left;
+}
+
+.title > div > div {
+  @include manropeFont(500, 30px);
+  color: $ColorGrayDark;
+  float: left;
+}
+
+.title > div > i {
+  font-size: 30px;
+  color: $ColorGrayBlueish;
+  float: left;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+#resetButton {
+  background: $ColorBlue;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
+  @include manropeFont(500, 18px);
+  line-height: 38px;
+  color: $ColorWhite;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin: 0 10px;
+}
+
+#deleteButton {
+  background: $ColorPink;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
+  @include manropeFont(500, 18px);
+  line-height: 38px;
+  color: $ColorWhite;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin: 0 10px;
+}
+
+#cancelButton {
+  background: $ColorGrayBlueish;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
+  @include manropeFont(500, 18px);
+  line-height: 38px;
+  color: $ColorWhite;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin: 0 10px;
+}
+
+#acceptButton {
+  background: $ColorGreen;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 13px;
+  @include manropeFont(500, 18px);
+  line-height: 38px;
+  color: $ColorWhite;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin: 0 10px;
+  position: relative;
+  top: -10px;
+}
+
+#buttons {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+#resetButton:hover {
+  background: $ColorGreen;
+}
+
+#deleteButton:hover {
+  background: $ColorGreen;
+}
+
+#cancelButton:hover {
+  background: $ColorGreen;
+}
+
+#acceptButton:hover {
+  background: $ColorGreen;
+}
