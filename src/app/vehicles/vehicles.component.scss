@@ -1,6 +1,6 @@
 @import "./../../styles.scss";
 
-#users {
+#vehicles {
   width: 85%;
   height: 100vh;
   background-image: url("./../../assets/dots.png");
@@ -112,7 +112,7 @@ td > i:hover {
   color: $ColorGrayDarkHover;
 }
 
-.driver > img {
+.auto > img {
   width: 65px;
   border-radius: 50%;
   float: left;
@@ -120,26 +120,16 @@ td > i:hover {
   padding-top: 5px;
 }
 
-.driver > div {
-  float: left;
-  padding: 10px;
-}
-
-.name {
-  @include manropeFont(600, 20px);
-  color: $ColorGrayDark;
+.auto > div {
+  padding: 25px;
 }
 
 .vehicle {
-  @include manropeFont(normal, 20px);
+  @include manropeFont(500, 20px);
   color: $ColorGrayDark;
 }
 
 td {
   @include manropeFont(500, 18px);
   color: $ColorGrayDark;
-}
-
-.disableLink {
-  color: rgba(106, 106, 106, 0.11) !important;
 }

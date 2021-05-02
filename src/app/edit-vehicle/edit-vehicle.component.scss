@@ -35,20 +35,6 @@
   margin-bottom: 50px;
 }
 
-#resetButton {
-  background: $ColorBlue;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
-  @include manropeFont(500, 18px);
-  line-height: 38px;
-  color: $ColorWhite;
-  box-sizing: border-box;
-  padding: 10px 20px;
-  text-align: center;
-  cursor: pointer;
-  float: right;
-  margin: 0 10px;
-}
-
 #deleteButton {
   background: $ColorPink;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
@@ -103,10 +89,6 @@
   padding: 30px;
 }
 
-#resetButton:hover {
-  background: $ColorBlueHover;
-}
-
 #deleteButton:hover {
   background: $ColorPinkHover;
 }
@@ -158,7 +140,7 @@
 
 .logo > div > i
 {
- margin-right: 10px;
+  margin-right: 10px;
 }
 
 .inputWrapper {

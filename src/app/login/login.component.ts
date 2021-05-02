@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from "rxjs";
 
 interface LoginStatus{
-  Logged:boolean,
-  Nickname:string
+  logged:boolean,
+  nickname:string
 }
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
-      if (value.Logged==true)
+      if (value.logged==true)
       {
         this.router.navigate(['./users']);
       }
