@@ -44,8 +44,12 @@
       </div>
     </div>
     <div id="leftPanelFooter">
-      <i class="far fa-cogs"></i>
-      <i class="far fa-sign-out" (click)="logout()"></i>
+      <a [routerLink]="['/settings']">
+        <i class="far fa-cogs"></i>
+      </a>
+      <a (click)="logout()">
+        <i class="far fa-sign-out"></i>
+      </a>
     </div>
   </div>
 </div>

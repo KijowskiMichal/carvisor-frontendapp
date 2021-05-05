@@ -11,6 +11,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
     LeftpanelComponent,
     EditUserComponent,
     VehiclesComponent,
-    EditVehicleComponent
+    EditVehicleComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,78 @@
+<app-leftpanel></app-leftpanel>
+<div class="popup" *ngIf="popup" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie zmieniono hasło.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popup=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popup==true ? 'shutItDown' : ''"></div>
+<div id="settings">
+    <div class="panel">
+      <div id="title">
+        <i class="far fa-shield-check"></i>
+        Zmiana hasła
+      </div>
+      <div class="editContent">
+        <div class="inputWrapper">
+          <i class="far fa-key"></i>
+          <input type="password" placeholder="Nowe hasło" #first>
+        </div>
+      </div>
+      <div class="editContent">
+        <div class="inputWrapper">
+          <i class="far fa-key"></i>
+          <input type="password" placeholder="Powtórz nowe hasło" #second>
+        </div>
+      </div>
+      <div id="acceptButton" (click)="changePassword(first, second)">
+        Aktualizuj hasło
+      </div>
+    </div>
+    <div class="panel">
+      <div id="editButton">
+        <div class="addButton">
+          Dodaj użytkownika
+        </div>
+        <div class="addButton">
+          Dodaj strefę
+        </div>
+      </div>
+      <div class="set">
+        <div class="smallTitle">
+          Czas przechowywania historii:
+        </div>
+        <div class="smallTitle">
+          Interwał wysyłania danych:
+        </div>
+      </div>
+      <div class="set">
+        <div class="comboBoxWrapper">
+          <select>
+            <option value="30">Miesiąc</option>
+            <option value="90">3 miesiące</option>
+            <option value="180">6 miesięcy</option>
+            <option value="0">Bez ograniczeń</option>
+          </select>
+          <i class="fal fa-chevron-down"></i>
+        </div>
+        <div class="comboBoxWrapper">
+          <select>
+            <option value="15">15 sekund</option>
+            <option value="30">30 sekund</option>
+            <option value="60">1 minuta</option>
+            <option value="180">3 minuty</option>
+            <option value="300">5 minut</option>
+          </select>
+          <i class="fal fa-chevron-down"></i>
+        </div>
+      </div>
+    </div>
+</div>

@@ -213,3 +213,37 @@
   left: 15px;
   box-sizing: border-box;
 }
+
+select {
+  @include manropeFont(normal, 18px);
+  color: $ColorGrayDark;
+  padding: 10px 5px 10px 20px;
+  background: $ColorWhite;
+  border-radius: 10px;
+  border: 0;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+select::-ms-expand {
+  display: none;
+}
+
+.comboBoxWrapper {
+  box-sizing: border-box;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  width: 60%;
+  margin-left: 20%;
+  position: relative;
+}
+
+.comboBoxWrapper > i
+{
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+

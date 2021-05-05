@@ -52,14 +52,14 @@
   width: 100%;
 }
 
-#leftPanelFooter > i {
+#leftPanelFooter > a >  i {
   font-size: 30px;
   color: $ColorGrayBlueish;
   margin: 0 30px;
-  cursor: pointer ;
+  cursor: pointer;
 }
 
-#leftPanelFooter > i:hover {
+#leftPanelFooter > a > i:hover {
   color: $ColorGrayBlueishHover;
 }
 
