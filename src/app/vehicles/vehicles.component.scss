@@ -133,3 +133,7 @@ td {
   @include manropeFont(500, 18px);
   color: $ColorGrayDark;
 }
+
+.disableLink {
+  color: rgba(106, 106, 106, 0.11) !important;
+}

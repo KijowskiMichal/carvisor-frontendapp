@@ -40,7 +40,7 @@
   background-color: $ColorGrayHover;
 }
 
-.activeMenuItem {
+.activeMenuItem > div {
   background-color: $ColorGrayHover;
 }
 
@@ -63,3 +63,6 @@
   color: $ColorGrayBlueishHover;
 }
 
+a {
+  text-decoration: none;
+}

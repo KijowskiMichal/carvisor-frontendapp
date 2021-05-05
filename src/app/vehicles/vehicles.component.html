@@ -3,12 +3,12 @@
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
-      <input type="text" placeholder="Szukaj">
+      <input type="text" placeholder="Szukaj" (keydown.enter)="list(1, search.value)" #search>
     </div>
   </div>
 
   <div id="table">
-    <table>
+    <table *ngIf="listOfDevicesWrapper">
       <tr id="firstRow">
         <td>Pojazd</td>
         <td>Marka</td>
@@ -17,107 +17,32 @@
         <td>Status</td>
         <td></td>
       </tr>
-      <tr>
+      <tr *ngFor="let device of listOfDevicesWrapper.listOfDevices">
         <td>
           <div class="auto">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png">
+            <img src="{{device.image}}">
             <div class="vehicle">
-                DWL5639
+                {{device.licensePlate}}
             </div>
           </div>
         </td>
-        <td>Ford</td>
-        <td>Focus</td>
-        <td>65.5 km</td>
-        <td>Nieaktywny</td>
-        <td><i class="far fa-pen"></i></td>
-      </tr>
-      <tr>
-        <td>
-          <div class="auto">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png">
-            <div class="vehicle">
-              DWL5639
-            </div>
-          </div>
-        </td>
-        <td>Ford</td>
-        <td>Focus</td>
-        <td>65.5 km</td>
-        <td>Nieaktywny</td>
-        <td><i class="far fa-pen"></i></td>
-      </tr>
-      <tr>
-        <td>
-          <div class="auto">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png">
-            <div class="vehicle">
-              DWL5639
-            </div>
-          </div>
-        </td>
-        <td>Ford</td>
-        <td>Focus</td>
-        <td>65.5 km</td>
-        <td>Nieaktywny</td>
-        <td><i class="far fa-pen"></i></td>
-      </tr>
-      <tr>
-        <td>
-          <div class="auto">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png">
-            <div class="vehicle">
-              DWL5639
-            </div>
-          </div>
-        </td>
-        <td>Ford</td>
-        <td>Focus</td>
-        <td>65.5 km</td>
-        <td>Nieaktywny</td>
-        <td><i class="far fa-pen"></i></td>
-      </tr>
-      <tr>
-        <td>
-          <div class="auto">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png">
-            <div class="vehicle">
-              DWL5639
-            </div>
-          </div>
-        </td>
-        <td>Ford</td>
-        <td>Focus</td>
-        <td>65.5 km</td>
-        <td>Nieaktywny</td>
-        <td><i class="far fa-pen"></i></td>
-      </tr>
-      <tr>
-        <td>
-          <div class="auto">
-            <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png">
-            <div class="vehicle">
-              DWL5639
-            </div>
-          </div>
-        </td>
-        <td>Ford</td>
-        <td>Focus</td>
-        <td>65.5 km</td>
-        <td>Nieaktywny</td>
+        <td>{{device.brand}}</td>
+        <td>{{device.model}}</td>
+        <td>{{device.distance}} km</td>
+        <td>{{device.status}}</td>
         <td><i class="far fa-pen"></i></td>
       </tr>
     </table>
   </div>
   <div id="pages">
-    <div id="pagesWrapper">
-      <i class="far fa-chevron-double-left"></i>
-      <i class="far fa-chevron-left"></i>
+    <div id="pagesWrapper" *ngIf="listOfDevicesWrapper">
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1, search.value)" class="far fa-chevron-double-left"></i>
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1, search.value)" class="far fa-chevron-left"></i>
       <div id="pagesText">
-        strona x z X
+        strona {{page}} z {{pageMax}}
       </div>
-      <i class="far fa-chevron-right"></i>
-      <i class="far fa-chevron-double-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1, search.value)"  class="far fa-chevron-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax, search.value)"  class="far fa-chevron-double-right"></i>
     </div>
   </div>
 </div>
