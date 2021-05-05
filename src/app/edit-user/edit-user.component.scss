@@ -119,8 +119,7 @@
   background: $ColorGreenHover;
 }
 
-.editContent
-{
+.editContent {
   width: 90%;
   text-align: center;
   margin-bottom: 40px;
@@ -128,22 +127,20 @@
   box-sizing: border-box;
 }
 
-.logo
-{
+.logo {
   width: 250px;
   height: 250px;
   margin-left: 50%;
   transform: translateX(-50%);
   margin-bottom: 50px;
   border-radius: 50%;
-  background-image: url("https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png");
+
   background-size: cover;
   position: relative;
   overflow: hidden;
 }
 
-.logo > div
-{
+.logo > div {
   position: absolute;
   width: 100%;
   height: 30%;
@@ -156,8 +153,7 @@
   @include manropeFont(500, 18px);
 }
 
-.logo > div > i
-{
+.logo > div > i {
  margin-right: 10px;
 }
 
@@ -182,4 +178,8 @@
   color: $ColorGrayDark;
   top: 16px;
   left: 15px;
+}
+
+a {
+  text-decoration: none;
 }

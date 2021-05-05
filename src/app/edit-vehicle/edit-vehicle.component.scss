@@ -139,7 +139,6 @@
   transform: translateX(-50%);
   margin-bottom: 50px;
   border-radius: 50%;
-  background-image: url("https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png");
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -245,5 +244,9 @@ select::-ms-expand {
   position: absolute;
   right: 15px;
   top: 15px;
+}
+
+a {
+  text-decoration: none;
 }
 

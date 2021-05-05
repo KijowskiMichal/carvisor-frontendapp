@@ -1,12 +1,12 @@
 <app-leftpanel></app-leftpanel>
 <div id="editUser">
   <div id="content">
-    <div class="panel">
+    <div class="panel" *ngIf="userInfo">
       <div class="title">
         <i class="far fa-user"></i>
         Dane użytkownika
       </div>
-      <div class="logo">
+      <div class="logo" [ngStyle]="{'background-image': 'url('+userInfo.image+')'}">
         <div>
           <i class="far fa-pen"></i>
           Edytuj zdjęcie
@@ -15,13 +15,13 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-user"></i>
-          <input type="text" placeholder="Imię i nazwisko">
+          <input type="text" placeholder="Imię i nazwisko" value="{{userInfo.name}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-phone"></i>
-          <input type="text" placeholder="Telefon">
+          <input type="text" placeholder="Telefon" value="{{userInfo.telephone}}">
         </div>
       </div>
     </div>
@@ -42,9 +42,11 @@
     <div id="acceptButton">
       Aktualizuj
     </div>
-    <div id="cancelButton">
-      Anuluj
-    </div>
+    <a [routerLink]="['/users']">
+      <div id="cancelButton">
+        Anuluj
+      </div>
+    </a>
     <div id="deleteButton">
       Usuń
     </div>

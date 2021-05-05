@@ -1,12 +1,12 @@
 <app-leftpanel></app-leftpanel>
 <div id="editUser">
-  <div id="content">
+  <div id="content" *ngIf="deviceInfo">
     <div class="panel">
       <div class="title">
         <i class="far fa-car"></i>
         Dane pojazdu
       </div>
-      <div class="logo">
+      <div class="logo" [ngStyle]="{'background-image': 'url('+deviceInfo.image+')'}">
         <div>
           <i class="far fa-pen"></i>
           Edytuj zdjęcie
@@ -15,19 +15,19 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-car"></i>
-          <input type="text" placeholder="Numer rejestracyjny">
+          <input type="text" placeholder="Numer rejestracyjny" value="{{deviceInfo.licensePlate}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Marka">
+          <input type="text" placeholder="Marka" value="{{deviceInfo.brand}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Model">
+          <input type="text" placeholder="Model" value="{{deviceInfo.model}}">
         </div>
       </div>
     </div>
@@ -54,44 +54,44 @@
       <div class="editContent">
         <div class="inputWrapper">
           <div class="inputWrapper2">
-            <input type="text" placeholder="od">
+            <input type="text" placeholder="od" value="{{deviceInfo.timeFrom}}">
           </div>
           <div class="inputDivider">
              -
           </div>
           <div class="inputWrapper2">
-            <input type="text" placeholder="do">
+            <input type="text" placeholder="do" value="{{deviceInfo.timeTo}}">
           </div>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Rok produkcji">
+          <input type="text" placeholder="Rok produkcji" value="{{deviceInfo.yearOfProduction}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Silnik">
+          <input type="text" placeholder="Silnik" value="{{deviceInfo.engine}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Wielkość zbiornika">
+          <input type="text" placeholder="Wielkość zbiornika" value="{{deviceInfo.tank}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Typ paliwa">
+          <input type="text" placeholder="Typ paliwa" value="{{deviceInfo.fuel}}">
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Norma spalania">
+          <input type="text" placeholder="Norma spalania" value="{{deviceInfo.norm}}">
         </div>
       </div>
     </div>
@@ -112,9 +112,11 @@
     <div id="acceptButton">
       Aktualizuj
     </div>
-    <div id="cancelButton">
-      Anuluj
-    </div>
+    <a [routerLink]="['/vehicles']">
+      <div id="cancelButton">
+        Anuluj
+      </div>
+    </a>
     <div id="deleteButton">
       Usuń
     </div>

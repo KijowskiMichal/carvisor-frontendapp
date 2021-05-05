@@ -9,9 +9,9 @@ import { SettingsComponent } from "./settings/settings.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
-                          { path: 'editUser', component: EditUserComponent},
+                          { path: 'editUser/:id', component: EditUserComponent},
                           { path: 'vehicles', component: VehiclesComponent},
-                          { path: 'editVehicle', component: EditVehicleComponent},
+                          { path: 'editVehicle/:id', component: EditVehicleComponent},
                           { path: 'settings', component: SettingsComponent}];
 
 @NgModule({

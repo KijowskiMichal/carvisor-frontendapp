@@ -30,7 +30,7 @@
         <td>{{device.model}}</td>
         <td>{{device.distance}} km</td>
         <td>{{device.status}}</td>
-        <td><i class="far fa-pen"></i></td>
+        <td><a [routerLink]="['/editVehicle/'+device.id+'/']"><i class="far fa-pen"></i></a></td>
       </tr>
     </table>
   </div>

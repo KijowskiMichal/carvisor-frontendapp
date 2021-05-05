@@ -102,13 +102,13 @@ td {
   text-align: center;
 }
 
-td > i {
+td > a > i {
   color: $ColorGrayDark;
   font-size: 20px;
   cursor: pointer;
 }
 
-td > i:hover {
+td > a > i:hover {
   color: $ColorGrayDarkHover;
 }
 
@@ -142,4 +142,8 @@ td {
 
 .disableLink {
   color: rgba(106, 106, 106, 0.11) !important;
+}
+
+a {
+  text-decoration: none;
 }
