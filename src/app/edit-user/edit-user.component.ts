@@ -21,6 +21,9 @@ export class EditUserComponent implements OnInit {
   userInfo: UserInfo;
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
+  popupOk = false;
+  popupFail = false;
+
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -30,4 +33,20 @@ export class EditUserComponent implements OnInit {
     });
   }
 
+  sendData(name:string, phone:string) {
+    this.http.post('/API/users/changeUserData/' + this.id + '/',
+      {
+        "name": name,
+        "telephone": phone
+      })
+      .subscribe(
+        (val) => {
+        },
+        response => {
+          this.popupFail = true;
+        },
+        () => {
+          this.popupOk = true;
+        });
+  }
 }

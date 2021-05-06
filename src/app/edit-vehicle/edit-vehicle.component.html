@@ -1,6 +1,36 @@
 <app-leftpanel></app-leftpanel>
-<div id="editUser">
-  <div id="content" *ngIf="deviceInfo">
+<div class="popup" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie zaktualizowano pojazd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupOk=false" [routerLink]="['/vehicles']">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div id="editUser" *ngIf="deviceInfo">
+  <div id="content">
     <div class="panel">
       <div class="title">
         <i class="far fa-car"></i>
@@ -15,19 +45,19 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-car"></i>
-          <input type="text" placeholder="Numer rejestracyjny" value="{{deviceInfo.licensePlate}}">
+          <input type="text" placeholder="Numer rejestracyjny" value="{{deviceInfo.licensePlate}}" #licensePlate>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Marka" value="{{deviceInfo.brand}}">
+          <input type="text" placeholder="Marka" value="{{deviceInfo.brand}}" #brand>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Model" value="{{deviceInfo.model}}">
+          <input type="text" placeholder="Model" value="{{deviceInfo.model}}" #model>
         </div>
       </div>
     </div>
@@ -54,44 +84,44 @@
       <div class="editContent">
         <div class="inputWrapper">
           <div class="inputWrapper2">
-            <input type="text" placeholder="od" value="{{deviceInfo.timeFrom}}">
+            <input type="text" placeholder="od" value="{{deviceInfo.timeFrom}}" #timeFrom>
           </div>
           <div class="inputDivider">
              -
           </div>
           <div class="inputWrapper2">
-            <input type="text" placeholder="do" value="{{deviceInfo.timeTo}}">
+            <input type="text" placeholder="do" value="{{deviceInfo.timeTo}}" #timeTo>
           </div>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Rok produkcji" value="{{deviceInfo.yearOfProduction}}">
+          <input type="text" placeholder="Rok produkcji" value="{{deviceInfo.yearOfProduction}}" #yearOfProduction>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Silnik" value="{{deviceInfo.engine}}">
+          <input type="text" placeholder="Silnik" value="{{deviceInfo.engine}}" #engine>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Wielkość zbiornika" value="{{deviceInfo.tank}}">
+          <input type="text" placeholder="Wielkość zbiornika" value="{{deviceInfo.tank}}" #tank>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Typ paliwa" value="{{deviceInfo.fuel}}">
+          <input type="text" placeholder="Typ paliwa" value="{{deviceInfo.fuel}}" #fuel>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-pen"></i>
-          <input type="text" placeholder="Norma spalania" value="{{deviceInfo.norm}}">
+          <input type="text" placeholder="Norma spalania" value="{{deviceInfo.norm}}" #norm>
         </div>
       </div>
     </div>
@@ -109,7 +139,7 @@
     </div>
   </div>
   <div id="buttons">
-    <div id="acceptButton">
+    <div id="acceptButton" (click)="sendData(timeFrom.value, licensePlate.value, timeTo.value, engine.value, fuel.value, yearOfProduction.value, model.value, tank.valueAsNumber, brand.value, norm.valueAsNumber)">
       Aktualizuj
     </div>
     <a [routerLink]="['/vehicles']">

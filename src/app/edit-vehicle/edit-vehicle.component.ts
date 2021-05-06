@@ -28,6 +28,9 @@ export class EditVehicleComponent implements OnInit {
   deviceInfo: DeviceInfo;
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
+  popupOk = false;
+  popupFail = false;
+
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -35,6 +38,31 @@ export class EditVehicleComponent implements OnInit {
         this.deviceInfo = value;
       });
     });
+  }
+
+  sendData(timeFrom:string, licensePlate:string, timeTo:string, engine:string, fuel:string, yearOfProduction:string, model:string, tank:number, brand:string, norm:number) {
+    this.http.post('/API/devices/changeDeviceData/' + this.id + '/',
+      {
+        "timeFrom": timeFrom,
+        "licensePlate": licensePlate,
+        "timeTo": timeTo,
+        "engine": engine,
+        "fuel": fuel,
+        "yearOfProduction": yearOfProduction,
+        "model": model,
+        "tank": tank,
+        "brand": brand,
+        "norm": norm
+      })
+      .subscribe(
+        (val) => {
+        },
+        response => {
+          this.popupFail = true;
+        },
+        () => {
+          this.popupOk = true;
+        });
   }
 
 }

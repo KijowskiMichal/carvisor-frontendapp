@@ -1,7 +1,37 @@
 <app-leftpanel></app-leftpanel>
-<div id="editUser">
+<div class="popup" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie zaktualizowano użytkownika.
+  </div>
+  <div class="popup-footer">
+      <div class="popup-green" (click)="popupOk=false" [routerLink]="['/users']">
+        Ok
+      </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div id="editUser" *ngIf="userInfo">
   <div id="content">
-    <div class="panel" *ngIf="userInfo">
+    <div class="panel" >
       <div class="title">
         <i class="far fa-user"></i>
         Dane użytkownika
@@ -15,13 +45,13 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-user"></i>
-          <input type="text" placeholder="Imię i nazwisko" value="{{userInfo.name}}">
+          <input type="text" placeholder="Imię i nazwisko" value="{{userInfo.name}}" #name>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-phone"></i>
-          <input type="text" placeholder="Telefon" value="{{userInfo.telephone}}">
+          <input type="text" placeholder="Telefon" value="{{userInfo.telephone}}" #phone>
         </div>
       </div>
     </div>
@@ -39,10 +69,10 @@
     </div>
   </div>
   <div id="buttons">
-    <div id="acceptButton">
+    <div id="acceptButton" (click)="sendData(name.value, phone.value)">
       Aktualizuj
     </div>
-    <a [routerLink]="['/users']">
+    <a [routerLink]="['/users']" >
       <div id="cancelButton">
         Anuluj
       </div>

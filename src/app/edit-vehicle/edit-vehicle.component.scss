@@ -226,6 +226,7 @@ select {
   text-indent: 1px;
   text-overflow: '';
 }
+
 select::-ms-expand {
   display: none;
 }
@@ -239,14 +240,9 @@ select::-ms-expand {
   position: relative;
 }
 
-.comboBoxWrapper > i
-{
+.comboBoxWrapper > i {
   position: absolute;
   right: 15px;
   top: 15px;
-}
-
-a {
-  text-decoration: none;
 }
 
