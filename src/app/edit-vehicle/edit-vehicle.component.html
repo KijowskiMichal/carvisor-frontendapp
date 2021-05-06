@@ -29,7 +29,7 @@
   </div>
 </div>
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
-<div id="editUser" *ngIf="deviceInfo">
+<div id="editUser" *ngIf="deviceInfo && configuration">
   <div id="content">
     <div class="panel">
       <div class="title">
@@ -60,23 +60,6 @@
           <input type="text" placeholder="Model" value="{{deviceInfo.model}}" #model>
         </div>
       </div>
-    </div>
-    <div class="panel2">
-      <div class="smallTitle">
-        Interwał wysyłania danych:
-      </div>
-      <div class="editContent">
-        <div class="comboBoxWrapper">
-          <select>
-            <option value="15">15 sekund</option>
-            <option value="30">30 sekund</option>
-            <option value="60">1 minuta</option>
-            <option value="180">3 minuty</option>
-            <option value="300">5 minut</option>
-          </select>
-          <i class="fal fa-chevron-down"></i>
-        </div>
-      </div>
       <div class="smallTitle">
         <i class="far fa-calendar-alt"></i>
         Godziny pracy:
@@ -87,11 +70,42 @@
             <input type="text" placeholder="od" value="{{deviceInfo.timeFrom}}" #timeFrom>
           </div>
           <div class="inputDivider">
-             -
+            -
           </div>
           <div class="inputWrapper2">
             <input type="text" placeholder="do" value="{{deviceInfo.timeTo}}" #timeTo>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel2">
+      <div class="smallTitle">
+        Interwał wysyłania danych:
+      </div>
+      <div class="editContent">
+        <div class="comboBoxWrapper">
+          <select #sendInterval>
+            <option value="15" [selected]="configuration.sendInterval == 15">15 sekund</option>
+            <option value="30" [selected]="configuration.sendInterval == 30">30 sekund</option>
+            <option value="60" [selected]="configuration.sendInterval == 60">1 minuta</option>
+            <option value="180" [selected]="configuration.sendInterval == 180">3 minuty</option>
+            <option value="300" [selected]="configuration.sendInterval == 300">5 minut</option>
+          </select>
+          <i class="fal fa-chevron-down"></i>
+        </div>
+      </div>
+      <div class="smallTitle">
+        Interwał wysyłania lokalizacji:
+      </div>
+      <div class="editContent">
+        <div class="comboBoxWrapper">
+          <select #locationInterval>
+            <option value="5" [selected]="configuration.locationInterval == 5">5 sekund</option>
+            <option value="10" [selected]="configuration.locationInterval == 10">10 sekund</option>
+            <option value="15" [selected]="configuration.locationInterval == 15">15 sekund</option>
+            <option value="0" [selected]="configuration.locationInterval == 0">Automatycznie</option>
+          </select>
+          <i class="fal fa-chevron-down"></i>
         </div>
       </div>
       <div class="editContent">
@@ -139,7 +153,7 @@
     </div>
   </div>
   <div id="buttons">
-    <div id="acceptButton" (click)="sendData(timeFrom.value, licensePlate.value, timeTo.value, engine.value, fuel.value, yearOfProduction.value, model.value, tank.valueAsNumber, brand.value, norm.valueAsNumber)">
+    <div id="acceptButton" (click)="sendData(timeFrom.value, licensePlate.value, timeTo.value, engine.value, fuel.value, yearOfProduction.value, model.value, tank.value, brand.value, norm.value, sendInterval.value, locationInterval.value)">
       Aktualizuj
     </div>
     <a [routerLink]="['/vehicles']">

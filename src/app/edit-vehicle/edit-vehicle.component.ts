@@ -17,6 +17,11 @@ interface DeviceInfo {
   image: string;
 }
 
+interface Configuration {
+  sendInterval: number;
+  locationInterval: number;
+}
+
 @Component({
   selector: 'app-edit-vehicle',
   templateUrl: './edit-vehicle.component.html',
@@ -26,6 +31,7 @@ export class EditVehicleComponent implements OnInit {
   private routeSub: Subscription;
   private id:number;
   deviceInfo: DeviceInfo;
+  configuration: Configuration;
   constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   popupOk = false;
@@ -37,10 +43,14 @@ export class EditVehicleComponent implements OnInit {
       this.http.get<DeviceInfo>('/API/devices/getDeviceData/' + this.id + '/').subscribe(value => {
         this.deviceInfo = value;
       });
+      this.http.get<Configuration>('/API/carConfiguration/getConfiguration/'+ this.id + '/').subscribe(value => {
+        this.configuration = value;
+      });
     });
+
   }
 
-  sendData(timeFrom:string, licensePlate:string, timeTo:string, engine:string, fuel:string, yearOfProduction:string, model:string, tank:number, brand:string, norm:number) {
+  sendData(timeFrom:string, licensePlate:string, timeTo:string, engine:string, fuel:string, yearOfProduction:string, model:string, tank:string, brand:string, norm:string, sendInterval:string, locationInterval:string) {
     this.http.post('/API/devices/changeDeviceData/' + this.id + '/',
       {
         "timeFrom": timeFrom,
@@ -61,8 +71,22 @@ export class EditVehicleComponent implements OnInit {
           this.popupFail = true;
         },
         () => {
-          this.popupOk = true;
+          this.http.post('/API/carConfiguration/changeConfiguration/'+ this.id + '/',
+            {
+              "sendInterval": sendInterval,
+              "locationInterval": locationInterval
+            })
+            .subscribe(
+              (val) => {
+              },
+              response => {
+                this.popupFail = true;
+              },
+              () => {
+                this.popupOk = true;
+              });
         });
+
   }
 
 }

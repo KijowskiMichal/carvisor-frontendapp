@@ -50,7 +50,7 @@
   margin-bottom: 50px;
 }
 
-#acceptButton {
+.acceptButton {
   background: $ColorGreen;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 13px;
@@ -70,7 +70,7 @@
   background: $ColorBlueHover;
 }
 
-#acceptButton:hover {
+.acceptButton:hover {
   background: $ColorGreenHover;
 }
 
@@ -82,13 +82,23 @@
   box-sizing: border-box;
 }
 
-#editButton {
+.editButton {
   width: 90%;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 100px;
   margin-bottom: 40px;
   padding-left: 5%;
   box-sizing: border-box;
+  float: left;
+}
+
+#editButton2 {
+  width: 90%;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-left: 5%;
+  box-sizing: border-box;
+  float: left;
 }
 
 .inputWrapper {
