@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 interface GlobalConfiguration {
   historyTimeout: number;
   sendInterval: number;
-  locationInterval: number;
+  getLocationInterval: number;
 }
 
 @Component({
@@ -51,11 +51,11 @@ export class SettingsComponent implements OnInit {
   }
 
   sendData(historyTimeout:string, sendInterval:string, locationInterval:string) {
-    this.http.post('/API/carConfiguration/changeGlobalConfiguration/',
+    this.http.post('/API/carConfiguration/setGlobalConfiguration/',
       {
         "historyTimeout": historyTimeout,
         "sendInterval": sendInterval,
-        "locationInterval": locationInterval
+        "getLocationInterval": locationInterval
       })
       .subscribe(
         (val) => {

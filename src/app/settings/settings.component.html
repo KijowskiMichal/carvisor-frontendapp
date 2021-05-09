@@ -110,10 +110,10 @@
         </div>
         <div class="comboBoxWrapper">
           <select #locationInterval>
-            <option value="5" [selected]="globalConfiguration.locationInterval == 5">5 sekund</option>
-            <option value="10" [selected]="globalConfiguration.locationInterval == 10">10 sekund</option>
-            <option value="15" [selected]="globalConfiguration.locationInterval == 15">15 sekund</option>
-            <option value="0" [selected]="globalConfiguration.locationInterval == 0">Automatycznie</option>
+            <option value="5" [selected]="globalConfiguration.getLocationInterval == 5">5 sekund</option>
+            <option value="10" [selected]="globalConfiguration.getLocationInterval == 10">10 sekund</option>
+            <option value="15" [selected]="globalConfiguration.getLocationInterval == 15">15 sekund</option>
+            <option value="0" [selected]="globalConfiguration.getLocationInterval == 0">Automatycznie</option>
           </select>
           <i class="fal fa-chevron-down"></i>
         </div>

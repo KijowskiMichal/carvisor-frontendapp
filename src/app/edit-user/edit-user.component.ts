@@ -72,7 +72,7 @@ export class EditUserComponent implements OnInit {
       canvas.width = iwScaled;
       canvas.height = ihScaled;
       context.drawImage(img, 0, 0, iwScaled, ihScaled);
-      selff.http.post('/API/users/changeUserData/' + selff.id + '/',
+      selff.http.post('/API/users/changeUserImage/' + selff.id + '/',
         {
           "image": canvas.toDataURL()
         })

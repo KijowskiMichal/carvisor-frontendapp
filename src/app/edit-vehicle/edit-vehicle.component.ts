@@ -109,7 +109,7 @@ export class EditVehicleComponent implements OnInit {
       canvas.width = iwScaled;
       canvas.height = ihScaled;
       context.drawImage(img, 0, 0, iwScaled, ihScaled);
-      selff.http.post('/API/devices/changeDeviceData/' + selff.id + '/',
+      selff.http.post('/API/devices/changeDeviceImage/' + selff.id + '/',
         {
           "image": canvas.toDataURL()
         })
