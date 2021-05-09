@@ -13,7 +13,7 @@ export class VehiclesComponent implements OnInit {
   listOfDevicesWrapper: ListOfDevicesWrapper;
   page: number;
   pageMax: number;
-  pageSize = 1;
+  pageSize = 6;
 
   constructor(private http: HttpClient, private router: Router) { }
 

@@ -155,6 +155,7 @@
   text-align: center;
   padding-top: 15px;
   @include manropeFont(500, 18px);
+  cursor: pointer;
 }
 
 .logo > div > i {

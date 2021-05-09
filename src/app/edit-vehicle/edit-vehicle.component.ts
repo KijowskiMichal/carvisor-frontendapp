@@ -89,4 +89,40 @@ export class EditVehicleComponent implements OnInit {
 
   }
 
+  onFileChanged(evt: Event) {
+    const file = (<HTMLInputElement>evt.target).files[0];
+    if (!file) {
+      return false;
+    }
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    var maxW = 400;
+    var maxH = 400;
+    var img = document.createElement('img');
+    var selff = this;
+    img.onload = function() {
+      var iw = img.width;
+      var ih = img.height;
+      var scale = Math.min((maxW / iw), (maxH / ih));
+      var iwScaled = iw * scale;
+      var ihScaled = ih * scale;
+      canvas.width = iwScaled;
+      canvas.height = ihScaled;
+      context.drawImage(img, 0, 0, iwScaled, ihScaled);
+      selff.http.post('/API/devices/changeDeviceData/' + selff.id + '/',
+        {
+          "image": canvas.toDataURL()
+        })
+        .subscribe(
+          (val) => {
+          },
+          response => {
+            selff.popupFail = true;
+          },
+          () => {
+            selff.popupOk = true;
+          });
+    }
+    img.src = URL.createObjectURL(file);
+  }
 }

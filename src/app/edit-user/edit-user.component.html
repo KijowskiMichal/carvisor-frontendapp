@@ -36,8 +36,9 @@
         <i class="far fa-user"></i>
         Dane użytkownika
       </div>
+      <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
       <div class="logo" [ngStyle]="{'background-image': 'url('+userInfo.image+')'}">
-        <div>
+        <div (click)="fileInput.click()">
           <i class="far fa-pen"></i>
           Edytuj zdjęcie
         </div>

@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit {
   listOfUser: ListOfUser;
   page: number;
   pageMax: number;
-  pageSize = 1;
+  pageSize = 6;
 
   ngOnInit(): void
   {
