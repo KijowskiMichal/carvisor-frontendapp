@@ -86,6 +86,7 @@
       <div class="editContent">
         <div class="comboBoxWrapper">
           <select #sendInterval>
+            <option value="-1" [selected]="configuration.sendInterval == -1">Globalne</option>
             <option value="15" [selected]="configuration.sendInterval == 15">15 sekund</option>
             <option value="30" [selected]="configuration.sendInterval == 30">30 sekund</option>
             <option value="60" [selected]="configuration.sendInterval == 60">1 minuta</option>
@@ -101,6 +102,7 @@
       <div class="editContent">
         <div class="comboBoxWrapper">
           <select #locationInterval>
+            <option value="-1" [selected]="configuration.locationInterval == -1">Globalne</option>
             <option value="5" [selected]="configuration.locationInterval == 5">5 sekund</option>
             <option value="10" [selected]="configuration.locationInterval == 10">10 sekund</option>
             <option value="15" [selected]="configuration.locationInterval == 15">15 sekund</option>
