@@ -12,6 +12,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { SettingsComponent } from './settings/settings.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SettingsComponent } from './settings/settings.component';
     EditUserComponent,
     VehiclesComponent,
     EditVehicleComponent,
-    SettingsComponent
+    SettingsComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

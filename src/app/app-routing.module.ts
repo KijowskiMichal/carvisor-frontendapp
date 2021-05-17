@@ -6,13 +6,15 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { VehiclesComponent } from "./vehicles/vehicles.component";
 import { EditVehicleComponent } from "./edit-vehicle/edit-vehicle.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { MapComponent } from "./map/map.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
                           { path: 'editUser/:id', component: EditUserComponent},
                           { path: 'vehicles', component: VehiclesComponent},
                           { path: 'editVehicle/:id', component: EditVehicleComponent},
-                          { path: 'settings', component: SettingsComponent}];
+                          { path: 'settings', component: SettingsComponent},
+                          { path: 'map', component: MapComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],
