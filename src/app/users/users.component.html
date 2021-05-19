@@ -14,7 +14,7 @@
         <td>Status</td>
         <td>Dystans dzisiaj</td>
         <td>Godzina startu</td>
-        <td>Godzina zakończenia</td>
+        <td>Ostatnia aktywność</td>
         <td></td>
       </tr>
       <tr *ngFor="let user of listOfUser.listOfUsers">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </td>
-        <td>{{user.status}}</td>
+        <td [ngClass]="{'activetd':user.status === 'Aktywny'}">{{user.status}}</td>
         <td>{{user.distance}} km</td>
         <td>{{user.startTime}}</td>
         <td>{{user.finishTime}}</td>

@@ -14,16 +14,9 @@
 
 .panel {
   box-sizing: border-box;
-  width: 49.9%;
+  width: 50%;
   padding: 20px;
   float: left;
-}
-
-#divider {
-  background-color: $ColorGrayAnother;
-  width: 0.2%;
-  float: left;
-  height: 100%;
 }
 
 #title > i {
