@@ -14,3 +14,12 @@
 #map {
   height: 100vh;
 }
+
+#popup {
+  @include manropeFont(500, 20px);
+  padding: 25px;
+  background-color: $ColorGrayLight;
+  border-radius: 10px;
+  color: $ColorGrayDark;
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
+}
