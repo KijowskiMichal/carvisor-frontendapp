@@ -13,6 +13,10 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MapComponent } from './map/map.component';
+import {FormsModule} from "@angular/forms";
+import {DatePipe} from "@angular/common";
+import { TracksComponent } from './tracks/tracks.component';
+import { EcodriveComponent } from './ecodrive/ecodrive.component';
 
 @NgModule({
   declarations: [
@@ -24,14 +28,17 @@ import { MapComponent } from './map/map.component';
     VehiclesComponent,
     EditVehicleComponent,
     SettingsComponent,
-    MapComponent
+    MapComponent,
+    TracksComponent,
+    EcodriveComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

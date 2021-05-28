@@ -247,3 +247,7 @@ select::-ms-expand {
   top: 15px;
 }
 
+input:invalid {
+  border: $ColorPink solid 1px;
+}
+

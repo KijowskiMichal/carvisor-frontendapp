@@ -4,4 +4,28 @@
     <div [innerHTML]="popupik" id="popup">
     </div>
   </div>
+  <div id="chooserWrapper">
+    <div class="inputWrapper">
+      <i class="far fa-search"></i>
+      <input type="text" placeholder="Szukaj" (keyup)="regexChanged(search.value)" #search>
+    </div>
+    <div class="inputWrapper">
+      <i class="far fa-user"></i>
+      <div class="select" (click)="showPopup()"  #popupTrigger>
+        Wybierz użytkownika
+      </div>
+    </div>
+    <div class="selectOptions" *ngIf="popupOn" #popupMenu>
+      <div *ngFor="let name of names">
+        <div class="selectOption" (click)="chooseOption(name.id, name.name, date)">
+          <img src="{{name.image}}">
+          {{name.name}}
+        </div>
+      </div>
+    </div>
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" (change)="changeMap(date)" [(ngModel)]="dateValue" max="{{maxDate | date:'y-M-d'}}" #date>
+    </div>
+  </div>
 </div>

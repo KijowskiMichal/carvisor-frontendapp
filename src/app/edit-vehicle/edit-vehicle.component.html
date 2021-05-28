@@ -46,19 +46,19 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-car"></i>
-          <input type="text" placeholder="Numer rejestracyjny" value="{{deviceInfo.licensePlate}}" #licensePlate>
+          <input type="text" placeholder="Numer rejestracyjny" pattern="^[A-Za-z0-9]{4,7}" title="Litery i cyfry od 4 do 7 znaków." value="{{deviceInfo.licensePlate}}" #licensePlate>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-car"></i>
-          <input type="text" placeholder="Marka" value="{{deviceInfo.brand}}" #brand>
+          <input type="text" placeholder="Marka" pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,30}" title="Tylko litery, od 2 do 30 znaków." value="{{deviceInfo.brand}}" #brand>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-car"></i>
-          <input type="text" placeholder="Model" value="{{deviceInfo.model}}" #model>
+          <input type="text" placeholder="Model" pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,30}" title="Tylko litery, od 2 do 30 znaków." value="{{deviceInfo.model}}" #model>
         </div>
       </div>
       <div class="smallTitle">
@@ -68,13 +68,13 @@
       <div class="editContent">
         <div class="inputWrapper">
           <div class="inputWrapper2">
-            <input type="text" placeholder="od" value="{{deviceInfo.timeFrom}}" #timeFrom>
+            <input type="text" placeholder="od" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]" title="Godzina w formacie gg:mm." value="{{deviceInfo.timeFrom}}" #timeFrom>
           </div>
           <div class="inputDivider">
             -
           </div>
           <div class="inputWrapper2">
-            <input type="text" placeholder="do" value="{{deviceInfo.timeTo}}" #timeTo>
+            <input type="text" placeholder="do" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]" title="Godzina w formacie gg:mm." value="{{deviceInfo.timeTo}}" #timeTo>
           </div>
         </div>
       </div>
@@ -114,31 +114,31 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-calendar-alt"></i>
-          <input type="text" placeholder="Rok produkcji" value="{{deviceInfo.yearOfProduction}}" #yearOfProduction>
+          <input type="text" placeholder="Rok produkcji" pattern="^[1-2][0-9]{3}" title="Rok produkcji." value="{{deviceInfo.yearOfProduction}}" #yearOfProduction>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-car"></i>
-          <input type="text" placeholder="Silnik" value="{{deviceInfo.engine}}" #engine>
+          <input type="text" placeholder="Silnik" pattern="^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ .,:;]{2,30}" title="Opis silnika." value="{{deviceInfo.engine}}" #engine>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-gas-pump"></i>
-          <input type="text" placeholder="Wielkość zbiornika" value="{{deviceInfo.tank}}" #tank>
+          <input type="text" placeholder="Wielkość zbiornika" pattern="^[0-9]{0,5}(\.[0-9]{0,5})?" title="Wielkość zbiornika." value="{{deviceInfo.tank}}" #tank>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-gas-pump"></i>
-          <input type="text" placeholder="Typ paliwa" value="{{deviceInfo.fuel}}" #fuel>
+          <input type="text" placeholder="Typ paliwa" pattern="^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ .,:;]{2,15}" title="Typ paliwa." value="{{deviceInfo.fuel}}" #fuel>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-tachometer"></i>
-          <input type="text" placeholder="Norma spalania" value="{{deviceInfo.norm}}" #norm>
+          <input type="text" placeholder="Norma spalania" pattern="^[0-9]{0,3}(\.[0-9]{0,5})?" title="Wielkość zbiornika." value="{{deviceInfo.norm}}" #norm>
         </div>
       </div>
     </div>

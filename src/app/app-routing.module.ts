@@ -7,6 +7,8 @@ import { VehiclesComponent } from "./vehicles/vehicles.component";
 import { EditVehicleComponent } from "./edit-vehicle/edit-vehicle.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { MapComponent } from "./map/map.component";
+import { EcodriveComponent } from "./ecodrive/ecodrive.component";
+import { TracksComponent } from "./tracks/tracks.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
@@ -14,7 +16,9 @@ const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'vehicles', component: VehiclesComponent},
                           { path: 'editVehicle/:id', component: EditVehicleComponent},
                           { path: 'settings', component: SettingsComponent},
-                          { path: 'map', component: MapComponent}];
+                          { path: 'map', component: MapComponent},
+                          { path: 'ecodrive', component: EcodriveComponent},
+                          { path: 'tracks/:id', component: TracksComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],
