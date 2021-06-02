@@ -1,0 +1,127 @@
+@import "./../../styles.scss";
+
+#tracks {
+  width: 85%;
+  height: 100vh;
+  background-image: url("./../../assets/dots.png");
+  float: left;
+  box-sizing: border-box;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  position: relative;
+}
+
+#title {
+  box-sizing: border-box;
+  padding: 30px 50px;
+  float: left;
+  position: relative;
+  @include manropeFont(500, 22px);
+  color: $ColorGrayDark;
+}
+
+#searchBar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  margin-bottom: 50px;
+}
+
+#searchBarWrapper {
+  float: right;
+  position: relative;
+}
+
+#searchBarWrapper > input {
+  @include manropeFont(normal, 18px);
+  color: $ColorGrayDark;
+  padding: 10px 5px 10px 50px;
+  background: $ColorWhite;
+  border-radius: 10px;
+  border: 0;
+}
+
+#searchBarWrapper > i {
+  position: absolute;
+  color: $ColorGrayDark;
+  top: 16px;
+  left: 15px;
+}
+
+#pages {
+  @include manropeFont(normal, 18px);
+  color: $ColorGrayDark;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+#pagesWrapper {
+  float: right;
+  position: relative;
+}
+
+#pagesText {
+  margin: 0 20px;
+  float: left;
+}
+
+#pagesWrapper > i {
+  margin: 0 15px;
+  color: $ColorGrayDark;
+  cursor: pointer;
+  float: left;
+  line-height: 27px;
+}
+
+#firstRow > td {
+  @include manropeFont(normal, 20px);
+  text-transform: uppercase;
+  line-height: 50%;
+  padding: 30px 30px;
+  align-items: center;
+  text-align: center;
+  color: $ColorGrayDark;
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+  width: 100%;
+  table-layout: auto;
+}
+
+#table {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 30px;
+}
+
+td {
+  border-bottom: 2px solid $ColorGrayBlueish;
+  box-sizing: border-box;
+  padding: 10px 30px;
+  align-items: center;
+  text-align: center;
+  @include manropeFont(500, 18px);
+  color: $ColorGrayDark;
+}
+
+.name {
+  @include manropeFont(600, 20px);
+  color: $ColorGrayDark;
+}
+
+.disableLink {
+  color: rgba(106, 106, 106, 0.11) !important;
+}
+
+a {
+  text-decoration: none;
+}

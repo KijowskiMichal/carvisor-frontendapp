@@ -122,7 +122,7 @@ export class MapComponent implements OnInit {
         {
           if ((coordInNormal[0].toFixed(10)===parseFloat(rate.gpsY).toFixed(10)) && (coordInNormal[1].toFixed(10)===parseFloat(rate.gpsX).toFixed(10)))
           {
-            this.popupik = '<strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time, 'H:m')+' ';
+            this.popupik = '<strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+' ';
           }
         }
       }
@@ -192,7 +192,7 @@ export class MapComponent implements OnInit {
 
       var lineStyle = new ol.style.Style({
         stroke: new ol.style.Stroke({
-          color: '#ffcc33',
+          color: '#a120e7',
           width: 5
         })
       });

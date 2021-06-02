@@ -35,7 +35,29 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-  sendData(name:string, phone:string) {
+  sendData(nameInput:HTMLInputElement, phoneInput:HTMLInputElement) {
+    var name = nameInput.value;
+    var phone = phoneInput.value;
+    var allClear = true;
+    nameInput.classList.remove('error');
+    phoneInput.classList.remove('error');
+    //validator
+    if (!/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,30}$/.test(name)) {
+      nameInput.focus();
+      nameInput.classList.add('error');
+      nameInput.value = "";
+      nameInput.placeholder = "Tylko litery, od 2 do 30 znaków.";
+      allClear = false;
+    }
+    if (!/^[0-9]{9}$/.test(phone)) {
+      phoneInput.focus();
+      phoneInput.classList.add('error');
+      phoneInput.value = "";
+      phoneInput.placeholder = "9 cyfr bez spacji i znaków specjalnych.";
+      allClear = false;
+    }
+    if (!allClear) return;
+    //others
     this.http.post('/API/users/changeUserData/' + this.id + '/',
       {
         "name": name,

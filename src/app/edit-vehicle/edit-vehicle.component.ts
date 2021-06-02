@@ -50,7 +50,103 @@ export class EditVehicleComponent implements OnInit {
 
   }
 
-  sendData(timeFrom:string, licensePlate:string, timeTo:string, engine:string, fuel:string, yearOfProduction:string, model:string, tank:string, brand:string, norm:string, sendInterval:string, locationInterval:string) {
+  sendData(timeFromInput:HTMLInputElement, licensePlateInput:HTMLInputElement, timeToInput:HTMLInputElement, engineInput:HTMLInputElement,
+           fuelInput:HTMLInputElement, yearOfProductionInput:HTMLInputElement, modelInput:HTMLInputElement, tankInput:HTMLInputElement,
+           brandInput:HTMLInputElement, normInput:HTMLInputElement, sendInterval:string, locationInterval:string) {
+    var timeFrom = timeFromInput.value;
+    var licensePlate = licensePlateInput.value;
+    var timeTo = timeToInput.value;
+    var engine = engineInput.value;
+    var fuel = fuelInput.value;
+    var yearOfProduction = yearOfProductionInput.value;
+    var model = modelInput.value;
+    var tank = tankInput.value;
+    var brand = brandInput.value;
+    var norm = normInput.value;
+    var allClear = true;
+    timeFromInput.classList.remove('error');
+    licensePlateInput.classList.remove('error');
+    timeToInput.classList.remove('error');
+    engineInput.classList.remove('error');
+    fuelInput.classList.remove('error');
+    yearOfProductionInput.classList.remove('error');
+    modelInput.classList.remove('error');
+    tankInput.classList.remove('error');
+    brandInput.classList.remove('error');
+    normInput.classList.remove('error');
+    //validator
+    /*if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(timeFrom)) {
+      timeFromInput.focus();
+      timeFromInput.classList.add('error');
+      timeFromInput.value = "";
+      timeFromInput.placeholder = "gg:mm";
+      allClear = false;
+    }*/
+    if (!/^[A-Za-z0-9]{4,7}$/.test(licensePlate)) {
+      licensePlateInput.focus();
+      licensePlateInput.classList.add('error');
+      licensePlateInput.value = "";
+      licensePlateInput.placeholder = "Litery i cyfry od 4 do 7 znaków.";
+      allClear = false;
+    }
+    /*if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(timeTo)) {
+      timeToInput.focus();
+      timeToInput.classList.add('error');
+      timeToInput.value = "";
+      timeToInput.placeholder = "gg:mm";
+      allClear = false;
+    }*/
+    if (!/^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ .,:;]{2,30}$/.test(engine)) {
+      engineInput.focus();
+      engineInput.classList.add('error');
+      engineInput.value = "";
+      engineInput.placeholder = "Litery i cyfry od 2 do 30 znaków.";
+      allClear = false;
+    }
+    if (!/^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ .,:;]{2,15}$/.test(fuel)) {
+      fuelInput.focus();
+      fuelInput.classList.add('error');
+      fuelInput.value = "";
+      fuelInput.placeholder = "Litery i cyfry od 2 do 15 znaków.";
+      allClear = false;
+    }
+    if (!/^[1-2][0-9]{3}$/.test(yearOfProduction)) {
+      yearOfProductionInput.focus();
+      yearOfProductionInput.classList.add('error');
+      yearOfProductionInput.value = "";
+      yearOfProductionInput.placeholder = "Cztery cyfry.";
+      allClear = false;
+    }
+    if (!/^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,15}$/.test(model)) {
+      modelInput.focus();
+      modelInput.classList.add('error');
+      modelInput.value = "";
+      modelInput.placeholder = "Litery i cyfry od 2 do 15 znaków.";
+      allClear = false;
+    }
+    if (!/^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,15}$/.test(brand)) {
+      brandInput.focus();
+      brandInput.classList.add('error');
+      brandInput.value = "";
+      brandInput.placeholder = "Litery i cyfry od 2 do 15 znaków.";
+      allClear = false;
+    }
+    if (!/^[0-9]{0,5}(\.[0-9]{0,5})?$/.test(tank)) {
+      tankInput.focus();
+      tankInput.classList.add('error');
+      tankInput.value = "";
+      tankInput.placeholder = "Cyfry, kropka zamiast przecinka.";
+      allClear = false;
+    }
+    if (!/^[0-9]{0,3}(\.[0-9]{0,5})?$/.test(norm)) {
+      normInput.focus();
+      normInput.classList.add('error');
+      normInput.value = "";
+      normInput.placeholder = "Cyfry, kropka zamiast przecinka.";
+      allClear = false;
+    }
+    if (!allClear) return;
+    //others
     this.http.post('/API/devices/changeDeviceData/' + this.id + '/',
       {
         "timeFrom": timeFrom,

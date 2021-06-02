@@ -19,7 +19,7 @@ export class LeftpanelComponent implements OnInit {
     this.http.get('/API/authorization/logout').subscribe(
       data => {},
       () => {},
-      () => { this.router.navigate(['./']); }
+      () => { this.router.navigateByUrl('/'); }
     );
   }
 }

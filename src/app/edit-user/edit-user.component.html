@@ -46,13 +46,13 @@
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-user"></i>
-          <input type="text" placeholder="Imię i nazwisko" pattern="^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,30}" title="Tylko litery, od 2 do 30 znaków." value="{{userInfo.name}}" #name>
+          <input type="text" placeholder="Imię i nazwisko" title="Tylko litery, od 2 do 30 znaków." value="{{userInfo.name}}" #name>
         </div>
       </div>
       <div class="editContent">
         <div class="inputWrapper">
           <i class="far fa-phone"></i>
-          <input type="text" placeholder="Telefon" pattern="^[0-9]{0,9}" title="Od 0 do 9 cyfr bez spacji, znaków specjalnych i numeru kierunkowego." value="{{userInfo.telephone}}" #phone>
+          <input type="text" placeholder="Telefon" title="9 cyfr bez spacji, znaków specjalnych i numeru kierunkowego." value="{{userInfo.telephone}}" #phone>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
     </div>
   </div>
   <div id="buttons">
-    <div id="acceptButton" (click)="sendData(name.value, phone.value)">
+    <div id="acceptButton" (click)="sendData(name, phone)">
       Aktualizuj
     </div>
     <a [routerLink]="['/users']" >

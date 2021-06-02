@@ -21,14 +21,29 @@ export class SettingsComponent implements OnInit {
   popupOk = false;
   popupFail = false;
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
     this.http.get<GlobalConfiguration>('/API/carConfiguration/getGlobalConfiguration/').subscribe(value => {
       this.globalConfiguration = value;
     });
   }
 
-  changePassword(first:any, second:any) {
+  changePassword(first:HTMLInputElement, second:HTMLInputElement) {
+    var allClear = true;
+    if (!/^.{5,30}$/.test(first.value)) {
+      first.focus();
+      first.style.border = 'solid #ef476f 1px';
+      first.value = "";
+      first.placeholder = "Długość od 5 do 30 znaków.";
+      allClear = false;
+    }
+    if (!/^.{5,30}$/.test(second.value)) {
+      second.focus();
+      second.style.border = 'solid #ef476f 1px';
+      second.value = "";
+      second.placeholder = "Długość od 5 do 30 znaków.";
+      allClear = false;
+    }
+    if (!allClear) return;
       this.http.post('/API/users/changePassword',
       {
         "firstPassword": first.value,
@@ -38,12 +53,12 @@ export class SettingsComponent implements OnInit {
         (val) => {
         },
         response => {
-          (first as HTMLElement).style.border = 'solid #ef476f 1px';
+          first.style.border = 'solid #ef476f 1px';
           first.value = '';
-          (first as HTMLElement).setAttribute('placeholder', 'Hasła się nie zgadzają!');
-          (second as HTMLElement).style.border = 'solid #ef476f 1px';
+          first.setAttribute('placeholder', 'Hasła się nie zgadzają!');
+          second.style.border = 'solid #ef476f 1px';
           second.value = '';
-          (second as HTMLElement).setAttribute('placeholder', 'Hasła się nie zgadzają!');
+          second.setAttribute('placeholder', 'Hasła się nie zgadzają!');
         },
         () => {
           this.popup = true;

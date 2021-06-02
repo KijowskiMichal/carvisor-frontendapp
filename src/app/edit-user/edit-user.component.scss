@@ -181,6 +181,6 @@
   left: 15px;
 }
 
-input:invalid {
-  border: $ColorPink solid 1px;
+.error {
+  border: $ColorPink solid 2px !important;
 }
