@@ -21,19 +21,27 @@
   color: $ColorGrayDark;
 }
 
-#searchBar {
+.inputDivider {
+  float: right;
+  text-align: center;
+  width: 5%;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.searchBar {
   width: 100%;
   box-sizing: border-box;
   padding: 20px 40px;
   margin-bottom: 50px;
 }
 
-#searchBarWrapper {
+.inputWrapper {
   float: right;
   position: relative;
 }
 
-#searchBarWrapper > input {
+.inputWrapper > input {
   @include manropeFont(normal, 18px);
   color: $ColorGrayDark;
   padding: 10px 5px 10px 50px;
@@ -42,7 +50,7 @@
   border: 0;
 }
 
-#searchBarWrapper > i {
+.inputWrapper > i {
   position: absolute;
   color: $ColorGrayDark;
   top: 16px;
@@ -111,6 +119,16 @@ td {
   text-align: center;
   @include manropeFont(500, 18px);
   color: $ColorGrayDark;
+}
+
+td > a > i {
+  color: $ColorGrayDark;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+td > a > i:hover {
+  color: $ColorGrayDarkHover;
 }
 
 .name {

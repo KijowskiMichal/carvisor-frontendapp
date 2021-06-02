@@ -1,63 +1,51 @@
 <app-leftpanel></app-leftpanel>
 <div id="tracks">
-  <div id="title">
-    Trasy kierowcy Jan Kowalski:
+  <div id="title" *ngIf="listOfTracks">
+    Trasy kierowcy {{listOfTracks.user}}:
   </div>
-  <div id="searchBar">
-    <div id="searchBarWrapper">
-      <i class="far fa-search"></i>
-      <input type="text" placeholder="Szukaj">
+  <div class="searchBar">
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" [(ngModel)]="dateToValue" (change)="list(1)">
+    </div>
+    <div class="inputDivider">
+      -
+    </div>
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" [(ngModel)]="dateFromValue" (change)="list(1)">
     </div>
   </div>
 
   <div id="table">
-    <table>
+    <table *ngIf="listOfTracks">
       <tr id="firstRow">
         <td>Skąd</td>
         <td>Dokąd</td>
         <td>Godzina startu</td>
         <td>Godzina zakończenia</td>
         <td>Dystans</td>
+        <td></td>
       </tr>
-      <tr>
-        <td>Piątkowo</td>
-        <td>Naramowice</td>
-        <td>15:03</td>
-        <td>15:10</td>
-        <td>4.5 km</td>
-      </tr>
-      <tr>
-        <td>Piątkowo</td>
-        <td>Naramowice</td>
-        <td>15:03</td>
-        <td>15:10</td>
-        <td>4.5 km</td>
-      </tr>
-      <tr>
-        <td>Piątkowo</td>
-        <td>Naramowice</td>
-        <td>15:03</td>
-        <td>15:10</td>
-        <td>4.5 km</td>
-      </tr>
-      <tr>
-        <td>Piątkowo</td>
-        <td>Naramowice</td>
-        <td>15:03</td>
-        <td>15:10</td>
-        <td>4.5 km</td>
+      <tr *ngFor="let track of listOfTracks.listOfTracks">
+        <td>{{track.from}}</td>
+        <td>{{track.to}}</td>
+        <td>{{track.start | date:'HH:mm'}}</td>
+        <td>{{track.end == 0 ? '------' : track.end | date:'HH:mm'}}</td>
+        <td>{{track.distance}} km</td>
+        <td><a [routerLink]="['/map/']"><i class="far fa-road"></i></a></td>
       </tr>
     </table>
   </div>
   <div id="pages">
-    <div id="pagesWrapper">
-      <i class="far fa-chevron-double-left"></i>
-      <i class="far fa-chevron-left"></i>
+    <div id="pagesWrapper" *ngIf="listOfTracks">
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1)" class="far fa-chevron-left"></i>
       <div id="pagesText">
-        strona 1 z 1
+        strona {{page}} z {{pageMax}}
       </div>
-      <i class="far fa-chevron-right"></i>
-      <i class="far fa-chevron-double-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1)"  class="far fa-chevron-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax)"  class="far fa-chevron-double-right"></i>
     </div>
   </div>
 </div>
