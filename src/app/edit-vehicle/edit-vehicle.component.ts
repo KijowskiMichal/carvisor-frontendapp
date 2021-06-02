@@ -131,14 +131,14 @@ export class EditVehicleComponent implements OnInit {
       brandInput.placeholder = "Litery i cyfry od 2 do 15 znaków.";
       allClear = false;
     }
-    if (!/^[0-9]{0,5}(\.[0-9]{0,5})?$/.test(tank)) {
+    if (!/^[0-9]{1,5}(\.[0-9]{0,5})?$/.test(tank)) {
       tankInput.focus();
       tankInput.classList.add('error');
       tankInput.value = "";
       tankInput.placeholder = "Cyfry, kropka zamiast przecinka.";
       allClear = false;
     }
-    if (!/^[0-9]{0,3}(\.[0-9]{0,5})?$/.test(norm)) {
+    if (!/^[0-9]{1,3}(\.[0-9]{0,5})?$/.test(norm)) {
       normInput.focus();
       normInput.classList.add('error');
       normInput.value = "";
