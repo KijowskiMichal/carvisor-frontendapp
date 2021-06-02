@@ -33,7 +33,7 @@
         <td>{{track.start | date:'HH:mm'}}</td>
         <td>{{track.end == 0 ? '------' : track.end | date:'HH:mm'}}</td>
         <td>{{track.distance}} km</td>
-        <td><a [routerLink]="['/map/']"><i class="far fa-road"></i></a></td>
+        <td><a [routerLink]="['/map/' + id +' /'+ datePipe.transform(track.start*1000, 'yyyy-MM-dd')]"><i class="far fa-road"></i></a></td>
       </tr>
     </table>
   </div>

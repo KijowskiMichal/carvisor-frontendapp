@@ -1,6 +1,6 @@
 import {OnInit, Component, ViewChild, ElementRef, Renderer2, AfterViewInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgModel} from "@angular/forms";
 import { DatePipe } from '@angular/common';
 
@@ -57,7 +57,7 @@ export class MapComponent implements OnInit {
 
   @ViewChild('popupTrigger') toggleButton: ElementRef;
 
-  constructor(private http:HttpClient, private router:Router, private renderer: Renderer2, private datePipe: DatePipe) {
+  constructor(private route: ActivatedRoute, private http:HttpClient, private router:Router, private renderer: Renderer2, private datePipe: DatePipe) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       if(e.target !== this.toggleButton.nativeElement && this.popupOn){
         this.disablePopup();
@@ -68,7 +68,7 @@ export class MapComponent implements OnInit {
   latitude: number = 52.460394146699365;
   longitude: number = 16.917809968543395;
   rates: Rate;
-  names: listNames;
+  names: listNames[];
   points: Array<any> = [];
   empList: Array<any> = [];
   line: Array<any> = [];
@@ -78,8 +78,9 @@ export class MapComponent implements OnInit {
   maxDate:string;
   dateValue:string;
 
-  ngAfterViewInit() {
-    this.popupTrigger = this.toggleButton.nativeElement
+  ngAfterViewInit()
+  {
+    this.popupTrigger = this.toggleButton.nativeElement;
   }
 
   ngOnInit() {
@@ -130,6 +131,25 @@ export class MapComponent implements OnInit {
       popup.setPosition(ol3_sprint_location);
     }, this);
 
+    setTimeout(() => {
+      this.route.params.subscribe(params => {
+        if ((params['id']!=undefined) && (params['date']!=undefined))
+        {
+          this.userID = params['id'];
+          this.dateValue = params['date'];
+          this.changeMap();
+          this.disablePopup();
+          for (let name of this.names)
+          {
+            if (name.id==this.userID)
+            {
+              this.popupTrigger.innerHTML = name.name;
+              return;
+            }
+          }
+        }
+      });
+    }, 200);
   }
 
   showPopup() {
@@ -145,18 +165,18 @@ export class MapComponent implements OnInit {
   chooseOption(value:number, text:string, date:HTMLElement) {
     this.userID = value;
     this.popupTrigger.innerHTML = text;
-    this.changeMap(date);
+    this.changeMap();
   }
 
   regexChanged(regex:string) {
     if (regex==='') regex='$';
-    this.http.get<listNames>('/API/users/listUserNames/'+regex+'/').subscribe(value => {
+    this.http.get<listNames[]>('/API/users/listUserNames/'+regex+'/').subscribe(value => {
       this.names = value;
       this.showPopup();
     });
   }
 
-  changeMap(date: HTMLElement) {
+  changeMap() {
     var that = this;
     this.http.get<Rate>('/API/track/getTrackData/'+this.userID+'/'+this.dateValue+'/').subscribe(value => {
       this.rates = value;

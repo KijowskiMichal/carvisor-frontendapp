@@ -17,6 +17,7 @@ const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'editVehicle/:id', component: EditVehicleComponent},
                           { path: 'settings', component: SettingsComponent},
                           { path: 'map', component: MapComponent},
+                          { path: 'map/:id/:date', component: MapComponent},
                           { path: 'ecodrive', component: EcodriveComponent},
                           { path: 'tracks/:id', component: TracksComponent}];
 

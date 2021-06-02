@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {from, Subscription} from "rxjs";
+import {AdapterResourceLoader} from "@angular/compiler-cli/src/ngtsc/resource";
 
 interface LoginStatus {
   logged: boolean;
@@ -24,6 +25,28 @@ interface ListOfTracks {
   user: string;
   pageMax: number;
   listOfTracks: ListOfTrack[];
+}
+
+export interface Address {
+  city_block: string;
+  suburb: string;
+  city: string;
+  state: string;
+  postcode: string;
+  country: string;
+  country_code: string;
+}
+
+export interface AddressWrapper {
+  place_id: number;
+  licence: string;
+  osm_type: string;
+  osm_id: number;
+  lat: string;
+  lon: string;
+  display_name: string;
+  address: Address;
+  boundingbox: string[];
 }
 
 @Component({
