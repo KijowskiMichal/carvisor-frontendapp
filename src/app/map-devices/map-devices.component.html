@@ -5,7 +5,7 @@
     </div>
   </div>
   <div id="chooserWrapper">
-    <div [routerLink]="['/map/devices']" class="chooserEntityWrapper">
+    <div [routerLink]="['/map']" class="chooserEntityWrapper">
       <i class="far fa-user users-icon"></i>
       <div class="select">
         <div class="users">
@@ -22,9 +22,9 @@
       <input type="text" placeholder="Szukaj" (keyup)="regexChanged(search.value)" #search>
     </div>
     <div class="inputWrapper">
-      <i class="far fa-user"></i>
+      <i class="far fa-car"></i>
       <div class="select" (click)="showPopup()"  #popupTrigger>
-        Wybierz użytkownika
+        Wybierz pojazd
       </div>
     </div>
     <div class="selectOptions" *ngIf="popupOn" #popupMenu>

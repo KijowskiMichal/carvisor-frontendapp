@@ -47,7 +47,6 @@
   border: 0;
   width: 350px;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .inputWrapper > i {
@@ -55,41 +54,6 @@
   color: $ColorGrayDark;
   top: 16px;
   left: 15px;
-}
-
-.chooserEntityWrapper {
-  float: none;
-  position: relative;
-  margin-top: 20px;
-  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
-  cursor: pointer;
-}
-
-.chooserEntityWrapper > input, .chooserEntityWrapper > .select {
-  @include manropeFont(normal, 18px);
-  color: $ColorGrayDark;
-  padding: 10px 50px 10px 50px;
-  background-image: url("../../assets/tab2.png");
-  background-size: 100% 100%;
-  border-radius: 10px;
-  border: 0;
-  width: 350px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.chooserEntityWrapper > .users-icon {
-  position: absolute;
-  color: $ColorGrayDark;
-  top: 16px;
-  left: 15px;
-}
-
-.chooserEntityWrapper > .cars-icon {
-  position: absolute;
-  color: $ColorWhite;
-  top: 16px;
-  right: 15px;
 }
 
 .selectOption {
@@ -138,14 +102,48 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+.chooserEntityWrapper {
+  float: none;
+  position: relative;
+  margin-top: 20px;
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+}
+
+.chooserEntityWrapper > input, .chooserEntityWrapper > .select {
+  @include manropeFont(normal, 18px);
+  color: $ColorGrayDark;
+  padding: 10px 50px 10px 50px;
+  background-image: url("../../assets/tab.png");
+  background-size: 100% 100%;
+  border-radius: 10px;
+  border: 0;
+  width: 350px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.chooserEntityWrapper > .users-icon {
+  position: absolute;
+  color: $ColorWhite;
+  top: 16px;
+  left: 15px;
+}
+
+.chooserEntityWrapper > .cars-icon {
+  position: absolute;
+  color: $ColorGrayDark;
+  top: 16px;
+  right: 15px;
+}
 
 .users
 {
   float: left;
+  color: $ColorWhite;
 }
 
 .devices
 {
   float: right;
-  color: $ColorWhite;
 }

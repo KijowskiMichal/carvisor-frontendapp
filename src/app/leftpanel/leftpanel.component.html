@@ -14,7 +14,7 @@
         Moje pojazdy
       </div>
       </a>
-      <a [routerLink]="['/map']" routerLinkActive="activeMenuItem">
+      <a [routerLink]="['/map']" [routerLinkActiveOptions]="{exact: false}" routerLinkActive="activeMenuItem">
       <div class="menuItem" >
         <i class="far fa-fw fa-map-marker-alt"></i>
         Mapa

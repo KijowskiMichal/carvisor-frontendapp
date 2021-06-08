@@ -13,7 +13,7 @@ export interface StartPoint {
   rpm: number;
   speed: number;
   gpsY: number;
-  vehicle: string;
+  user: string;
 }
 
 export interface Point {
@@ -33,7 +33,7 @@ export interface EndPoint {
   rpm: number;
   speed: number;
   gpsY: number;
-  vehicle: string;
+  user: string;
 }
 
 export interface Rate {
@@ -49,11 +49,11 @@ export interface listNames {
 }
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-map-devices',
+  templateUrl: './map-devices.component.html',
+  styleUrls: ['./map-devices.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapDevicesComponent implements OnInit {
   private map: any;
   popupOn = false;
   userID = 0;
@@ -133,14 +133,14 @@ export class MapComponent implements OnInit {
         {
           if ((coordInNormal[0].toFixed(10)===parseFloat(rate.gpsY).toFixed(10)) && (coordInNormal[1].toFixed(10)===parseFloat(rate.gpsX).toFixed(10)))
           {
-            this.popupik = '<strong>Koniec trasy</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Pojazd:</strong> '+rate.vehicle+' ';
+            this.popupik = '<strong>Koniec trasy</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Kierowca:</strong> '+rate.user+' ';
           }
         }
         for(let rate of this.rates.startPoints)
         {
           if ((coordInNormal[0].toFixed(10)===parseFloat(rate.gpsY).toFixed(10)) && (coordInNormal[1].toFixed(10)===parseFloat(rate.gpsX).toFixed(10)))
           {
-            this.popupik = '<strong>Początek trasy</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Pojazd:</strong> '+rate.vehicle+' ';
+            this.popupik = '<strong>Początek trasy</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Kierowca:</strong> '+rate.user+' ';
           }
         }
       }
@@ -187,7 +187,7 @@ export class MapComponent implements OnInit {
 
   regexChanged(regex:string) {
     if (regex==='') regex='$';
-    this.http.get<listNames[]>('/API/users/listUserNames/'+regex+'/').subscribe(value => {
+    this.http.get<listNames[]>('/API/devices/listDevicesNames/'+regex+'/').subscribe(value => {
       this.names = value;
       this.showPopup();
     });
@@ -195,7 +195,7 @@ export class MapComponent implements OnInit {
 
   changeMap() {
     var that = this;
-    this.http.get<Rate>('/API/track/getTrackData/'+this.userID+'/'+this.dateValue+'/').subscribe(value => {
+    this.http.get<Rate>('/API/track/getTrackDataForDevice/'+this.userID+'/'+this.dateValue+'/').subscribe(value => {
       this.rates = value;
       this.map.getLayers().forEach(function (layer) {
         that.map.removeLayer(layer);

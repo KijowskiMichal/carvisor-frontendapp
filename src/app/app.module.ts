@@ -17,6 +17,7 @@ import {FormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import { TracksComponent } from './tracks/tracks.component';
 import { EcodriveComponent } from './ecodrive/ecodrive.component';
+import { MapDevicesComponent } from './map-devices/map-devices.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EcodriveComponent } from './ecodrive/ecodrive.component';
     SettingsComponent,
     MapComponent,
     TracksComponent,
-    EcodriveComponent
+    EcodriveComponent,
+    MapDevicesComponent
   ],
   imports: [
     BrowserModule,

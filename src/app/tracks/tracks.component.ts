@@ -27,26 +27,8 @@ interface ListOfTracks {
   listOfTracks: ListOfTrack[];
 }
 
-export interface Address {
-  city_block: string;
-  suburb: string;
-  city: string;
-  state: string;
-  postcode: string;
-  country: string;
-  country_code: string;
-}
-
-export interface AddressWrapper {
-  place_id: number;
-  licence: string;
-  osm_type: string;
-  osm_id: number;
-  lat: string;
-  lon: string;
-  display_name: string;
-  address: Address;
-  boundingbox: string[];
+interface Address {
+  address: string;
 }
 
 @Component({
@@ -86,10 +68,28 @@ export class TracksComponent implements OnInit {
             this.listOfTracks = value;
             this.page = value.page;
             this.pageMax = value.pageMax;
+            for (let track of this.listOfTracks.listOfTracks)
+            {
+              var coords = track.from.split(";");
+              this.http.get<Address>('/API/track/reverseGeocoding/' + coords[0] + '/' + coords[1] + '/').subscribe(value => {
+                track.from =  value.address;
+              });
+              coords = track.to.split(";");
+              this.http.get<Address>('/API/track/reverseGeocoding/' + coords[0] + '/' + coords[1] + '/').subscribe(value => {
+                track.to =  value.address;
+              });
+            }
           }
         });
       });
     }
   }
 
+  showLocationOfPoints(joined: string):string {
+    var coords = joined.split(";");
+    this.http.get<Address>('/API/track/reverseGeocoding/' + coords[0] + '/' + coords[1] + '/').subscribe(value => {
+      return value.address;
+    });
+    return 'gsd';
+  }
 }
