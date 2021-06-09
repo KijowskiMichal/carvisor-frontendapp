@@ -18,6 +18,7 @@ import {DatePipe} from "@angular/common";
 import { TracksComponent } from './tracks/tracks.component';
 import { EcodriveComponent } from './ecodrive/ecodrive.component';
 import { MapDevicesComponent } from './map-devices/map-devices.component';
+import { SafetyComponent } from './safety/safety.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MapDevicesComponent } from './map-devices/map-devices.component';
     MapComponent,
     TracksComponent,
     EcodriveComponent,
-    MapDevicesComponent
+    MapDevicesComponent,
+    SafetyComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,8 @@ import { SettingsComponent } from "./settings/settings.component";
 import { MapComponent } from "./map/map.component";
 import { EcodriveComponent } from "./ecodrive/ecodrive.component";
 import { TracksComponent } from "./tracks/tracks.component";
-import {MapDevicesComponent} from "./map-devices/map-devices.component";
+import { MapDevicesComponent } from "./map-devices/map-devices.component";
+import { SafetyComponent } from "./safety/safety.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'map', component: MapComponent},
                           { path: 'map/:id/:date', component: MapComponent},
                           { path: 'ecodrive', component: EcodriveComponent},
-                          { path: 'tracks/:id', component: TracksComponent}];
+                          { path: 'tracks/:id', component: TracksComponent},
+                          { path: 'safety', component: SafetyComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],
