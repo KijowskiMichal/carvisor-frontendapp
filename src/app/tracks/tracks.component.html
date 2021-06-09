@@ -16,7 +16,9 @@
       <input type="date" [(ngModel)]="dateFromValue" (change)="list(1)">
     </div>
   </div>
-
+  <div id="no-tracks" *ngIf="!listOfTracks">
+    Brak tras w danym przedziale czasowym.
+  </div>
   <div id="table">
     <table *ngIf="listOfTracks">
       <tr id="firstRow">
@@ -32,7 +34,7 @@
         <td>{{track.to}}</td>
         <td>{{track.start | date:'HH:mm'}}</td>
         <td>{{track.end == 0 ? '------' : track.end | date:'HH:mm'}}</td>
-        <td>{{track.distance}} km</td>
+        <td>{{track.distance / 1000 | number : '1.2-2'}} km</td>
         <td><a [routerLink]="['/map/' + id +' /'+ datePipe.transform(track.start*1000, 'yyyy-MM-dd')]"><i class="far fa-road"></i></a></td>
       </tr>
     </table>

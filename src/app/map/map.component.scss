@@ -87,7 +87,7 @@
 
 .chooserEntityWrapper > .cars-icon {
   position: absolute;
-  color: $ColorWhite;
+  color: $ColorGrayDarkHover;
   top: 16px;
   right: 15px;
 }
@@ -139,13 +139,11 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-.users
-{
+.users {
   float: left;
 }
 
-.devices
-{
+.devices {
   float: right;
-  color: $ColorWhite;
+  color: $ColorGrayDarkHover;
 }

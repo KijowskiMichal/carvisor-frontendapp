@@ -33,7 +33,7 @@
           </div>
         </td>
         <td [ngClass]="{'activetd':user.status === 'Aktywny'}">{{user.status}}</td>
-        <td>{{user.distance}} km</td>
+        <td>{{user.distance / 1000 | number : '1.2-2'}} km</td>
         <td>{{user.startTime}}</td>
         <td>{{user.finishTime}}</td>
         <td><a [routerLink]="['/tracks/'+user.id+'/']"><i class="far fa-road"></i></a></td>

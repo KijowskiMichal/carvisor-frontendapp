@@ -21,6 +21,17 @@
   color: $ColorGrayDark;
 }
 
+#no-tracks {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 40px;
+  float: left;
+  position: relative;
+  text-align: center;
+  @include manropeFont(500, 22px);
+  color: $ColorGrayDark;
+}
+
 .inputDivider {
   float: right;
   text-align: center;

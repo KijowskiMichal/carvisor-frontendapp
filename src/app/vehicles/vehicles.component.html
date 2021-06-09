@@ -28,7 +28,7 @@
         </td>
         <td>{{device.brand}}</td>
         <td>{{device.model}}</td>
-        <td>{{device.distance}} km</td>
+        <td>{{device.distance / 1000 | number : '1.2-2'}} km</td>
         <td [ngClass]="{'activetd':device.status === 'Aktywny'}">{{device.status}}</td>
         <td><a [routerLink]="['/editVehicle/'+device.id+'/']"><i class="far fa-pen"></i></a></td>
       </tr>
