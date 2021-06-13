@@ -3,104 +3,43 @@
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
-      <input type="text" placeholder="Szukaj" > <!--(keydown.enter)="list(1, search.value)" #search -->
+      <input type="text" placeholder="Szukaj" (keydown.enter)="list(1, search.value)" #search>
     </div>
   </div>
 
   <div id="table">
-    <table>
+    <table *ngIf="listOfUsers">
       <tr id="firstRow">
         <td>Ocena</td>
         <td>Kierowca</td>
         <td>Liczba tras</td>
-        <td>Liczba ostrzeżeń</td>
-        <td>Dystans</td>
       </tr>
-      <tr>
+      <tr *ngFor="let safety of listOfUsers.listOfUsers">
         <td>
-          <!--<div [ngClass]="{'grade-bad':eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">-->
-          <div class="grade-good">
+          <div [ngClass]="{'grade-bad':safety.rate < 2.5, 'grade-medium':safety.rate >= 2.5 && safety.rate < 3.5, 'grade-good':safety.rate >= 3.5}">
             <div class="grade-text">
-              4.5
+              {{safety.rate | number : '1.1-1'}}
             </div>
           </div>
         </td>
         <td>
           <div class="name">
-            Michał Wiśniewski
+            {{safety.name}} {{safety.surname}}
           </div>
         </td>
-        <td>4</td>
-        <td>5</td>
-        <td>100.00 km</td>
+        <td>{{safety.tracks}}</td>
       </tr>
-      <!-- test info -->
-      <tr>
-        <td>
-          <!--<div [ngClass]="{'grade-bad':eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">-->
-          <div class="grade-good">
-            <div class="grade-text">
-              4.5
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="name">
-            Michał Wiśniewski
-          </div>
-        </td>
-        <td>4</td>
-        <td>5</td>
-        <td>100.00 km</td>
-      </tr>
-      <tr>
-        <td>
-          <!--<div [ngClass]="{'grade-bad':eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">-->
-          <div class="grade-good">
-            <div class="grade-text">
-              4.5
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="name">
-            Michał Wiśniewski
-          </div>
-        </td>
-        <td>4</td>
-        <td>5</td>
-        <td>100.00 km</td>
-      </tr>
-      <tr>
-        <td>
-          <!--<div [ngClass]="{'grade-bad':eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">-->
-          <div class="grade-good">
-            <div class="grade-text">
-              4.5
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="name">
-            Michał Wiśniewski
-          </div>
-        </td>
-        <td>4</td>
-        <td>5</td>
-        <td>100.00 km</td>
-      </tr>
-      <!-- end of test info -->
     </table>
   </div>
   <div id="pages">
-    <div id="pagesWrapper">
-      <i class="far fa-chevron-double-left"></i>
-      <i class="far fa-chevron-left"></i>
+    <div id="pagesWrapper" *ngIf="listOfUsers">
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1, search.value)" class="far fa-chevron-double-left"></i>
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1, search.value)" class="far fa-chevron-left"></i>
       <div id="pagesText">
-        strona 1 z 1
+        strona {{page}} z {{pageMax}}
       </div>
-      <i class="far fa-chevron-right"></i>
-      <i class="far fa-chevron-double-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1, search.value)"  class="far fa-chevron-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax, search.value)"  class="far fa-chevron-double-right"></i>
     </div>
   </div>
 </div>
