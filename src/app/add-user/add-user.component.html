@@ -1,1 +1,91 @@
-<p>add-user works!</p>
+<div class="popup" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie dodano użytkownika.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupOk=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popup">
+  <div class="header">
+    <div class="user-popup-title">
+      Tworzenie nowego użytkownika
+    </div>
+    <div class="cancel-button" (click)="closeWindow()">
+      <i class="fal fa-times"></i>
+    </div>
+    <div class="user-popup-line"></div>
+  </div>
+  <div class="panel">
+    <input style="display: none" type="file" (change)="onFileChanged($event, imagePreview)" #image>
+    <div class="logo" (click)="image.click()" #imagePreview>
+      <div>
+        <i class="far fa-pen"></i>
+        Dodaj zdjęcie
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-user"></i>
+        <input type="text" placeholder="Imię i nazwisko" title="Tylko litery, dwa człony, od 2 do 30 znaków." #nameAndSurname>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-phone"></i>
+        <input type="text" placeholder="Telefon" title="9 cyfr bez spacji, znaków specjalnych i numeru kierunkowego." #phone>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-user"></i>
+        <input type="text" placeholder="Login" title="Od 2 do 20 znaków, tylko litery i cyfry." #login>
+      </div>
+    </div>
+    <div class="user-popup-text">
+      Dane do pierwszego logowania:
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-key"></i>
+        <input type="password" placeholder="Hasło" title="Hasła muszą być zgodne i mieć długość od 5 do 30 znaków." #password1>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-key"></i>
+        <input type="password" placeholder="Powtórz hasło" title="Hasła muszą być zgodne i mieć długość od 5 do 30 znaków." #password2>
+      </div>
+    </div>
+    <div class="popup-text-footer">
+      Po pierwszym logowaniu system wymusi zmianę hasła.
+    </div>
+  </div>
+  <div class="popup-green" (click)="sendForm(nameAndSurname, phone, login, password1, password2)">
+    Utwórz
+  </div>
+</div>

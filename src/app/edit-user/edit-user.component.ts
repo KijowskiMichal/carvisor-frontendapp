@@ -42,11 +42,11 @@ export class EditUserComponent implements OnInit {
     nameInput.classList.remove('error');
     phoneInput.classList.remove('error');
     //validator
-    if (!/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ ]{2,30}$/.test(name)) {
+    if (!/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,12} [A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,18}$/.test(name)) {
       nameInput.focus();
       nameInput.classList.add('error');
       nameInput.value = "";
-      nameInput.placeholder = "Tylko litery, od 2 do 30 znaków.";
+      nameInput.placeholder = "Tylko litery, dwa człony, od 2 do 30 znaków.";
       allClear = false;
     }
     if (!/^[0-9]{9}$/.test(phone)) {

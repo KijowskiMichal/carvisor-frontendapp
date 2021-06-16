@@ -20,6 +20,7 @@ export class SettingsComponent implements OnInit {
   popup = false;
   popupOk = false;
   popupFail = false;
+  addUserPopup: boolean;
 
   ngOnInit(): void {
     this.http.get<GlobalConfiguration>('/API/carConfiguration/getGlobalConfiguration/').subscribe(value => {
