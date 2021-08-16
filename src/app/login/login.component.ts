@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-import { Observable } from "rxjs";
-
-interface LoginStatus{
-  logged:boolean,
-  nickname:string
-}
+import {PageService} from "../services/page.service";
+import {AuthorizationService} from "../services/authorization.service";
 
 @Component({
   selector: 'app-login',
@@ -15,12 +10,12 @@ interface LoginStatus{
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private pageService: PageService, private authorizationService: AuthorizationService,
+              private router:Router) { }
 
   ngOnInit(): void {
-    this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
-      if (value.logged==true)
-      {
+    this.pageService.getLoginStatus().subscribe(value => {
+      if (value.logged) {
         this.router.navigate(['./users']);
       }
     });
@@ -28,15 +23,10 @@ export class LoginComponent implements OnInit {
 
   signIn(login:any, password:any, user:any, key:any)
   {
-    this.http.post('/API/authorization/authorize',
-      {
-        "login": login.value,
-        "password": password.value
-      })
-      .subscribe(
-        (val) => {
+    this.authorizationService.signIn(login, password).subscribe(
+        () => {
         },
-        response => {
+        () => {
           (user as HTMLElement).style.color = '#ef476f';
           (key as HTMLElement).style.color = '#ef476f';
           (login as HTMLElement).style.border = 'solid #ef476f 1px';
@@ -47,7 +37,9 @@ export class LoginComponent implements OnInit {
           (password as HTMLElement).setAttribute('placeholder', 'Błędne dane logowania!');
         },
         () => {
-          this.router.navigate(['./users']);
+          this.pageService.getNewLoginStatus().subscribe(value => {
+            this.router.navigate(['./users']);
+          })
         });
   }
 

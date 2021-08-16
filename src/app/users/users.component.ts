@@ -1,32 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-interface LoginStatus {
-  logged: boolean;
-  rbac: string;
-  nickname: string;
-}
-
-interface User {
-  nick: string;
-  image: string;
-  finishTime: string;
-  licensePlate: string;
-  distance: number;
-  surname: string;
-  name: string;
-  startTime: string;
-  id: number;
-  status: string;
-}
-
-interface ListOfUser {
-  page: number;
-  listOfUsers: User[];
-  pageMax: number;
-}
+import {ListOfUser, UserService} from "../services/user.service";
+import {PageService} from "../services/page.service";
 
 @Component({
   selector: 'app-users',
@@ -35,17 +10,16 @@ interface ListOfUser {
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
-  listOfUser: ListOfUser;
-  page: number;
-  pageMax: number;
+  constructor(private userService: UserService, private pageService: PageService, private router: Router) { }
+  listOfUser!: ListOfUser;
+  page!: number;
+  pageMax!: number;
   pageSize = 6;
 
   ngOnInit(): void
   {
-    this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
-      if (!value.logged)
-      {
+    this.pageService.getLoginStatus().subscribe(value => {
+      if (!value.logged) {
         this.router.navigate(['./']);
       }
     });
@@ -54,13 +28,11 @@ export class UsersComponent implements OnInit {
 
   public list(page: number, regex: string): void
   {
-    if (regex === '')
-    {
+    if (regex === '') {
       regex = '$';
     }
-    if (page >= 1)
-    {
-      this.http.get<ListOfUser>('/API/users/list/' + page + '/' + this.pageSize + '/' + regex + '/').subscribe(value => {
+    if (page >= 1) {
+      this.userService.getListOfUsers(page, this.pageSize, regex).subscribe(value => {
         if (page <= value.pageMax)
         {
           this.listOfUser = value;

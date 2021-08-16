@@ -1,26 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-
-interface DeviceInfo {
-  timeFrom: string;
-  licensePlate: string;
-  timeTo: string;
-  engine: string;
-  fuel: string;
-  yearOfProduction: string;
-  model: string;
-  tank: number;
-  brand: string;
-  norm: number;
-  image: string;
-}
-
-interface Configuration {
-  sendInterval: number;
-  locationInterval: number;
-}
+import {Configuration, DeviceInfo, VehicleService} from "../services/vehicle.service";
 
 @Component({
   selector: 'app-edit-vehicle',
@@ -28,11 +9,11 @@ interface Configuration {
   styleUrls: ['./edit-vehicle.component.scss']
 })
 export class EditVehicleComponent implements OnInit {
-  private routeSub: Subscription;
-  private id:number;
-  deviceInfo: DeviceInfo;
-  configuration: Configuration;
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  private routeSub!: Subscription;
+  private id!:number;
+  deviceInfo!: DeviceInfo;
+  configuration!: Configuration;
+  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private router: Router) { }
 
   popupOk = false;
   popupFail = false;
@@ -40,10 +21,10 @@ export class EditVehicleComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.http.get<DeviceInfo>('/API/devices/getDeviceData/' + this.id + '/').subscribe(value => {
+      this.vehicleService.getDeviceInfo(this.id).subscribe(value => {
         this.deviceInfo = value;
       });
-      this.http.get<Configuration>('/API/carConfiguration/getConfiguration/'+ this.id + '/').subscribe(value => {
+      this.vehicleService.getConfiguration(this.id).subscribe(value => {
         this.configuration = value;
       });
     });
@@ -131,11 +112,11 @@ export class EditVehicleComponent implements OnInit {
       brandInput.placeholder = "Litery i cyfry od 2 do 15 znaków.";
       allClear = false;
     }
-    if (!/^[0-9]{1,5}(\.[0-9]{0,5})?$/.test(tank)) {
+    if (!/^[0-9]{1,5}$/.test(tank)) {
       tankInput.focus();
       tankInput.classList.add('error');
       tankInput.value = "";
-      tankInput.placeholder = "Cyfry, kropka zamiast przecinka.";
+      tankInput.placeholder = "Cyfry, od 1 do 5 znaków.";
       allClear = false;
     }
     if (!/^[0-9]{1,3}(\.[0-9]{0,5})?$/.test(norm)) {
@@ -147,35 +128,18 @@ export class EditVehicleComponent implements OnInit {
     }
     if (!allClear) return;
     //others
-    this.http.post('/API/devices/changeDeviceData/' + this.id + '/',
-      {
-        "timeFrom": timeFrom,
-        "licensePlate": licensePlate,
-        "timeTo": timeTo,
-        "engine": engine,
-        "fuel": fuel,
-        "yearOfProduction": yearOfProduction,
-        "model": model,
-        "tank": tank,
-        "brand": brand,
-        "norm": norm
-      })
-      .subscribe(
-        (val) => {
+    this.vehicleService.putDeviceInfo(this.id, timeFrom, licensePlate, timeTo, engine, fuel, yearOfProduction,
+      model, tank, brand, norm).subscribe(
+        () => {
         },
-        response => {
+        () => {
           this.popupFail = true;
         },
         () => {
-          this.http.post('/API/carConfiguration/changeConfiguration/'+ this.id + '/',
-            {
-              "sendInterval": sendInterval,
-              "locationInterval": locationInterval
-            })
-            .subscribe(
-              (val) => {
+          this.vehicleService.putConfiguration(this.id, sendInterval, locationInterval).subscribe(
+              () => {
               },
-              response => {
+              () => {
                 this.popupFail = true;
               },
               () => {
@@ -186,39 +150,37 @@ export class EditVehicleComponent implements OnInit {
   }
 
   onFileChanged(evt: Event) {
-    const file = (<HTMLInputElement>evt.target).files[0];
-    if (!file) {
-      return false;
-    }
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    var maxW = 400;
-    var maxH = 400;
-    var img = document.createElement('img');
-    var selff = this;
-    img.onload = function() {
-      var iw = img.width;
-      var ih = img.height;
-      var scale = Math.min((maxW / iw), (maxH / ih));
-      var iwScaled = iw * scale;
-      var ihScaled = ih * scale;
-      canvas.width = iwScaled;
-      canvas.height = ihScaled;
-      context.drawImage(img, 0, 0, iwScaled, ihScaled);
-      selff.http.post('/API/devices/changeDeviceImage/' + selff.id + '/',
-        {
-          "image": canvas.toDataURL()
-        })
-        .subscribe(
-          (val) => {
-          },
-          response => {
-            selff.popupFail = true;
-          },
+    if ((<HTMLInputElement>evt.target).files) {
+      const file = (<HTMLInputElement>evt.target).files?.item(0);
+      if (!file) {
+        return false;
+      }
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var maxW = 400;
+      var maxH = 400;
+      var img = document.createElement('img');
+      var selff = this;
+      img.onload = function () {
+        var iw = img.width;
+        var ih = img.height;
+        var scale = Math.min((maxW / iw), (maxH / ih));
+        var iwScaled = iw * scale;
+        var ihScaled = ih * scale;
+        canvas.width = iwScaled;
+        canvas.height = ihScaled;
+        context?.drawImage(img, 0, 0, iwScaled, ihScaled);
+        selff.vehicleService.putDeviceImage(selff.id, canvas).subscribe(
+            () => {
+            },
           () => {
-            selff.popupOk = true;
-          });
+              selff.popupFail = true;
+            },
+            () => {
+              selff.popupOk = true;
+            });
+      }
+      img.src = URL.createObjectURL(file);
     }
-    img.src = URL.createObjectURL(file);
   }
 }

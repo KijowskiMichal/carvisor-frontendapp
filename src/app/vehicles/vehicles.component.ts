@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import {ListOfDevicesWrapper, VehicleService} from "../services/vehicle.service";
+import {PageService} from "../services/page.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -10,17 +10,16 @@ import { Observable } from 'rxjs';
 })
 
 export class VehiclesComponent implements OnInit {
-  listOfDevicesWrapper: ListOfDevicesWrapper;
-  page: number;
-  pageMax: number;
+  listOfDevicesWrapper!: ListOfDevicesWrapper;
+  page!: number;
+  pageMax!: number;
   pageSize = 6;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private vehicleService: VehicleService, private pageService: PageService, private router: Router) { }
 
   ngOnInit(): void {
-    this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
-      if (!value.logged)
-      {
+    this.pageService.getLoginStatus().subscribe(value => {
+      if (!value.logged) {
         this.router.navigate(['./']);
       }
     });
@@ -29,13 +28,11 @@ export class VehiclesComponent implements OnInit {
 
   public list(page: number, regex: string): void
   {
-    if (regex === '')
-    {
+    if (regex === '') {
       regex = '$';
     }
-    if (page >= 1)
-    {
-      this.http.get<ListOfDevicesWrapper>('/API/devices/list/' + page + '/' + this.pageSize + '/' + regex + '/').subscribe(value => {
+    if (page >= 1) {
+      this.vehicleService.getListOfDevices(page, this.pageSize, regex).subscribe(value => {
         if (page <= value.pageMax)
         {
           this.listOfDevicesWrapper = value;
@@ -46,26 +43,4 @@ export class VehiclesComponent implements OnInit {
     }
   }
 
-}
-
-interface ListOfDevices {
-  image: string;
-  licensePlate: string;
-  distance: number;
-  model: string;
-  id: number;
-  brand: string;
-  status: string;
-}
-
-interface ListOfDevicesWrapper {
-  page: number;
-  listOfDevices: ListOfDevices[];
-  pageMax: number;
-}
-
-interface LoginStatus {
-  logged: boolean;
-  rbac: string;
-  nickname: string;
 }

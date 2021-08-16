@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {UserService} from "../services/user.service";
+import {PageService} from "../services/page.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-user',
@@ -15,9 +17,14 @@ export class AddUserComponent implements OnInit {
   popupOk = false;
   popupFail = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(public userService: UserService, private pageService: PageService, private router: Router) {}
 
   ngOnInit(): void {
+    this.pageService.getLoginStatus().subscribe(value => {
+      if (!value.logged) {
+        this.router.navigate(['./']);
+      }
+    });
   }
 
   closeWindow()
@@ -28,29 +35,31 @@ export class AddUserComponent implements OnInit {
 
 
   onFileChanged(evt: Event, imagePreview: HTMLDivElement) {
-    const file = (<HTMLInputElement>evt.target).files[0];
-    if (!file) {
-      return false;
+    if ((<HTMLInputElement>evt.target).files) {
+      const file = (<HTMLInputElement>evt.target).files?.item(0);
+      if (!file) {
+        return false;
+      }
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var maxW = 400;
+      var maxH = 400;
+      var img = document.createElement('img');
+      var that = this;
+      img.onload = function() {
+        var iw = img.width;
+        var ih = img.height;
+        var scale = Math.min((maxW / iw), (maxH / ih));
+        var iwScaled = iw * scale;
+        var ihScaled = ih * scale;
+        canvas.width = iwScaled;
+        canvas.height = ihScaled;
+        context?.drawImage(img, 0, 0, iwScaled, ihScaled);
+        that.photo = canvas.toDataURL();
+        imagePreview.style.backgroundImage = 'url(' + that.photo + ')';
+      }
+      img.src = URL.createObjectURL(file);
     }
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    var maxW = 400;
-    var maxH = 400;
-    var img = document.createElement('img');
-    var that = this;
-    img.onload = function() {
-      var iw = img.width;
-      var ih = img.height;
-      var scale = Math.min((maxW / iw), (maxH / ih));
-      var iwScaled = iw * scale;
-      var ihScaled = ih * scale;
-      canvas.width = iwScaled;
-      canvas.height = ihScaled;
-      context.drawImage(img, 0, 0, iwScaled, ihScaled);
-      that.photo = canvas.toDataURL();
-      imagePreview.style.backgroundImage = 'url(' + that.photo + ')';
-    }
-    img.src = URL.createObjectURL(file);
   }
 
   sendForm(nameAndSurname:HTMLInputElement, phone:HTMLInputElement, login:HTMLInputElement, password1:HTMLInputElement, password2:HTMLInputElement) {
@@ -100,19 +109,10 @@ export class AddUserComponent implements OnInit {
     }
     if (!allClear) return;
     //others
-    this.http.post('/API/users/addUser/',
-      {
-        "image": this.photo,
-        "name": nameValue,
-        "surname": surnameValue,
-        "nick": loginValue,
-        "phoneNumber": phoneValue,
-        "password": password1Value
-      })
-      .subscribe(
-        (val) => {
+    this.userService.postNewUser(this.photo, nameValue, surnameValue, loginValue, Number(phoneValue), password1Value).subscribe(
+        () => {
         },
-        response => {
+        () => {
           this.closeWindow();
           this.popupFail = true;
         },

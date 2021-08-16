@@ -54,11 +54,11 @@ export interface listNames {
   styleUrls: ['./map-devices.component.scss']
 })
 export class MapDevicesComponent implements OnInit {
-  private map: any;
+  private map!: any;
   popupOn = false;
   userID = 0;
 
-  @ViewChild('popupTrigger') toggleButton: ElementRef;
+  @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
   constructor(private route: ActivatedRoute, private http:HttpClient, private router:Router, private renderer: Renderer2, private datePipe: DatePipe) {
     this.renderer.listen('window', 'click',(e:Event)=>{
@@ -70,16 +70,16 @@ export class MapDevicesComponent implements OnInit {
 
   latitude: number = 52.460394146699365;
   longitude: number = 16.917809968543395;
-  rates: Rate;
-  names: listNames[];
+  rates!: Rate;
+  names!: listNames[];
   points: Array<any> = [];
   empList: Array<any> = [];
   line: Array<any> = [];
-  popupik: string;
-  popupTrigger: HTMLDivElement;
-  popupDiv: HTMLDivElement;
-  maxDate:string;
-  dateValue:string;
+  popupik!: string;
+  popupTrigger!: HTMLDivElement;
+  popupDiv!: HTMLDivElement;
+  maxDate!:string;
+  dateValue!:string;
 
   ngAfterViewInit()
   {

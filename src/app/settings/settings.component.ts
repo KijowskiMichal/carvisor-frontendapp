@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
-
-interface GlobalConfiguration {
-  historyTimeout: number;
-  sendInterval: number;
-  getLocationInterval: number;
-}
+import {GlobalConfiguration, VehicleService} from "../services/vehicle.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-settings',
@@ -14,8 +8,8 @@ interface GlobalConfiguration {
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  globalConfiguration: GlobalConfiguration;
-  constructor(private http:HttpClient, private router:Router) { }
+  globalConfiguration!: GlobalConfiguration;
+  constructor(private vehicleService: VehicleService, private userService: UserService) { }
 
   popup = false;
   popupOk = false;
@@ -23,7 +17,7 @@ export class SettingsComponent implements OnInit {
   addUserPopup: boolean;
 
   ngOnInit(): void {
-    this.http.get<GlobalConfiguration>('/API/carConfiguration/getGlobalConfiguration/').subscribe(value => {
+    this.vehicleService.getGlobalConfiguration().subscribe(value => {
       this.globalConfiguration = value;
     });
   }
@@ -45,15 +39,10 @@ export class SettingsComponent implements OnInit {
       allClear = false;
     }
     if (!allClear) return;
-      this.http.post('/API/users/changePassword',
-      {
-        "firstPassword": first.value,
-        "secondPassword": second.value
-      })
-      .subscribe(
-        (val) => {
+      this.userService.changePassword(first, second).subscribe(
+        () => {
         },
-        response => {
+        () => {
           first.style.border = 'solid #ef476f 1px';
           first.value = '';
           first.setAttribute('placeholder', 'Hasła się nie zgadzają!');
@@ -67,16 +56,10 @@ export class SettingsComponent implements OnInit {
   }
 
   sendData(historyTimeout:string, sendInterval:string, locationInterval:string) {
-    this.http.post('/API/carConfiguration/setGlobalConfiguration/',
-      {
-        "historyTimeout": historyTimeout,
-        "sendInterval": sendInterval,
-        "getLocationInterval": locationInterval
-      })
-      .subscribe(
-        (val) => {
+    this.vehicleService.putGlobalConfiguration(historyTimeout, sendInterval, locationInterval).subscribe(
+        () => {
         },
-        response => {
+        () => {
           this.popupFail = true;
         },
         () => {

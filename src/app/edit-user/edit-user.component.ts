@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-
-interface UserInfo {
-  userPrivileges: number;
-  name: string;
-  telephone: number;
-  image: string;
-}
+import {UserInfo, UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -16,12 +10,10 @@ interface UserInfo {
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-  private routeSub: Subscription;
-  private id:number;
-  userInfo: UserInfo;
-  private picture: string;
-  private selectedFile: any;
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  private routeSub!: Subscription;
+  private id!:number;
+  userInfo!: UserInfo;
+  constructor(private userService: UserService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   popupOk = false;
   popupFail = false;
@@ -29,7 +21,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.http.get<UserInfo>('/API/users/getUserData/' + this.id + '/').subscribe(value => {
+      this.userService.getUserInfo(this.id).subscribe(value => {
         this.userInfo = value;
       });
     });
@@ -58,15 +50,10 @@ export class EditUserComponent implements OnInit {
     }
     if (!allClear) return;
     //others
-    this.http.post('/API/users/changeUserData/' + this.id + '/',
-      {
-        "name": name,
-        "telephone": phone
-      })
-      .subscribe(
-        (val) => {
+    this.userService.putUserInfo(this.id, name, phone).subscribe(
+        () => {
         },
-        response => {
+        () => {
           this.popupFail = true;
         },
         () => {
@@ -75,39 +62,37 @@ export class EditUserComponent implements OnInit {
   }
 
   onFileChanged(evt: Event) {
-    const file = (<HTMLInputElement>evt.target).files[0];
-    if (!file) {
-      return false;
+    if ((<HTMLInputElement>evt.target).files) {
+      const file = (<HTMLInputElement>evt.target).files?.item(0);
+      if (!file) {
+        return false;
+      }
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+      var maxW = 400;
+      var maxH = 400;
+      var img = document.createElement('img');
+      var selff = this;
+      img.onload = function () {
+        var iw = img.width;
+        var ih = img.height;
+        var scale = Math.min((maxW / iw), (maxH / ih));
+        var iwScaled = iw * scale;
+        var ihScaled = ih * scale;
+        canvas.width = iwScaled;
+        canvas.height = ihScaled;
+        context?.drawImage(img, 0, 0, iwScaled, ihScaled);
+        selff.userService.putUserImage(selff.id, canvas).subscribe(
+            () => {
+            },
+            () => {
+              selff.popupFail = true;
+            },
+            () => {
+              selff.popupOk = true;
+            });
+      }
+      img.src = URL.createObjectURL(file);
     }
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
-    var maxW = 400;
-    var maxH = 400;
-    var img = document.createElement('img');
-    var selff = this;
-    img.onload = function() {
-      var iw = img.width;
-      var ih = img.height;
-      var scale = Math.min((maxW / iw), (maxH / ih));
-      var iwScaled = iw * scale;
-      var ihScaled = ih * scale;
-      canvas.width = iwScaled;
-      canvas.height = ihScaled;
-      context.drawImage(img, 0, 0, iwScaled, ihScaled);
-      selff.http.post('/API/users/changeUserImage/' + selff.id + '/',
-        {
-          "image": canvas.toDataURL()
-        })
-        .subscribe(
-          (val) => {
-          },
-          response => {
-            selff.popupFail = true;
-          },
-          () => {
-            selff.popupOk = true;
-          });
-    }
-    img.src = URL.createObjectURL(file);
   }
 }

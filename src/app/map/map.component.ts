@@ -1,52 +1,9 @@
 import {OnInit, Component, ViewChild, ElementRef, Renderer2, AfterViewInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgModel} from "@angular/forms";
 import { DatePipe } from '@angular/common';
-
+import {listNames, MapService, Rate} from "../services/map.service";
 
 declare var ol: any;
-export interface StartPoint {
-  throttle: number;
-  time: number;
-  gpsX: number;
-  rpm: number;
-  speed: number;
-  gpsY: number;
-  vehicle: string;
-}
-
-export interface Point {
-  throttle: number;
-  time: number;
-  gpsX: number;
-  rpm: number;
-  speed: number;
-  gpsY: number;
-  track: number;
-}
-
-export interface EndPoint {
-  throttle: number;
-  time: number;
-  gpsX: number;
-  rpm: number;
-  speed: number;
-  gpsY: number;
-  vehicle: string;
-}
-
-export interface Rate {
-  startPoints: StartPoint[];
-  points: Point[];
-  endPoints: EndPoint[];
-}
-
-export interface listNames {
-  image: string;
-  name: string;
-  id: number;
-}
 
 @Component({
   selector: 'app-map',
@@ -54,13 +11,14 @@ export interface listNames {
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  private map: any;
+  private map!: any;
   popupOn = false;
   userID = 0;
 
-  @ViewChild('popupTrigger') toggleButton: ElementRef;
+  @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http:HttpClient, private router:Router, private renderer: Renderer2, private datePipe: DatePipe) {
+  constructor(private route: ActivatedRoute, private mapService: MapService, private router:Router,
+              private renderer: Renderer2, private datePipe: DatePipe) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       if(e.target !== this.toggleButton.nativeElement && this.popupOn){
         this.disablePopup();
@@ -70,16 +28,16 @@ export class MapComponent implements OnInit {
 
   latitude: number = 52.460394146699365;
   longitude: number = 16.917809968543395;
-  rates: Rate;
-  names: listNames[];
+  rates!: Rate;
+  names!: listNames[];
   points: Array<any> = [];
   empList: Array<any> = [];
   line: Array<any> = [];
-  popupik: string;
-  popupTrigger: HTMLDivElement;
-  popupDiv: HTMLDivElement;
-  maxDate:string;
-  dateValue:string;
+  popupik!: string;
+  popupTrigger!: HTMLDivElement;
+  popupDiv!: HTMLDivElement;
+  maxDate!:string;
+  dateValue!:string;
 
   ngAfterViewInit()
   {
@@ -187,7 +145,7 @@ export class MapComponent implements OnInit {
 
   regexChanged(regex:string) {
     if (regex==='') regex='$';
-    this.http.get<listNames[]>('/API/users/listUserNames/'+regex+'/').subscribe(value => {
+    this.mapService.getListOfUser(regex).subscribe(value => {
       this.names = value;
       this.showPopup();
     });
@@ -195,7 +153,7 @@ export class MapComponent implements OnInit {
 
   changeMap() {
     var that = this;
-    this.http.get<Rate>('/API/track/getTrackData/'+this.userID+'/'+this.dateValue+'/').subscribe(value => {
+    this.mapService.getTrackData(this.userID, this.dateValue).subscribe(value => {
       this.rates = value;
       this.map.getLayers().forEach(function (layer) {
         that.map.removeLayer(layer);

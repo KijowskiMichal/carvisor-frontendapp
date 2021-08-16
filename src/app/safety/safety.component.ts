@@ -1,26 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-
-interface LoginStatus {
-  logged: boolean;
-  rbac: string;
-  nickname: string;
-}
-
-interface ListOfUser {
-  rate: number;
-  surname: string;
-  name: string;
-  id: number;
-  tracks: number;
-}
-
-interface ListOfSafety {
-  page: number;
-  listOfUsers: ListOfUser[];
-  pageMax: number;
-}
+import {PageService} from "../services/page.service";
+import {ListOfSafety, SafetyService} from "../services/safety.service";
 
 @Component({
   selector: 'app-safety',
@@ -29,14 +10,14 @@ interface ListOfSafety {
 })
 export class SafetyComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router) { }
-  listOfUsers: ListOfSafety;
-  page: number;
-  pageMax: number;
+  constructor(private pageService: PageService, private safetyService: SafetyService, private router: Router) { }
+  listOfUsers!: ListOfSafety;
+  page!: number;
+  pageMax!: number;
   pageSize = 6;
 
   ngOnInit(): void {
-    this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
+    this.pageService.getLoginStatus().subscribe(value => {
       if (!value.logged) {
         this.router.navigate(['./']);
       }
@@ -49,7 +30,7 @@ export class SafetyComponent implements OnInit {
       regex = '$';
     }
     if (page >= 1) {
-      this.http.get<ListOfSafety>('API/safetyPoints/list/' + page + '/' + this.pageSize + '/' + regex + '/').subscribe(value => {
+      this.safetyService.listSafetyPoints(page, this.pageSize, regex).subscribe(value => {
         if (page <= value.pageMax) {
           this.listOfUsers = value;
           this.page = value.page;
