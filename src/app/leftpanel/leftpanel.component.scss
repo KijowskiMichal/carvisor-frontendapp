@@ -4,7 +4,7 @@
   background: $ColorGrayDark;
   height: 100vh;
   width: 15%;
-  padding: 20px;
+  padding: 1.11rem;
   box-sizing: border-box;
   float: left;
 }
@@ -17,23 +17,23 @@
 
 #panelLogo {
   width: 100%;
-  margin-bottom: 100px;
-  margin-top: 40px;
+  margin-bottom: 5.55rem;
+  margin-top: 2.22rem;
 }
 
 .menuItem {
   color: $ColorWhite;
-  @include manropeFont(500, 18px);
-  line-height: 30px;
-  padding: 10px 15px;
-  border-radius: 16px;
+  @include manropeFont(500, 1rem);
+  line-height: 1.67rem;
+  padding: 0.55rem 0.83rem;
+  border-radius: 0.83rem;
   cursor: pointer ;
-  margin-bottom: 5px;
+  margin-bottom: 0.28rem;
 }
 
 .menuItem > i {
   color: $ColorGrayBlueish;
-  margin-right: 25px;
+  margin-right: 1.39rem;
 }
 
 .menuItem:hover {
@@ -46,16 +46,16 @@
 
 #leftPanelFooter {
   position: absolute;
-  bottom: 40px;
+  bottom: 2.22rem;
   left: 0;
   text-align: center;
   width: 100%;
 }
 
 #leftPanelFooter > a >  i {
-  font-size: 30px;
+  font-size: 1.67rem;
   color: $ColorGrayBlueish;
-  margin: 0 30px;
+  margin: 0 1.67rem;
   cursor: pointer;
 }
 

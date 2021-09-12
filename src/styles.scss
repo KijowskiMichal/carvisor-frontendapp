@@ -34,6 +34,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  font-size: 18px;
 }
 
 a {
@@ -104,4 +105,28 @@ a {
   height: 100%;
   z-index: 99;
   transition: ease-in 0.6s;
+}
+
+@media screen and (max-width: 1850px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  html {
+    font-size: 10px;
+  }
 }
