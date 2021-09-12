@@ -16,36 +16,36 @@
 }
 
 #popup {
-  @include manropeFont(500, 20px);
-  padding: 25px;
+  @include manropeFont(500, 1.11rem);
+  padding: 1.39rem;
   background-color: $ColorGrayLight;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   color: $ColorGrayDark;
-  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0.28rem 0.28rem 1.11rem rgba(0, 0, 0, 0.4));
 }
 
 #chooserWrapper {
   position: fixed;
-  top: 40px;
-  right: 40px;
+  top: 2.22rem;
+  right: 2.22rem;
   z-index: 900;
 }
 
 .inputWrapper {
   float: none;
   position: relative;
-  margin-top: 20px;
-  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
+  margin-top: 1.11rem;
+  filter: drop-shadow(0.28rem 0.28rem 1.11rem rgba(0, 0, 0, 0.4));
 }
 
 .inputWrapper > input, .inputWrapper > .select {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 5px 10px 50px;
+  padding: 0.56rem 0.28rem 0.56rem 2.78rem;
   background: $ColorWhite;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   border: 0;
-  width: 350px;
+  width: 19.44rem;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -53,27 +53,28 @@
 .inputWrapper > i {
   position: absolute;
   color: $ColorGrayDark;
-  top: 16px;
-  left: 15px;
+  top: 0.89rem;
+  left: 0.83rem;
+  font-size: 1rem;
 }
 
 .chooserEntityWrapper {
   float: none;
   position: relative;
-  margin-top: 20px;
-  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.4));
+  margin-top: 1.11rem;
+  filter: drop-shadow(0.28rem 0.28rem 1.11rem rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
 .chooserEntityWrapper > input, .chooserEntityWrapper > .select {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 50px 10px 50px;
+  padding: 0.56rem 2.78rem 0.56rem 2.78rem;
   background-image: url("../../assets/tab2.png");
   background-size: 100% 100%;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   border: 0;
-  width: 350px;
+  width: 19.44rem;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -81,33 +82,35 @@
 .chooserEntityWrapper > .users-icon {
   position: absolute;
   color: $ColorGrayDark;
-  top: 16px;
-  left: 15px;
+  top: 0.89rem;
+  left: 0.83rem;
+  font-size: 1rem;
 }
 
 .chooserEntityWrapper > .cars-icon {
   position: absolute;
   color: $ColorGrayDarkHover;
-  top: 16px;
-  right: 15px;
+  top: 0.89rem;
+  right: 0.83rem;
+  font-size: 1rem;
 }
 
 .selectOption {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 0 10px 0;
+  padding: 0.56rem 0 0.56rem 0;
   background: $ColorWhite;
   border: 0;
-  width: 350px;
+  width: 19.44rem;
   box-sizing: border-box;
   cursor: pointer;
 }
 .selectOption > img {
-  width: 18px;
-  height: 18px;
-  border-radius: 11px;
-  margin-left: 13px;
-  margin-right: 16px;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.61rem;
+  margin-left: 0.72rem;
+  margin-right: 0.89rem;
 }
 
 .selectOption:hover {
@@ -117,10 +120,10 @@
 .selectOptions {
   position: absolute;
   overflow: hidden;
-  border-bottom-right-radius: 10px !important;
-  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 0.56rem !important;
+  border-bottom-left-radius: 0.56rem !important;
   z-index: 100;
-  max-height: 600px;
+  max-height: 33.33rem;
   overflow-y: scroll;
 }
 

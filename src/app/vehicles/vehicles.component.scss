@@ -15,8 +15,8 @@
 #searchBar {
   width: 100%;
   box-sizing: border-box;
-  padding: 20px 40px;
-  margin-bottom: 50px;
+  padding: 1.11rem 2.22rem;
+  margin-bottom: 2.78rem;
 }
 
 #searchBarWrapper {
@@ -25,32 +25,34 @@
 }
 
 #searchBarWrapper > input {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 5px 10px 50px;
+  padding: 0.56rem 0.28rem 0.56rem 2.78rem;
   background: $ColorWhite;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   border: 0;
 }
 
 #searchBarWrapper > i {
   position: absolute;
   color: $ColorGrayDark;
-  top: 16px;
-  left: 15px;
+  top: 0.89rem;
+  left: 0.83rem;
+  font-size: 1rem;
 }
 
 #pages {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
   width: 100%;
   box-sizing: border-box;
-  padding: 20px 40px;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  padding: 1.11rem 2.22rem;
+  margin-top: 5.56rem;
+  margin-bottom: 2.78rem;
   position: absolute;
   right: 0;
   bottom: 0;
+  line-height: 2.5rem;
 }
 
 #pagesWrapper {
@@ -59,23 +61,23 @@
 }
 
 #pagesText {
-  margin: 0 20px;
+  margin: 0 1.11rem;
   float: left;
 }
 
 #pagesWrapper > i {
-  margin: 0 15px;
+  margin: 0 0.83rem;
   color: $ColorGrayDark;
   cursor: pointer;
   float: left;
-  line-height: 27px;
+  line-height: 2.5rem;
 }
 
 #firstRow > td {
-  @include manropeFont(normal, 20px);
+  @include manropeFont(normal, 1.11rem);
   text-transform: uppercase;
   line-height: 50%;
-  padding: 30px 30px;
+  padding: 1.67rem 1.67rem;
   align-items: center;
   text-align: center;
   color: $ColorGrayDark;
@@ -91,20 +93,20 @@ table {
 #table {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px 30px;
+  padding: 0.56rem 1.67rem;
 }
 
 td {
-  border-bottom: 2px solid $ColorGrayBlueish;
+  border-bottom: 0.11rem solid $ColorGrayBlueish;
   box-sizing: border-box;
-  padding: 10px 30px;
+  padding: 0.56rem 1.67rem;
   align-items: center;
   text-align: center;
 }
 
 td > a > i {
   color: $ColorGrayDark;
-  font-size: 20px;
+  font-size: 1.11rem;
   cursor: pointer;
 }
 
@@ -113,24 +115,24 @@ td > a > i:hover {
 }
 
 .auto > img {
-  width: 65px;
+  width: 3.61rem;
   border-radius: 50%;
   float: left;
-  margin-right: 40px;
-  padding-top: 5px;
+  margin-right: 2.22rem;
+  padding-top: 0.28rem;
 }
 
 .auto > div {
-  padding: 25px;
+  padding: 1.38rem;
 }
 
 .vehicle {
-  @include manropeFont(500, 20px);
+  @include manropeFont(500, 1.11rem);
   color: $ColorGrayDark;
 }
 
 td {
-  @include manropeFont(500, 18px);
+  @include manropeFont(500, 1rem);
   color: $ColorGrayDark;
 }
 

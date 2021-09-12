@@ -15,92 +15,89 @@
 .panel {
   box-sizing: border-box;
   width: 33%;
-  padding: 20px;
+  padding: 1.11rem;
   float: left;
 }
 
 .panel2 {
-  margin-top: 100px;
+  margin-top: 5.56rem;
   box-sizing: border-box;
   width: 33%;
-  padding: 20px;
+  padding: 1.11rem;
   float: left;
 }
 
 .title > i {
-  font-size: 30px;
+  font-size: 1.67rem;
   color: $ColorGrayBlueish;
-  margin-right: 20px;
+  margin-right: 1.11rem;
 }
 
 .title {
   width: 100%;
   text-align: center;
-  @include manropeFont(500, 30px);
+  @include manropeFont(500, 1.67rem);
   color: $ColorGrayDark;
   box-sizing: border-box;
-  margin-top: 80px;
-  margin-bottom: 50px;
+  margin-top: 4.44rem;
+  margin-bottom: 2.78rem;
 }
 
 .smallTitle > i {
-  font-size: 20px;
+  font-size: 1.11rem;
   color: $ColorGrayBlueish;
-  margin-right: 20px;
+  margin-right: 1.11rem;
 }
 
 .smallTitle {
   width: 100%;
   text-align: center;
-  @include manropeFont(400, 20px);
+  @include manropeFont(400, 1.11rem);
   color: $ColorGrayDark;
   box-sizing: border-box;
-  margin-bottom: 20px;
+  margin-bottom: 1.11rem;
 }
 
 #deleteButton {
   background: $ColorPink;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
-  @include manropeFont(500, 18px);
-  line-height: 38px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 0.72rem;
+  @include manropeFont(500, 1rem);
+  line-height: 2.11rem;
   color: $ColorWhite;
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 0.56rem 1.11rem;
   text-align: center;
   cursor: pointer;
   float: right;
-  margin: 0 10px;
+  margin: 0 0.56rem;
 }
 
 #cancelButton {
   background: $ColorGrayBlueish;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 13px;
-  @include manropeFont(500, 18px);
-  line-height: 38px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); border-radius: 0.72rem;
+  @include manropeFont(500, 1rem);
+  line-height: 2.11rem;
   color: $ColorWhite;
   box-sizing: border-box;
-  padding: 10px 20px;
+  padding: 0.56rem 1.11rem;
   text-align: center;
   cursor: pointer;
   float: right;
-  margin: 0 10px;
+  margin: 0 0.56rem;
 }
 
 #acceptButton {
   background: $ColorGreen;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 13px;
-  @include manropeFont(500, 18px);
-  line-height: 38px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); border-radius: 0.72rem;
+  @include manropeFont(500, 1rem);
+  line-height: 2.11rem;
   color: $ColorWhite;
   box-sizing: border-box;
-  padding: 20px 30px;
+  padding: 0.56rem 1.11rem;
   text-align: center;
   cursor: pointer;
   float: right;
-  margin: 0 10px;
-  position: relative;
-  top: -10px;
+  margin: 0 0.56rem;
 }
 
 #buttons {
@@ -109,7 +106,7 @@
   left: 0;
   bottom: 0;
   box-sizing: border-box;
-  padding: 30px;
+  padding: 1.67rem;
 }
 
 #deleteButton:hover {
@@ -127,17 +124,17 @@
 .editContent {
   width: 90%;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 2.22rem;
   margin-left: 5%;
   box-sizing: border-box;
 }
 
 .logo {
-  width: 250px;
-  height: 250px;
+  width: 13.89rem;
+  height: 13.89rem;
   margin-left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 50px;
+  margin-bottom: 2.78rem;
   border-radius: 50%;
   background-size: cover;
   position: relative;
@@ -153,13 +150,13 @@
   background-color: rgba(32, 32, 41, 0.7);
   color: #FFFFFF;
   text-align: center;
-  padding-top: 15px;
-  @include manropeFont(500, 18px);
+  padding-top: 0.83rem;
+  @include manropeFont(500, 1rem);
   cursor: pointer;
 }
 
 .logo > div > i {
-  margin-right: 10px;
+  margin-right: 0.56rem;
 }
 
 .inputWrapper2 {
@@ -172,7 +169,7 @@
   float: left;
   width: 20%;
   box-sizing: border-box;
-  margin-top: 10px;
+  margin-top: 0.56rem;
 }
 
 .inputWrapper {
@@ -184,23 +181,23 @@
 }
 
 .inputWrapper > input {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 5px 10px 50px;
+  padding: 0.56rem 0.28rem 0.56rem 2.78rem;
   background: $ColorWhite;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   border: 0;
   width: 100%;
   box-sizing: border-box;
 }
 
 .inputWrapper2 > input {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 5px;
+  padding: 0.56rem 0.28rem;
   text-align: center;
   background: $ColorWhite;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   border: 0;
   width: 100%;
   box-sizing: border-box;
@@ -209,17 +206,18 @@
 .inputWrapper > i {
   position: absolute;
   color: $ColorGrayDark;
-  top: 16px;
-  left: 15px;
+  top: 0.89rem;
+  left: 0.83rem;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 select {
-  @include manropeFont(normal, 18px);
+  @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
-  padding: 10px 5px 10px 20px;
+  padding: 0.56rem 0.27rem 0.56rem 1.11rem;
   background: $ColorWhite;
-  border-radius: 10px;
+  border-radius: 0.56rem;
   border: 0;
   width: 100%;
   -webkit-appearance: none;
@@ -234,8 +232,8 @@ select::-ms-expand {
 
 .comboBoxWrapper {
   box-sizing: border-box;
-  margin-right: 20px;
-  margin-bottom: 40px;
+  margin-right: 1.11rem;
+  margin-bottom: 2.22rem;
   width: 60%;
   margin-left: 20%;
   position: relative;
@@ -243,11 +241,12 @@ select::-ms-expand {
 
 .comboBoxWrapper > i {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 0.83rem;
+  top: 0.83rem;
+  font-size: 1rem;
 }
 
 .error {
-  border: $ColorPink solid 2px !important;
+  border: $ColorPink solid 0.11rem !important;
 }
 
