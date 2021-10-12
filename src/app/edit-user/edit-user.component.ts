@@ -15,8 +15,11 @@ export class EditUserComponent implements OnInit {
   userInfo!: UserInfo;
   constructor(private userService: UserService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
+  popupText = "To się nie powinno wyświetlać.";
+  popupReset = false;
   popupOk = false;
   popupFail = false;
+  popupDelete = false;
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
@@ -28,9 +31,9 @@ export class EditUserComponent implements OnInit {
   }
 
   sendData(nameInput:HTMLInputElement, phoneInput:HTMLInputElement) {
-    var name = nameInput.value;
-    var phone = phoneInput.value;
-    var allClear = true;
+    let name = nameInput.value;
+    let phone = phoneInput.value;
+    let allClear = true;
     nameInput.classList.remove('error');
     phoneInput.classList.remove('error');
     //validator
@@ -57,6 +60,7 @@ export class EditUserComponent implements OnInit {
           this.popupFail = true;
         },
         () => {
+          this.popupText = "Pomyślnie zaktualizowano użytkownika.";
           this.popupOk = true;
         });
   }
@@ -67,18 +71,18 @@ export class EditUserComponent implements OnInit {
       if (!file) {
         return false;
       }
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      var maxW = 400;
-      var maxH = 400;
-      var img = document.createElement('img');
-      var selff = this;
+      let canvas = document.createElement('canvas');
+      let context = canvas.getContext('2d');
+      let maxW = 400;
+      let maxH = 400;
+      let img = document.createElement('img');
+      let selff = this;
       img.onload = function () {
-        var iw = img.width;
-        var ih = img.height;
-        var scale = Math.min((maxW / iw), (maxH / ih));
-        var iwScaled = iw * scale;
-        var ihScaled = ih * scale;
+        let iw = img.width;
+        let ih = img.height;
+        let scale = Math.min((maxW / iw), (maxH / ih));
+        let iwScaled = iw * scale;
+        let ihScaled = ih * scale;
         canvas.width = iwScaled;
         canvas.height = ihScaled;
         context?.drawImage(img, 0, 0, iwScaled, ihScaled);
@@ -94,5 +98,34 @@ export class EditUserComponent implements OnInit {
       }
       img.src = URL.createObjectURL(file);
     }
+  }
+
+  deleteUser() {
+    this.popupDelete = false;
+    this.userService.deleteUser(this.id).subscribe(
+    () => {
+      },
+      () => {
+        this.popupFail = true;
+      },
+      () => {
+        this.popupText = "Pomyślnie usunięto użytkownika.";
+        this.popupOk = true;
+      });
+  }
+
+  resetPassword() {
+    let newPasswd = (Math.random() + 1).toString(36).substring(3);
+    this.popupReset = false;
+    this.userService.changePasswordOfUser(this.id, newPasswd, newPasswd).subscribe(
+      () => {
+      },
+      () => {
+        this.popupFail = true;
+      },
+      () => {
+        this.popupText = "Nowo wygenerowane hasło: " + newPasswd;
+        this.popupOk = true;
+      });
   }
 }

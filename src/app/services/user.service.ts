@@ -41,11 +41,23 @@ export class UserService {
       });
   }
 
+  public deleteUser(id: number): Observable<unknown> {
+    return this.http.delete('/API/users/removeUser/' + id + '/');
+  }
+
   public changePassword(first: HTMLInputElement, second: HTMLInputElement): Observable<unknown> {
     return this.http.post('/API/users/changePassword',
       {
         "firstPassword": first.value,
         "secondPassword": second.value
+      });
+  }
+
+  public changePasswordOfUser(id: number, first: string, second: string): Observable<unknown> {
+    return this.http.post('/API/users/changePassword/' + id + '/',
+      {
+        "firstPassword": first,
+        "secondPassword": second
       });
   }
 

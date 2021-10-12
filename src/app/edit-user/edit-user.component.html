@@ -1,11 +1,47 @@
 <app-leftpanel></app-leftpanel>
+<div class="popup" *ngIf="popupReset" >
+  <div class="popup-title">
+    Uwaga
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Czy na pewno chcesz zresetować hasło tego użytkownika?
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="resetPassword()" [routerLink]="['/users']">
+      Tak
+    </div>
+    <div class="popup-red" (click)="popupReset=false">
+      Nie
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupReset==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupDelete" >
+  <div class="popup-title">
+    Uwaga
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Czy na pewno chcesz usunąć tego użytkownika?
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="deleteUser()" [routerLink]="['/users']">
+      Tak
+    </div>
+    <div class="popup-red" (click)="popupDelete=false">
+      Nie
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupDelete==true ? 'shutItDown' : ''"></div>
 <div class="popup" *ngIf="popupOk" >
   <div class="popup-title">
     Komunikat
   </div>
   <div class="popup-line"></div>
   <div class="popup-text">
-    Pomyślnie zaktualizowano użytkownika.
+    {{ popupText }}
   </div>
   <div class="popup-footer">
       <div class="popup-green" (click)="popupOk=false" [routerLink]="['/users']">
@@ -78,10 +114,10 @@
         Anuluj
       </div>
     </a>
-    <div id="deleteButton">
+    <div id="deleteButton" (click)="popupDelete=true">
       Usuń
     </div>
-    <div id="resetButton">
+    <div id="resetButton" (click)="popupReset=true">
       Resetuj hasło
     </div>
   </div>
