@@ -23,7 +23,7 @@ export class VehicleService {
   }
 
   public putDeviceInfo(id: number, timeFrom: string, licensePlate: string, timeTo: string, engine: string, fuel: string,
-    yearOfProduction: string, model: string, tank: string, brand: string, norm: string): Observable<unknown> {
+    yearOfProduction: number, model: string, tank: string, brand: string, norm: string): Observable<unknown> {
     return this.http.post('/API/devices/changeDeviceData/' + id + '/',
       {
         "timeFrom": timeFrom,

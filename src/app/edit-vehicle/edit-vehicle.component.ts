@@ -128,7 +128,7 @@ export class EditVehicleComponent implements OnInit {
     }
     if (!allClear) return;
     //others
-    this.vehicleService.putDeviceInfo(this.id, timeFrom, licensePlate, timeTo, engine, fuel, yearOfProduction,
+    this.vehicleService.putDeviceInfo(this.id, timeFrom, licensePlate, timeTo, engine, fuel, Number.parseInt(yearOfProduction),
       model, tank, brand, norm).subscribe(
         () => {
         },
