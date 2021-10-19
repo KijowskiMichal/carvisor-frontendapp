@@ -39,6 +39,10 @@ export class VehicleService {
       });
   }
 
+  public deleteDevice(id: number): Observable<unknown> {
+    return this.http.delete('/devices/removeDevice/' + id + '/');
+  }
+
   public putGlobalConfiguration(historyTimeout: string, sendInterval: string,
                                 locationInterval: string): Observable<unknown> {
     return this.http.post('/API/carConfiguration/setGlobalConfiguration/',

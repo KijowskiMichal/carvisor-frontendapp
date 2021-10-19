@@ -15,8 +15,10 @@ export class EditVehicleComponent implements OnInit {
   configuration!: Configuration;
   constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private router: Router) { }
 
+  popupText = "To się nie powinno wyświetlać.";
   popupOk = false;
   popupFail = false;
+  popupDelete = false;
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
@@ -143,6 +145,7 @@ export class EditVehicleComponent implements OnInit {
                 this.popupFail = true;
               },
               () => {
+                this.popupText = "Pomyślnie zaktualizowano pojazd.";
                 this.popupOk = true;
               });
         });
@@ -155,18 +158,18 @@ export class EditVehicleComponent implements OnInit {
       if (!file) {
         return false;
       }
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      var maxW = 400;
-      var maxH = 400;
-      var img = document.createElement('img');
-      var selff = this;
+      let canvas = document.createElement('canvas');
+      let context = canvas.getContext('2d');
+      let maxW = 400;
+      let maxH = 400;
+      let img = document.createElement('img');
+      let selff = this;
       img.onload = function () {
-        var iw = img.width;
-        var ih = img.height;
-        var scale = Math.min((maxW / iw), (maxH / ih));
-        var iwScaled = iw * scale;
-        var ihScaled = ih * scale;
+        let iw = img.width;
+        let ih = img.height;
+        let scale = Math.min((maxW / iw), (maxH / ih));
+        let iwScaled = iw * scale;
+        let ihScaled = ih * scale;
         canvas.width = iwScaled;
         canvas.height = ihScaled;
         context?.drawImage(img, 0, 0, iwScaled, ihScaled);
@@ -182,5 +185,19 @@ export class EditVehicleComponent implements OnInit {
       }
       img.src = URL.createObjectURL(file);
     }
+  }
+
+  deleteDevice() {
+    this.popupDelete = false;
+    this.vehicleService.deleteDevice(this.id).subscribe(
+      () => {
+      },
+      () => {
+        this.popupFail = true;
+      },
+      () => {
+        this.popupText = "Pomyślnie usunięto pojazd.";
+        this.popupOk = true;
+      });
   }
 }

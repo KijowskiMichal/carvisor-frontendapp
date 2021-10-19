@@ -1,11 +1,29 @@
 <app-leftpanel></app-leftpanel>
+<div class="popup" *ngIf="popupDelete" >
+  <div class="popup-title">
+    Uwaga
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Czy na pewno chcesz usunąć ten pojazd?
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="deleteDevice()" [routerLink]="['/vehicles']">
+      Tak
+    </div>
+    <div class="popup-red" (click)="popupDelete=false">
+      Nie
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupDelete==true ? 'shutItDown' : ''"></div>
 <div class="popup" *ngIf="popupOk" >
   <div class="popup-title">
     Komunikat
   </div>
   <div class="popup-line"></div>
   <div class="popup-text">
-    Pomyślnie zaktualizowano pojazd.
+    {{ popupText }}
   </div>
   <div class="popup-footer">
     <div class="popup-green" (click)="popupOk=false" [routerLink]="['/vehicles']">
@@ -164,7 +182,7 @@
         Anuluj
       </div>
     </a>
-    <div id="deleteButton">
+    <div id="deleteButton" (click)="popupDelete=true">
       Usuń
     </div>
   </div>
