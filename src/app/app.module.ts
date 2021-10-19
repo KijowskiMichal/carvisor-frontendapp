@@ -20,6 +20,7 @@ import { EcodriveComponent } from './ecodrive/ecodrive.component';
 import { MapDevicesComponent } from './map-devices/map-devices.component';
 import { SafetyComponent } from './safety/safety.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { EcodriveUserComponent } from './ecodrive-user/ecodrive-user.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AddUserComponent } from './add-user/add-user.component';
     EcodriveComponent,
     MapDevicesComponent,
     SafetyComponent,
-    AddUserComponent
+    AddUserComponent,
+    EcodriveUserComponent
   ],
   imports: [
     BrowserModule,

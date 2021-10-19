@@ -40,18 +40,18 @@ export class AddUserComponent implements OnInit {
       if (!file) {
         return false;
       }
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
-      var maxW = 400;
-      var maxH = 400;
-      var img = document.createElement('img');
-      var that = this;
+      let canvas = document.createElement('canvas');
+      let context = canvas.getContext('2d');
+      let maxW = 400;
+      let maxH = 400;
+      let img = document.createElement('img');
+      let that = this;
       img.onload = function() {
-        var iw = img.width;
-        var ih = img.height;
-        var scale = Math.min((maxW / iw), (maxH / ih));
-        var iwScaled = iw * scale;
-        var ihScaled = ih * scale;
+        let iw = img.width;
+        let ih = img.height;
+        let scale = Math.min((maxW / iw), (maxH / ih));
+        let iwScaled = iw * scale;
+        let ihScaled = ih * scale;
         canvas.width = iwScaled;
         canvas.height = ihScaled;
         context?.drawImage(img, 0, 0, iwScaled, ihScaled);
@@ -63,13 +63,13 @@ export class AddUserComponent implements OnInit {
   }
 
   sendForm(nameAndSurname:HTMLInputElement, phone:HTMLInputElement, login:HTMLInputElement, password1:HTMLInputElement, password2:HTMLInputElement) {
-    var nameValue = nameAndSurname.value.split(' ')[0];
-    var surnameValue = nameAndSurname.value.split(' ')[1];
-    var phoneValue = phone.value;
-    var loginValue = login.value;
-    var password1Value = password1.value;
-    var password2Value = password2.value;
-    var allClear = true;
+    let nameValue = nameAndSurname.value.split(' ')[0];
+    let surnameValue = nameAndSurname.value.split(' ')[1];
+    let phoneValue = phone.value;
+    let loginValue = login.value;
+    let password1Value = password1.value;
+    let password2Value = password2.value;
+    let allClear = true;
     nameAndSurname.classList.remove('error');
     phone.classList.remove('error');
     login.classList.remove('error');

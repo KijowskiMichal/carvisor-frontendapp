@@ -1,4 +1,5 @@
 <app-leftpanel></app-leftpanel>
+<div [ngClass]="userPopup==true ? 'shutItDown' : ''"></div>
 <div id="ecodrive">
   <div id="searchBar">
     <div id="searchBarWrapper">
@@ -16,6 +17,7 @@
         <td>Średnie spalanie</td>
         <td>Średnie obroty</td>
         <td>Średnia prędkość</td>
+        <td></td>
       </tr>
       <tr *ngFor="let eco of listOfUsers.listOfUsers">
         <td>
@@ -34,6 +36,7 @@
         <td>{{eco.combustion}} l</td>
         <td>{{eco.revolutions}} RPM</td>
         <td>{{eco.speed}} km/h</td>
+        <td><i class="far fa-info-circle" (click)="userPopup=true"></i></td>
       </tr>
     </table>
   </div>
@@ -49,3 +52,4 @@
     </div>
   </div>
 </div>
+<app-ecodrive-user [(popup)]="userPopup"></app-ecodrive-user>
