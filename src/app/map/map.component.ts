@@ -10,7 +10,7 @@ declare var ol: any;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewInit {
   private map!: any;
   popupOn = false;
   userID = 0;

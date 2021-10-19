@@ -8,12 +8,9 @@ import {PageService} from "../services/page.service";
   templateUrl: './leftpanel.component.html',
   styleUrls: ['./leftpanel.component.scss']
 })
-export class LeftpanelComponent implements OnInit {
+export class LeftpanelComponent {
 
   constructor(private pageService: PageService, private authorizationService: AuthorizationService, private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   logout() {

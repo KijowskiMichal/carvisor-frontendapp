@@ -53,7 +53,7 @@ export interface listNames {
   templateUrl: './map-devices.component.html',
   styleUrls: ['./map-devices.component.scss']
 })
-export class MapDevicesComponent implements OnInit {
+export class MapDevicesComponent implements OnInit, AfterViewInit {
   private map!: any;
   popupOn = false;
   userID = 0;
