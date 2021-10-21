@@ -49,11 +49,15 @@ export class AddUserComponent implements OnInit {
       img.onload = function() {
         let iw = img.width;
         let ih = img.height;
-        let scale = Math.min((maxW / iw), (maxH / ih));
+        let scale = Math.max((maxW / iw), (maxH / ih));
         let iwScaled = iw * scale;
         let ihScaled = ih * scale;
-        canvas.width = iwScaled;
-        canvas.height = ihScaled;
+        let minSize = Math.min(iwScaled, ihScaled);
+        canvas.width = minSize;
+        canvas.height = minSize;
+        context?.rect(0, 0, minSize, minSize);
+        context?.stroke();
+        context?.clip();
         context?.drawImage(img, 0, 0, iwScaled, ihScaled);
         that.photo = canvas.toDataURL();
         imagePreview.style.backgroundImage = 'url(' + that.photo + ')';

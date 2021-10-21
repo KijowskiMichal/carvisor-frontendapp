@@ -15,7 +15,7 @@ export class EditUserComponent implements OnInit {
   userInfo!: UserInfo;
   constructor(private userService: UserService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
-  popupText = "To się nie powinno wyświetlać.";
+  popupText = "Pomyślnie zaktualizowano.";
   popupReset = false;
   popupOk = false;
   popupFail = false;
@@ -97,6 +97,7 @@ export class EditUserComponent implements OnInit {
               selff.popupFail = true;
             },
             () => {
+              selff.popupText = "Pomyślnie zaktualizowano zdjęcie.";
               selff.popupOk = true;
             });
       }
