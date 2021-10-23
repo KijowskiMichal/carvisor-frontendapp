@@ -14,7 +14,7 @@
         <td>Kierowca</td>
         <td>Liczba tras</td>
       </tr>
-      <tr *ngFor="let safety of listOfUsers.listOfUsers">
+      <tr *ngFor="let safety of listOfUsers.listOfUsers | sortSafetyPoints">
         <td>
           <div [ngClass]="{'grade-bad':safety.rate < 2.5, 'grade-medium':safety.rate >= 2.5 && safety.rate < 3.5, 'grade-good':safety.rate >= 3.5}">
             <div class="grade-text">

@@ -19,7 +19,7 @@
         <td>Średnia prędkość</td>
         <td></td>
       </tr>
-      <tr *ngFor="let eco of listOfUsers.listOfUsers">
+      <tr *ngFor="let eco of listOfUsers.listOfUsers | sortEcoPoints">
         <td>
           <div [ngClass]="{'grade-bad':eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">
             <div class="grade-text">
