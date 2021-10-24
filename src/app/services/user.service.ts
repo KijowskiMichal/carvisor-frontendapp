@@ -37,7 +37,7 @@ export class UserService {
     return this.http.post('/API/users/changeUserData/' + id + '/',
       {
         "name": name,
-        "telephone": phone
+        "phoneNumber": phone
       });
   }
 
@@ -70,7 +70,7 @@ export class UserService {
 export interface UserInfo {
   userPrivileges: number;
   name: string;
-  telephone: number;
+  phoneNumber: number;
   image: string;
 }
 
