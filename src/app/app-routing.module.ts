@@ -11,6 +11,7 @@ import { EcodriveComponent } from "./ecodrive/ecodrive.component";
 import { TracksComponent } from "./tracks/tracks.component";
 import { MapDevicesComponent } from "./map-devices/map-devices.component";
 import { SafetyComponent } from "./safety/safety.component";
+import {NotificationsComponent} from "./notifications/notifications.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'map/:id/:date', component: MapComponent},
                           { path: 'ecodrive', component: EcodriveComponent},
                           { path: 'tracks/:id', component: TracksComponent},
-                          { path: 'safety', component: SafetyComponent}];
+                          { path: 'safety', component: SafetyComponent},
+                          { path: 'notifications', component: NotificationsComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],
