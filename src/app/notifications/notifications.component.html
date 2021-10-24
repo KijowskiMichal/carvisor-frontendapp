@@ -1,1 +1,169 @@
-<p>notifications works!</p>
+<app-leftpanel></app-leftpanel>
+<div id="notifications">
+  <div class="searchBar">
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date">
+    </div>
+    <div class="inputDivider">
+      -
+    </div>
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date">
+    </div>
+  </div>
+  <!--
+  <div id="no-data" *ngIf="!listOfTracks">
+    Brak powiadomień w danym przedziale czasowym.
+  </div>
+  -->
+  <div id="table">
+    <table>
+      <tr id="firstRow">
+        <td class="col-notification">
+          Powiadomienie
+        </td>
+        <td>Kierowca</td>
+        <td>Czas</td>
+        <td>Lokalizacja</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="alert-pink">
+            <i class="far fa-ban"></i>
+            <span>
+              Przekroczenie dozwolonej prędkości o 15 km/h.
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="driver">
+            <div>
+              <div class="name">
+                Julia Mróz
+              </div>
+              <div class="vehicle">
+                DWL5636
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>22.03.2021 9:41</td>
+        <td>Poznań - Obornicka 21</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="alert-yellow">
+            <i class="far fa-info-circle"></i>
+            <span>
+              Pojazd opuścił strefę.
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="driver">
+            <div>
+              <div class="name">
+                Julia Mróz
+              </div>
+              <div class="vehicle">
+                DWL5636
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>22.03.2021 9:41</td>
+        <td>Poznań - Obornicka 21</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="alert-pink">
+            <i class="far fa-exclamation-circle"></i>
+            <span>
+              Auto w ruchu poza godzinami pracy.
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="driver">
+            <div>
+              <div class="name">
+                Julia Mróz
+              </div>
+              <div class="vehicle">
+                DWL5636
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>22.03.2021 9:41</td>
+        <td>Poznań - Obornicka 21</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="alert-pink">
+            <i class="far fa-ban"></i>
+            <span>
+              Przekroczenie dozwolonej prędkości o 30 km/h.
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="driver">
+            <div>
+              <div class="name">
+                Julia Mróz
+              </div>
+              <div class="vehicle">
+                DWL5636
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>22.03.2021 9:41</td>
+        <td>Poznań - Obornicka 21</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="alert-green">
+            <i class="far fa-shield-check"></i>
+            <span>
+              Kierowca rozpoczął pracę.
+            </span>
+          </div>
+        </td>
+        <td>
+          <div class="driver">
+            <div>
+              <div class="name">
+                Julia Mróz
+              </div>
+              <div class="vehicle">
+                DWL5636
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>22.03.2021 9:41</td>
+        <td>Poznań - Obornicka 21</td>
+      </tr>
+    </table>
+  </div>
+
+  <!--
+  <div id="pages">
+    <div id="pagesWrapper" *ngIf="listOfUser">
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1, search.value)" class="far fa-chevron-double-left"></i>
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1, search.value)" class="far fa-chevron-left"></i>
+      <div id="pagesText">
+        strona {{page}} z {{pageMax}}
+      </div>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1, search.value)"  class="far fa-chevron-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax, search.value)"  class="far fa-chevron-double-right"></i>
+    </div>
+  </div>
+  -->
+</div>

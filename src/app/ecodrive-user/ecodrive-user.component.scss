@@ -1,5 +1,5 @@
 @import "./../../styles.scss";
-@mixin grade() {
+@mixin grade($color) {
   width: 3.61rem;
   height: 3.61rem;
   border-radius: 50%;
@@ -7,6 +7,7 @@
   position: relative;
   margin-left: 50%;
   transform: translateX(-50%);
+  background-color: $color;
 }
 
 .popup {
@@ -104,18 +105,15 @@ td {
 }
 
 .grade-good {
-  @include grade;
-  background-color: $ColorGreen;
+  @include grade($ColorGreen);
 }
 
 .grade-medium {
-  @include grade;
-  background-color: $ColorYellow;
+  @include grade($ColorYellow);
 }
 
 .grade-bad {
-  @include grade;
-  background-color: $ColorPink;
+  @include grade($ColorPink);
 }
 
 .grade-text {
@@ -174,5 +172,16 @@ td {
   box-sizing: border-box;
   margin-top: 0.56rem;
   font-size: 1rem;
+}
+
+#no-data {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2.22rem;
+  float: left;
+  position: relative;
+  text-align: center;
+  @include manropeFont(500, 1.22rem);
+  color: $ColorGrayDark;
 }
 
