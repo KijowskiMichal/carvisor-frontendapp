@@ -150,3 +150,13 @@ td {
 a {
   text-decoration: none;
 }
+
+td > i {
+  color: $ColorGrayDark;
+  font-size: 1.11rem;
+  cursor: pointer;
+}
+
+td > i:hover {
+  color: $ColorGrayDarkHover;
+}

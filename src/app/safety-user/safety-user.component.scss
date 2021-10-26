@@ -1,0 +1,182 @@
+@import "./../../styles.scss";
+@mixin alert-type($color) {
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border-style: solid;
+  border-color: $color;
+  border-width: 0.25rem;
+  border-radius: 0.56rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.popup {
+  background-color: $ColorGrayLight;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.83rem;
+  padding: 1.67rem;
+  box-sizing: border-box;
+  width: 80%;
+  height: 90%;
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1.67rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-popup-title {
+  @include manropeFont(600, 1.11rem);
+  color: $ColorGrayDark;
+  box-shadow: inset 0 -0.08rem 0 $ColorGrayBlueish;
+}
+
+.cancel-button {
+  position: fixed;
+  right: 1%;
+  top: 3%;
+}
+
+.cancel-button > i {
+  color: $ColorGrayDark;
+  font-size: 2.22rem;
+  cursor: pointer;
+}
+
+.cancel-button > i:hover {
+  color: $ColorGrayDarkHover;
+}
+
+#firstRow {
+  position: sticky;
+  background-color: $ColorGrayLight;
+  top: 0;
+  z-index: 100;
+  box-shadow: inset 0 -0.08rem 0 $ColorGrayBlueish;
+}
+
+#firstRow > td {
+  @include manropeFont(normal, 1.1rem);
+  text-transform: uppercase;
+  line-height: 50%;
+  padding: 1.67rem;
+  align-items: center;
+  text-align: center;
+  color: $ColorGrayDark;
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+  width: 100%;
+  table-layout: auto;
+}
+
+#table {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.panel {
+  box-sizing: border-box;
+  height: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 100%;
+  padding-bottom: 1rem;
+  scrollbar-color: $ColorGrayBlueish $ColorGrayLight;
+}
+
+td {
+  border-bottom: 0.11rem solid $ColorGrayBlueish;
+  box-sizing: border-box;
+  padding: 0.55rem 1.67rem;
+  align-items: center;
+  text-align: center;
+  @include manropeFont(500, 1rem);
+  color: $ColorGrayDark;
+}
+
+.col-notification {
+  width: 45%;
+}
+
+.alert-pink {
+  @include alert-type($ColorPink);
+}
+
+.alert-yellow {
+  @include alert-type($ColorYellow);
+}
+
+.alert-green {
+  @include alert-type($ColorGreen);
+}
+
+.searchBar {
+  box-sizing: border-box;
+  padding: 0 2.22rem;
+  display: flex;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputWrapper > input {
+  @include manropeFont(normal, 1rem);
+  color: $ColorGrayDark;
+  padding: 0.56rem 0.28rem 0.56rem 2.78rem;
+  background: $ColorWhite;
+  border-radius: 0.56rem;
+  border: 0;
+}
+
+.inputWrapper > i {
+  position: absolute;
+  color: $ColorGrayDark;
+  top: 0.89rem;
+  left: 0.83rem;
+  font-size: 1rem;
+}
+
+.inputDivider {
+  float: right;
+  text-align: center;
+  width: 5%;
+  box-sizing: border-box;
+  margin-top: 0.56rem;
+  font-size: 1rem;
+}
+
+i {
+  color: $ColorGrayDark;
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+span {
+  text-align: left;
+}
+
+#no-data {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2.22rem;
+  float: left;
+  position: relative;
+  text-align: center;
+  @include manropeFont(500, 1.22rem);
+  color: $ColorGrayDark;
+}
+
