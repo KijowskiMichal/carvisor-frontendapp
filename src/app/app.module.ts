@@ -24,6 +24,8 @@ import { EcodriveUserComponent } from './ecodrive-user/ecodrive-user.component';
 import { SortEcoPointsPipe } from './pipes/sort-eco-points.pipe';
 import { SortSafetyPointsPipe } from './pipes/sort-safety-points.pipe';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { SafetyUserComponent } from './safety-user/safety-user.component';
+import { WarningsComponent } from './warnings/warnings.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     EcodriveUserComponent,
     SortEcoPointsPipe,
     SortSafetyPointsPipe,
-    NotificationsComponent
+    NotificationsComponent,
+    SafetyUserComponent,
+    WarningsComponent
   ],
   imports: [
     BrowserModule,

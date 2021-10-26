@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {NotificationService} from "../services/notification.service";
 import {PageService} from "../services/page.service";
 import {Router} from "@angular/router";
-import {NotificationService} from "../services/notification.service";
 
 @Component({
-  selector: 'app-notifications',
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+  selector: 'app-warnings',
+  templateUrl: './warnings.component.html',
+  styleUrls: ['./warnings.component.scss']
 })
-export class NotificationsComponent implements OnInit {
+export class WarningsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private pageService: PageService, private router: Router) { }
   page!: number;
