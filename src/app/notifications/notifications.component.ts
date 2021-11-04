@@ -24,6 +24,8 @@ export class NotificationsComponent implements OnInit {
         this.router.navigate(['./']);
       }
     });
+    this.dateFromValue = new Date().valueOf();
+    this.dateToValue = new Date().valueOf();
     this.list(1);
   }
 
