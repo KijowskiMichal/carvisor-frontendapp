@@ -3,23 +3,23 @@
   <div class="searchBar">
     <div class="inputWrapper">
       <i class="far fa-calendar-alt"></i>
-      <input type="date">
+      <input type="date" [(ngModel)]="dateToValue" (change)="list(1)">
     </div>
     <div class="inputDivider">
       -
     </div>
     <div class="inputWrapper">
       <i class="far fa-calendar-alt"></i>
-      <input type="date">
+      <input type="date" [(ngModel)]="dateFromValue" (change)="list(1)">
     </div>
   </div>
-  <!--
-  <div id="no-data" *ngIf="!listOfTracks">
+
+  <div id="no-data" *ngIf="!Warnings">
     Brak powiadomień w danym przedziale czasowym.
   </div>
-  -->
+
   <div id="table">
-    <table>
+    <table *ngIf="!Warnings">
       <tr id="firstRow">
         <td class="col-notification">
           Awaria / Naprawa
@@ -28,12 +28,12 @@
         <td>Czas</td>
         <td>Lokalizacja</td>
       </tr>
-      <tr>
+      <tr *ngFor="let warning of Warnings.listOfNotification">
         <td>
-          <div class="alert-pink">
-            <i class="far fa-ban"></i>
+          <div [ngClass]="{'alert-pink':warning.type === 'important', 'alert-blue':warning.type === 'information'}">
+            <i [ngClass]="{'far fa-ban':warning.type === 'important', 'far fa-info-circle':warning.type === 'information'}"></i>
             <span>
-              P0094 - Wykryto wyciek układu paliwowego.
+              {{warning.value}}
             </span>
           </div>
         </td>
@@ -41,129 +41,30 @@
           <div class="driver">
             <div>
               <div class="name">
-                Julia Mróz
+                {{warning.userName}}
               </div>
               <div class="vehicle">
-                DWL5636
+                {{warning.deviceLicensePlate}}
               </div>
             </div>
           </div>
         </td>
-        <td>22.03.2021 9:41</td>
-        <td>Poznań - Obornicka 21</td>
-      </tr>
-
-      <tr>
-        <td>
-          <div class="alert-blue">
-            <i class="far fa-info-circle"></i>
-            <span>
-              Zbliża się termin wymiany oleju w pojeździe.
-            </span>
-          </div>
-        </td>
-        <td>
-          <div class="driver">
-            <div>
-              <div class="name">
-                Julia Mróz
-              </div>
-              <div class="vehicle">
-                DWL5636
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>22.03.2021 9:41</td>
-        <td>Poznań - Obornicka 21</td>
-      </tr>
-
-      <tr>
-        <td>
-          <div class="alert-blue">
-            <i class="far fa-info-circle"></i>
-            <span>
-              Zbliża się termin przeglądu pojazdu.
-            </span>
-          </div>
-        </td>
-        <td>
-          <div class="driver">
-            <div>
-              <div class="name">
-                Julia Mróz
-              </div>
-              <div class="vehicle">
-                DWL5636
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>22.03.2021 9:41</td>
-        <td>Poznań - Obornicka 21</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="alert-pink">
-            <i class="far fa-ban"></i>
-            <span>
-              P0110 - Usterka obwodu temperatury powietrza dolotowego.
-            </span>
-          </div>
-        </td>
-        <td>
-          <div class="driver">
-            <div>
-              <div class="name">
-                Julia Mróz
-              </div>
-              <div class="vehicle">
-                DWL5636
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>22.03.2021 9:41</td>
-        <td>Poznań - Obornicka 21</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="alert-pink">
-            <i class="far fa-ban"></i>
-            <span>
-              P0120 - Usterka obwodu pedału przepustnicy.
-            </span>
-          </div>
-        </td>
-        <td>
-          <div class="driver">
-            <div>
-              <div class="name">
-                Julia Mróz
-              </div>
-              <div class="vehicle">
-                DWL5636
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>22.03.2021 9:41</td>
-        <td>Poznań - Obornicka 21</td>
+        <td>{{warning.date | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>{{warning.location}}</td>
       </tr>
     </table>
   </div>
 
-  <!--
   <div id="pages">
-    <div id="pagesWrapper" *ngIf="listOfUser">
-      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1, search.value)" class="far fa-chevron-double-left"></i>
-      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1, search.value)" class="far fa-chevron-left"></i>
+    <div id="pagesWrapper" *ngIf="Warnings">
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1)" class="far fa-chevron-left"></i>
       <div id="pagesText">
         strona {{page}} z {{pageMax}}
       </div>
-      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1, search.value)"  class="far fa-chevron-right"></i>
-      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax, search.value)"  class="far fa-chevron-double-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1)"  class="far fa-chevron-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax)"  class="far fa-chevron-double-right"></i>
     </div>
   </div>
-  -->
+
 </div>

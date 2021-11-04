@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NotificationService} from "../services/notification.service";
+import {NotificationService, Warnings} from "../services/notification.service";
 import {PageService} from "../services/page.service";
 import {Router} from "@angular/router";
 
@@ -11,6 +11,9 @@ import {Router} from "@angular/router";
 export class WarningsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private pageService: PageService, private router: Router) { }
+  Warnings!: Warnings;
+  dateFromValue!: number;
+  dateToValue!: number;
   page!: number;
   pageMax!: number;
   pageSize = 6;
@@ -25,17 +28,15 @@ export class WarningsComponent implements OnInit {
   }
 
   public list(page: number): void {
-    /*
     if (page >= 1) {
-      this.notificationService.getNotification(page, this.pageSize, regex).subscribe(value => {
+      this.notificationService.listWarnings(page, this.pageSize, this.dateFromValue, this.dateToValue).subscribe(value => {
         if (page <= value.pageMax) {
-          this.listOfUsers = value;
+          this.Warnings = value;
           this.page = value.page;
           this.pageMax = value.pageMax;
         }
       });
     }
-    */
   }
 
 }
