@@ -14,7 +14,9 @@ export class TracksComponent implements OnInit {
   private routeSub!: Subscription;
   private id!:number;
   dateFromValue!: string;
+  dateFromTimestamp!: number;
   dateToValue!: string;
+  dateToTimestamp!: number;
   listOfTracks!: ListOfTracks;
   page!: number;
   pageMax!: number;
@@ -36,9 +38,11 @@ export class TracksComponent implements OnInit {
 
   public list(page: number): void {
     if (page >= 1) {
+      this.dateFromTimestamp = new Date(this.dateFromValue).valueOf();
+      this.dateToTimestamp = new Date(this.dateToValue).valueOf();
       this.routeSub = this.route.params.subscribe(params => {
         this.id = params['id'];
-        this.trackService.getListOfTracks(this.id, page, this.pageSize, this.dateFromValue, this.dateToValue).subscribe(value => {
+        this.trackService.getListOfTracks(this.id, page, this.pageSize, this.dateFromTimestamp, this.dateToTimestamp).subscribe(value => {
           if (page <= value.pageMax) {
             this.listOfTracks = value;
             this.page = value.page;

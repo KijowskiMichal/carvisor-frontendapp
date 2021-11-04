@@ -10,8 +10,8 @@ export class TrackService {
   constructor(private http: HttpClient) {
   }
 
-  public getListOfTracks(id: number, page: number, pageSize: number, dateFromValue: string,
-                         dateToValue: string): Observable<ListOfTracks> {
+  public getListOfTracks(id: number, page: number, pageSize: number, dateFromValue: number,
+                         dateToValue: number): Observable<ListOfTracks> {
     return this.http.get<ListOfTracks>('/API/track/list/' + id + '/'
       + page + '/' + pageSize + '/' + dateFromValue + '/' + dateToValue + '/');
   }
