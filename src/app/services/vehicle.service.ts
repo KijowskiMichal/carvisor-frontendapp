@@ -40,7 +40,7 @@ export class VehicleService {
   }
 
   public deleteDevice(id: number): Observable<unknown> {
-    return this.http.delete('/devices/removeDevice/' + id + '/');
+    return this.http.delete('/API/devices/removeDevice/' + id + '/');
   }
 
   public putGlobalConfiguration(historyTimeout: string, sendInterval: string,
