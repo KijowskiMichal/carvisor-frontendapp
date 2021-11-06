@@ -17,7 +17,10 @@ export class EcodriveUserComponent implements OnInit {
     if (this.popup_ === true) {
       this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
       this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-      this.list();
+      if (this.id) this.list();
+    }
+    else {
+      this.userPoints = null;
     }
   }
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();

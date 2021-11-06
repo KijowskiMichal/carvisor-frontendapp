@@ -1,7 +1,7 @@
 <div class="popup" *ngIf="popup_">
   <div class="header">
     <div class="user-popup-title">
-      Ostrzeżenia kierowcy {{userPoints.name}}:
+      Ostrzeżenia kierowcy {{userPoints?.name}}:
     </div>
     <div class="searchBar">
       <div class="inputWrapper">
@@ -20,12 +20,12 @@
       <i class="fal fa-times"></i>
     </div>
   </div>
-  <div id="no-data" *ngIf="userPoints.listOfOffencess.length === 0">
+  <div id="no-data" *ngIf="userPoints?.listOfOffencess.length === 0">
     Brak powiadomień w danym przedziale czasowym.
   </div>
   <div class="panel">
     <div id="table">
-      <table *ngIf="userPoints.listOfOffencess.length !== 0">
+      <table *ngIf="userPoints?.listOfOffencess.length !== 0">
         <tr id="firstRow">
           <td class="col-notification">
             Powiadomienie
@@ -33,7 +33,7 @@
           <td>Czas</td>
           <td>Lokalizacja</td>
         </tr>
-        <tr *ngFor="let off of userPoints.listOfOffencess">
+        <tr *ngFor="let off of userPoints?.listOfOffencess">
           <td>
             <div class="alert-pink">
               <i class="far fa-ban"></i>
