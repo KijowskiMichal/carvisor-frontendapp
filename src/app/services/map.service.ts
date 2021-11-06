@@ -14,6 +14,10 @@ export class MapService {
     return this.http.get<listNames[]>('/API/users/listUserNames/'+ regex +'/');
   }
 
+  public getListOfDevice(regex: string): Observable<listNames[]> {
+    return this.http.get<listNames[]>('/API/devices/listDevicesNames/'+ regex +'/');
+  }
+
   public getTrackData(userID: number, dateValue: number): Observable<Rate> {
     return this.http.get<Rate>('/API/track/getTrackData/'+ userID +'/'+ dateValue +'/');
   }

@@ -141,7 +141,7 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
 
   regexChanged(regex:string) {
     if (regex==='') regex='$';
-    this.mapService.getListOfUser(regex).subscribe(value => {
+    this.mapService.getListOfDevice(regex).subscribe(value => {
       this.names = value;
       this.showPopup();
     });
