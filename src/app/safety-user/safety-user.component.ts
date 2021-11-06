@@ -15,9 +15,11 @@ export class SafetyUserComponent implements OnInit {
   @Input() id;
   @Input() set popup(value: boolean) {
     this.popup_ = value;
-    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.list();
+    if (this.popup_ === true) {
+      this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.list();
+    }
   }
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
