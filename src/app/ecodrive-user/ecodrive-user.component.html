@@ -1,33 +1,31 @@
 <div class="popup" *ngIf="popup">
   <div class="header">
     <div class="user-popup-title">
-      Punktacja kierowcy Julia Mróz {{this.id}}
+      Punktacja kierowcy {{userPoints.name}}:
     </div>
     <div class="searchBar">
       <div class="inputWrapper">
         <i class="far fa-calendar-alt"></i>
-        <input type="date">
+        <input type="date" [(ngModel)]="dateToValue" (change)="list()">
       </div>
       <div class="inputDivider">
         -
       </div>
       <div class="inputWrapper">
         <i class="far fa-calendar-alt"></i>
-        <input type="date">
+        <input type="date" [(ngModel)]="dateFromValue" (change)="list()">
       </div>
     </div>
     <div class="cancel-button" (click)="closeWindow()">
       <i class="fal fa-times"></i>
     </div>
   </div>
-  <!--
-  <div id="no-data" *ngIf="!listOfTracks">
+  <div id="no-data" *ngIf="!userPoints.listOfDays">
     Brak powiadomień w danym przedziale czasowym.
   </div>
-  -->
   <div class="panel">
     <div id="table">
-      <table>
+      <table *ngIf="userPoints.listOfDays">
         <tr id="firstRow">
           <td>Data</td>
           <td>Ocena</td>
@@ -37,95 +35,20 @@
           <td>Średnia prędkość</td>
           <td>Dystans</td>
         </tr>
-        <tr>
-          <td>25.12.1976</td>
+        <tr *ngFor="let day of userPoints.listOfDays">
+          <td>{{day.date * 1000 | date: 'dd.MM.yyyy HH:mm'}}</td>
           <td>
-            <div class="grade-good">
+            <div [ngClass]="{'grade-bad':day.ecoPoints < 2.5, 'grade-medium':day.ecoPoints >= 2.5 && day.ecoPoints < 3.5, 'grade-good':day.ecoPoints >= 3.5}">
               <div class="grade-text">
-                2.6
+                {{day.ecoPoints}}
               </div>
             </div>
           </td>
-          <td>5</td>
-          <td>12 l</td>
-          <td>3242 RPM</td>
-          <td>45 km/h</td>
-          <td>2324 km</td>
-        </tr>
-        <tr>
-          <td>25.12.1976</td>
-          <td>
-            <div class="grade-good">
-              <div class="grade-text">
-                2.6
-              </div>
-            </div>
-          </td>
-          <td>5</td>
-          <td>12 l</td>
-          <td>3242 RPM</td>
-          <td>45 km/h</td>
-          <td>2324 km</td>
-        </tr>
-        <tr>
-          <td>25.12.1976</td>
-          <td>
-            <div class="grade-good">
-              <div class="grade-text">
-                2.6
-              </div>
-            </div>
-          </td>
-          <td>5</td>
-          <td>12 l</td>
-          <td>3242 RPM</td>
-          <td>45 km/h</td>
-          <td>2324 km</td>
-        </tr>
-        <tr>
-          <td>25.12.1976</td>
-          <td>
-            <div class="grade-good">
-              <div class="grade-text">
-                2.6
-              </div>
-            </div>
-          </td>
-          <td>5</td>
-          <td>12 l</td>
-          <td>3242 RPM</td>
-          <td>45 km/h</td>
-          <td>2324 km</td>
-        </tr>
-        <tr>
-          <td>25.12.1976</td>
-          <td>
-            <div class="grade-good">
-              <div class="grade-text">
-                2.6
-              </div>
-            </div>
-          </td>
-          <td>5</td>
-          <td>12 l</td>
-          <td>3242 RPM</td>
-          <td>45 km/h</td>
-          <td>2324 km</td>
-        </tr>
-        <tr>
-          <td>25.12.1976</td>
-          <td>
-            <div class="grade-good">
-              <div class="grade-text">
-                2.6
-              </div>
-            </div>
-          </td>
-          <td>5</td>
-          <td>12 l</td>
-          <td>3242 RPM</td>
-          <td>45 km/h</td>
-          <td>2324 km</td>
+          <td>{{day.tracks}}</td>
+          <td>{{day.combustion}} l</td>
+          <td>{{day.revolution}} RPM</td>
+          <td>{{day.speed}} km/h</td>
+          <td>{{day.distance / 1000 | number : '1.2-2'}} km</td>
         </tr>
       </table>
     </div>

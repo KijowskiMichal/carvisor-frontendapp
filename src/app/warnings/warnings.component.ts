@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import {NotificationService, Warnings} from "../services/notification.service";
 import {PageService} from "../services/page.service";
 import {Router} from "@angular/router";
+import {TrackService} from "../services/track.service";
 
 @Component({
   selector: 'app-warnings',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 export class WarningsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private pageService: PageService,
-              private router: Router, private datePipe: DatePipe) { }
+              private router: Router, private datePipe: DatePipe, private trackService: TrackService) { }
   Warnings!: Warnings;
   dateFromValue!: string;
   dateFromTimestamp!: number;
@@ -42,9 +43,23 @@ export class WarningsComponent implements OnInit {
           this.Warnings = value;
           this.page = value.page;
           this.pageMax = value.pageMax;
+          for (let warning of this.Warnings.listOfNotification) {
+            let coords = warning.location.split(";");
+            this.trackService.getReverseGeocoding(coords).subscribe(value => {
+              warning.location =  value.address;
+            });
+          }
         }
       });
     }
+  }
+
+  showLocationOfPoints(joined: string):string {
+    let coords = joined.split(";");
+    this.trackService.getReverseGeocoding(coords).subscribe(value => {
+      return value.address;
+    });
+    return '---';
   }
 
 }

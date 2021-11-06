@@ -30,7 +30,7 @@
           </div>
         </td>
         <td>{{safety.tracks}}</td>
-        <td><i class="far fa-info-circle" (click)="userPopup=true"></i></td>
+        <td><i class="far fa-info-circle" (click)="userPopup=true; userId=safety.id"></i></td>
       </tr>
     </table>
   </div>
@@ -46,4 +46,4 @@
     </div>
   </div>
 </div>
-<app-safety-user [(popup)]="userPopup"></app-safety-user>
+<app-safety-user [(popup)]="userPopup" [id]="userId"></app-safety-user>

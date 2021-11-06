@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {ActivatedRoute, Router} from "@angular/router";
-import {from, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {ListOfTracks, TrackService} from "../services/track.service";
 import {PageService} from "../services/page.service";
 
@@ -65,10 +65,10 @@ export class TracksComponent implements OnInit {
   }
 
   showLocationOfPoints(joined: string):string {
-    var coords = joined.split(";");
+    let coords = joined.split(";");
     this.trackService.getReverseGeocoding(coords).subscribe(value => {
       return value.address;
     });
-    return 'gsd';
+    return '---';
   }
 }
