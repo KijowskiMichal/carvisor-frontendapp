@@ -26,6 +26,7 @@ export class SafetyUserComponent implements OnInit {
               private datePipe: DatePipe, private trackService: TrackService) { }
 
   ngOnInit(): void {
+    console.log("siema");
     this.pageService.getLoginStatus().subscribe(value => {
       if (!value.logged) {
         this.router.navigate(['./']);

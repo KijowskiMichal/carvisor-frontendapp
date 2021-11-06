@@ -25,6 +25,7 @@ export class EcodriveUserComponent implements OnInit {
               private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    console.log("siema");
     this.pageService.getLoginStatus().subscribe(value => {
       if (!value.logged) {
         this.router.navigate(['./']);
