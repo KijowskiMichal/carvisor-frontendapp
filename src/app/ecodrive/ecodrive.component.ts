@@ -16,6 +16,7 @@ export class EcodriveComponent implements OnInit {
   pageMax!: number;
   pageSize = 6;
   userPopup: boolean;
+  userId: number;
 
   ngOnInit(): void {
     this.pageService.getLoginStatus().subscribe(value => {

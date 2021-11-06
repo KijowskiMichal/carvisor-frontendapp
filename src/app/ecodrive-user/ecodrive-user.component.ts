@@ -10,6 +10,7 @@ import {EcoService} from "../services/eco.service";
 })
 export class EcodriveUserComponent implements OnInit {
 
+  @Input() id;
   @Input() popup = false;
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
