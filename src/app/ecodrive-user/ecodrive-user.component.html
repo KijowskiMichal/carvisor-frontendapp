@@ -1,4 +1,4 @@
-<div class="popup" *ngIf="popup">
+<div class="popup" *ngIf="popup_">
   <div class="header">
     <div class="user-popup-title">
       Punktacja kierowcy {{userPoints.name}}:
@@ -20,12 +20,12 @@
       <i class="fal fa-times"></i>
     </div>
   </div>
-  <div id="no-data" *ngIf="!userPoints.listOfDays">
+  <div id="no-data" *ngIf="userPoints.listOfDays.length === 0">
     Brak powiadomień w danym przedziale czasowym.
   </div>
   <div class="panel">
     <div id="table">
-      <table *ngIf="userPoints.listOfDays">
+      <table *ngIf="userPoints.listOfDays.length !== 0">
         <tr id="firstRow">
           <td>Data</td>
           <td>Ocena</td>

@@ -13,9 +13,15 @@ import {TrackService} from "../services/track.service";
 export class SafetyUserComponent implements OnInit {
 
   @Input() id;
-  @Input() popup = false;
+  @Input() set popup(value: boolean) {
+    this.popup_ = value;
+    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.list();
+  }
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  popup_ = false;
   userPoints!: UserPoints;
   dateFromValue!: string;
   dateFromTimestamp!: number;
@@ -26,15 +32,6 @@ export class SafetyUserComponent implements OnInit {
               private datePipe: DatePipe, private trackService: TrackService) { }
 
   ngOnInit(): void {
-    console.log("siema");
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
-    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.list();
   }
 
   list() {
@@ -52,8 +49,8 @@ export class SafetyUserComponent implements OnInit {
   }
 
   closeWindow() {
-    this.popup = !(this.popup);
-    this.popupChange.emit(this.popup);
+    this.popup_ = !(this.popup_);
+    this.popupChange.emit(this.popup_);
   }
 
   showLocationOfPoints(joined: string):string {
