@@ -150,7 +150,7 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
   changeMap() {
     var that = this;
     this.dateTimestamp = new Date(this.dateValue).valueOf() / 1000;
-    this.mapService.getTrackData(this.userID, this.dateTimestamp).subscribe(value => {
+    this.mapService.getTrackDataForDevice(this.userID, this.dateTimestamp).subscribe(value => {
       this.rates = value;
       this.map.getLayers().forEach(function (layer) {
         that.map.removeLayer(layer);

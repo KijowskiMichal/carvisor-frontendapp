@@ -21,6 +21,10 @@ export class MapService {
   public getTrackData(userID: number, dateValue: number): Observable<Rate> {
     return this.http.get<Rate>('/API/track/getTrackData/'+ userID +'/'+ dateValue +'/');
   }
+
+  public getTrackDataForDevice(userID: number, dateValue: number): Observable<Rate> {
+    return this.http.get<Rate>('/API/track/getTrackDataForDevice/'+ userID +'/'+ dateValue +'/');
+  }
 }
 
 export interface StartPoint {
