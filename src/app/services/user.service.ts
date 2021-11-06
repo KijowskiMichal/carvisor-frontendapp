@@ -77,12 +77,12 @@ export interface UserInfo {
 export interface User {
   nick: string;
   image: string;
-  finishTime: string;
+  finishTime: number;
   licensePlate: string;
   distance: number;
   surname: string;
   name: string;
-  startTime: string;
+  startTime: number;
   id: number;
   status: string;
 }

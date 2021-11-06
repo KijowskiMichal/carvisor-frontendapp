@@ -14,7 +14,7 @@ export class MapService {
     return this.http.get<listNames[]>('/API/users/listUserNames/'+ regex +'/');
   }
 
-  public getTrackData(userID: number, dateValue: string): Observable<Rate> {
+  public getTrackData(userID: number, dateValue: number): Observable<Rate> {
     return this.http.get<Rate>('/API/track/getTrackData/'+ userID +'/'+ dateValue +'/');
   }
 }

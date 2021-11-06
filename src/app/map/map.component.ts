@@ -38,6 +38,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   popupDiv!: HTMLDivElement;
   maxDate!:string;
   dateValue!:string;
+  dateTimestamp!: number;
 
   ngAfterViewInit()
   {
@@ -47,14 +48,9 @@ export class MapComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.dateValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
     this.maxDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
     this.popupik = "Popup";
-
     this.regexChanged('$');
-
-
 
     this.map = new ol.Map({
       target: 'map',
@@ -153,7 +149,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   changeMap() {
     var that = this;
-    this.mapService.getTrackData(this.userID, this.dateValue).subscribe(value => {
+    this.dateTimestamp = new Date(this.dateValue).valueOf() / 1000;
+    this.mapService.getTrackData(this.userID, this.dateTimestamp).subscribe(value => {
       this.rates = value;
       this.map.getLayers().forEach(function (layer) {
         that.map.removeLayer(layer);

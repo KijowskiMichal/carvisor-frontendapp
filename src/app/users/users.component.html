@@ -34,8 +34,8 @@
         </td>
         <td [ngClass]="{'activetd':user.status === 'Aktywny'}">{{user.status}}</td>
         <td>{{user.distance / 1000 | number : '1.2-2'}} km</td>
-        <td>{{user.startTime}}</td>
-        <td>{{user.finishTime}}</td>
+        <td>{{user.startTime * 1000 | date:'HH:mm'}}</td>
+        <td>{{user.finishTime * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
         <td><a [routerLink]="['/tracks/'+user.id+'/']"><i class="far fa-road"></i></a></td>
         <td><a [routerLink]="['/editUser/'+user.id+'/']"><i class="far fa-pen"></i></a></td>
       </tr>

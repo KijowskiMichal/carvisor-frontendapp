@@ -1,52 +1,9 @@
 import {OnInit, Component, ViewChild, ElementRef, Renderer2, AfterViewInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgModel} from "@angular/forms";
 import { DatePipe } from '@angular/common';
-
+import {listNames, MapService, Rate} from "../services/map.service";
 
 declare var ol: any;
-export interface StartPoint {
-  throttle: number;
-  time: number;
-  gpsX: number;
-  rpm: number;
-  speed: number;
-  gpsY: number;
-  user: string;
-}
-
-export interface Point {
-  throttle: number;
-  time: number;
-  gpsX: number;
-  rpm: number;
-  speed: number;
-  gpsY: number;
-  track: number;
-}
-
-export interface EndPoint {
-  throttle: number;
-  time: number;
-  gpsX: number;
-  rpm: number;
-  speed: number;
-  gpsY: number;
-  user: string;
-}
-
-export interface Rate {
-  startPoints: StartPoint[];
-  points: Point[];
-  endPoints: EndPoint[];
-}
-
-export interface listNames {
-  image: string;
-  name: string;
-  id: number;
-}
 
 @Component({
   selector: 'app-map-devices',
@@ -60,7 +17,8 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
 
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private http:HttpClient, private router:Router, private renderer: Renderer2, private datePipe: DatePipe) {
+  constructor(private route: ActivatedRoute, private mapService: MapService, private router:Router,
+              private renderer: Renderer2, private datePipe: DatePipe) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       if(e.target !== this.toggleButton.nativeElement && this.popupOn){
         this.disablePopup();
@@ -80,6 +38,7 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
   popupDiv!: HTMLDivElement;
   maxDate!:string;
   dateValue!:string;
+  dateTimestamp!: number;
 
   ngAfterViewInit()
   {
@@ -89,14 +48,9 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
   ngOnInit() {
 
     this.dateValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
     this.maxDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
     this.popupik = "Popup";
-
     this.regexChanged('$');
-
-
 
     this.map = new ol.Map({
       target: 'map',
@@ -187,7 +141,7 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
 
   regexChanged(regex:string) {
     if (regex==='') regex='$';
-    this.http.get<listNames[]>('/API/devices/listDevicesNames/'+regex+'/').subscribe(value => {
+    this.mapService.getListOfUser(regex).subscribe(value => {
       this.names = value;
       this.showPopup();
     });
@@ -195,7 +149,8 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
 
   changeMap() {
     var that = this;
-    this.http.get<Rate>('/API/track/getTrackDataForDevice/'+this.userID+'/'+this.dateValue+'/').subscribe(value => {
+    this.dateTimestamp = new Date(this.dateValue).valueOf() / 1000;
+    this.mapService.getTrackData(this.userID, this.dateTimestamp).subscribe(value => {
       this.rates = value;
       this.map.getLayers().forEach(function (layer) {
         that.map.removeLayer(layer);
