@@ -27,6 +27,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { SafetyUserComponent } from './safety-user/safety-user.component';
 import { WarningsComponent } from './warnings/warnings.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     NotificationsComponent,
     SafetyUserComponent,
     WarningsComponent,
-    CalendarComponent
+    CalendarComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
