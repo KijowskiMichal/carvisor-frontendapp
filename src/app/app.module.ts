@@ -26,6 +26,7 @@ import { SortSafetyPointsPipe } from './pipes/sort-safety-points.pipe';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SafetyUserComponent } from './safety-user/safety-user.component';
 import { WarningsComponent } from './warnings/warnings.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { WarningsComponent } from './warnings/warnings.component';
     SortSafetyPointsPipe,
     NotificationsComponent,
     SafetyUserComponent,
-    WarningsComponent
+    WarningsComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

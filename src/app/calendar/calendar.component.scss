@@ -1,0 +1,56 @@
+@import "./../../styles.scss";
+
+#calendar {
+  width: 85%;
+  height: 100vh;
+  background-image: url("./../../assets/dots.png");
+  float: left;
+  box-sizing: border-box;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.11rem 2.22rem;
+  margin-bottom: 2rem;
+}
+
+#calendar-header-wrapper {
+  @include manropeFont(500, 2rem);
+  color: $ColorGrayDark;
+  position: fixed;
+  left: 57.5%;
+  transform: translate(-57.5%, 0);
+}
+
+#calendar-header-wrapper > i {
+  margin: 0 3rem;
+  color: $ColorGrayDark;
+  cursor: pointer;
+}
+
+#calendar-header-wrapper > i:hover {
+  color: $ColorGrayDarkHover;
+}
+
+#generate-button {
+  background: $ColorBlue;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); border-radius: 0.72rem;
+  @include manropeFont(500, 1rem);
+  line-height: 2.11rem;
+  color: $ColorWhite;
+  box-sizing: border-box;
+  padding: 0.56rem 3rem;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin: 0 0.56rem;
+}
+
+#generate-button:hover {
+  background: $ColorBlueHover;
+}

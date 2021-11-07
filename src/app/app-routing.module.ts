@@ -13,6 +13,7 @@ import { MapDevicesComponent } from "./map-devices/map-devices.component";
 import { SafetyComponent } from "./safety/safety.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { WarningsComponent } from "./warnings/warnings.component";
+import { CalendarComponent } from "./calendar/calendar.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
@@ -28,7 +29,8 @@ const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'tracks/:id', component: TracksComponent},
                           { path: 'safety', component: SafetyComponent},
                           { path: 'notifications', component: NotificationsComponent},
-                          { path: 'warnings', component: WarningsComponent}];
+                          { path: 'warnings', component: WarningsComponent},
+                          { path: 'calendar', component: CalendarComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],
