@@ -1,13 +1,4 @@
 @import "./../../styles.scss";
-@mixin grade() {
-  width: 3.61rem;
-  height: 3.61rem;
-  border-radius: 50%;
-  line-height: 0;
-  position: relative;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
 
 #ecodrive {
   width: 85%;
@@ -113,30 +104,6 @@ td {
   text-align: center;
   @include manropeFont(500, 1rem);
   color: $ColorGrayDark;
-}
-
-.grade-good {
-  @include grade;
-  background-color: $ColorGreen;
-}
-
-.grade-medium {
-  @include grade;
-  background-color: $ColorYellow;
-}
-
-.grade-bad {
-  @include grade;
-  background-color: $ColorPink;
-}
-
-.grade-text {
-  position: absolute;
-  bottom: 50%;
-  width: 100%;
-  text-align: center;
-  @include manropeFont(600, 1.33rem);
-  color: $ColorWhite;
 }
 
 .name {

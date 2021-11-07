@@ -38,7 +38,7 @@
         <tr *ngFor="let day of userPoints?.listOfDays">
           <td>{{day.date * 1000 | date: 'dd.MM.yyyy HH:mm'}}</td>
           <td>
-            <div [ngClass]="{'grade-bad':day.ecoPoints < 2.5, 'grade-medium':day.ecoPoints >= 2.5 && day.ecoPoints < 3.5, 'grade-good':day.ecoPoints >= 3.5}">
+            <div [ngClass]="{'grade-none':day.ecoPoints === 0.0, 'grade-bad':day.ecoPoints > 0.0 && day.ecoPoints < 2.5, 'grade-medium':day.ecoPoints >= 2.5 && day.ecoPoints < 3.5, 'grade-good':day.ecoPoints >= 3.5}">
               <div class="grade-text">
                 {{day.ecoPoints}}
               </div>

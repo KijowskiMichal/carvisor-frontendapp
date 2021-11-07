@@ -1,14 +1,4 @@
 @import "./../../styles.scss";
-@mixin grade($color) {
-  width: 3.61rem;
-  height: 3.61rem;
-  border-radius: 50%;
-  line-height: 0;
-  position: relative;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  background-color: $color;
-}
 
 .popup {
   background-color: $ColorGrayLight;
@@ -102,27 +92,6 @@ td {
   text-align: center;
   @include manropeFont(500, 1rem);
   color: $ColorGrayDark;
-}
-
-.grade-good {
-  @include grade($ColorGreen);
-}
-
-.grade-medium {
-  @include grade($ColorYellow);
-}
-
-.grade-bad {
-  @include grade($ColorPink);
-}
-
-.grade-text {
-  position: absolute;
-  bottom: 50%;
-  width: 100%;
-  text-align: center;
-  @include manropeFont(600, 1.33rem);
-  color: $ColorWhite;
 }
 
 #no-records {

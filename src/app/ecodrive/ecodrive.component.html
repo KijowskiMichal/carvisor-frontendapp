@@ -21,7 +21,7 @@
       </tr>
       <tr *ngFor="let eco of listOfUsers.listOfUsers | sortEcoPoints">
         <td>
-          <div [ngClass]="{'grade-bad':eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">
+          <div [ngClass]="{'grade-none':eco.rate === 0.0, 'grade-bad':eco.rate > 0.0 && eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">
             <div class="grade-text">
               {{eco.rate | number : '1.1-1'}}
             </div>
