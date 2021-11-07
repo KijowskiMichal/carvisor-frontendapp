@@ -18,7 +18,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
   constructor(private route: ActivatedRoute, private mapService: MapService, private router:Router,
-              private renderer: Renderer2, private datePipe: DatePipe) {
+              private renderer: Renderer2, public datePipe: DatePipe) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       if(e.target !== this.toggleButton.nativeElement && this.popupOn){
         this.disablePopup();

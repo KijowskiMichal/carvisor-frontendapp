@@ -1,17 +1,5 @@
 @import "./../../styles.scss";
 
-#settings {
-  width: 85%;
-  height: 100vh;
-  background-image: url("./../../assets/dots.png");
-  float: left;
-  box-sizing: border-box;
-  background-size: 20%;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-  position: relative;
-}
-
 .panel {
   box-sizing: border-box;
   width: 50%;

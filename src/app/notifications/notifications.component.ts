@@ -12,7 +12,7 @@ import {Notifications, NotificationService} from "../services/notification.servi
 export class NotificationsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private pageService: PageService,
-              private router: Router, private datePipe: DatePipe) { }
+              private router: Router, public datePipe: DatePipe) { }
   Notifications!: Notifications;
   dateFromValue!: string;
   dateFromTimestamp!: number;

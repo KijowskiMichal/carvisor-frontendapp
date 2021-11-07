@@ -32,8 +32,7 @@ export class EcodriveUserComponent implements OnInit {
   dateToValue!: string;
   dateToTimestamp!: number;
 
-  constructor(private ecoService: EcoService, private pageService: PageService, private router: Router,
-              private datePipe: DatePipe) { }
+  constructor(private ecoService: EcoService, public datePipe: DatePipe) { }
 
   ngOnInit(): void {
   }

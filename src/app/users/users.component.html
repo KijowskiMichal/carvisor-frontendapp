@@ -1,5 +1,5 @@
 <app-leftpanel></app-leftpanel>
-<div id="users">
+<div class="main">
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
@@ -21,7 +21,7 @@
       <tr *ngFor="let user of listOfUser.listOfUsers">
         <td class="firstColumn">
           <div class="driver">
-            <img src="{{user.image}}">
+            <img src="{{user.image}}" alt="avatar">
             <div>
               <div class="name">
                 {{user.name}} {{user.surname}}

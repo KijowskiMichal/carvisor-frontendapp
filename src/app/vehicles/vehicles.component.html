@@ -1,5 +1,5 @@
 <app-leftpanel></app-leftpanel>
-<div id="vehicles">
+<div class="main">
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
@@ -20,7 +20,7 @@
       <tr *ngFor="let device of listOfDevicesWrapper.listOfDevices">
         <td>
           <div class="auto">
-            <img src="{{device.image}}">
+            <img src="{{device.image}}" alt="avatar">
             <div class="vehicle">
                 {{device.licensePlate}}
             </div>

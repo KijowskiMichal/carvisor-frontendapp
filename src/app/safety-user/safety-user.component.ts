@@ -34,7 +34,7 @@ export class SafetyUserComponent implements OnInit {
   dateToTimestamp!: number;
 
   constructor(private safetyService: SafetyService, private pageService: PageService, private router: Router,
-              private datePipe: DatePipe, private trackService: TrackService) { }
+              public datePipe: DatePipe, private trackService: TrackService) { }
 
   ngOnInit(): void {
   }

@@ -12,7 +12,7 @@ import {PageService} from "../services/page.service";
 })
 export class TracksComponent implements OnInit {
   private routeSub!: Subscription;
-  private id!:number;
+  public id!:number;
   dateFromValue!: string;
   dateFromTimestamp!: number;
   dateToValue!: string;
@@ -22,7 +22,7 @@ export class TracksComponent implements OnInit {
   pageMax!: number;
   pageSize = 6;
 
-  constructor(private trackService: TrackService, private pageService: PageService, private datePipe: DatePipe,
+  constructor(private trackService: TrackService, private pageService: PageService, public datePipe: DatePipe,
               private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {

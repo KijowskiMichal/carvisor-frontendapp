@@ -1,17 +1,5 @@
 @import "./../../styles.scss";
 
-#tracks {
-  width: 85%;
-  height: 100vh;
-  background-image: url("./../../assets/dots.png");
-  float: left;
-  box-sizing: border-box;
-  background-size: 20%;
-  background-repeat: no-repeat;
-  background-position: bottom left;
-  position: relative;
-}
-
 #title {
   box-sizing: border-box;
   padding: 1.67rem 2.78rem;

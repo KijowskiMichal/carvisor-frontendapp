@@ -13,7 +13,7 @@ import {TrackService} from "../services/track.service";
 export class WarningsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private pageService: PageService,
-              private router: Router, private datePipe: DatePipe, private trackService: TrackService) { }
+              private router: Router, public datePipe: DatePipe, private trackService: TrackService) { }
   Warnings!: Warnings;
   dateFromValue!: string;
   dateFromTimestamp!: number;

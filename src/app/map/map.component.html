@@ -1,5 +1,5 @@
 <app-leftpanel></app-leftpanel>
-<div id="mapContainer" >
+<div class="main-map">
   <div id="map" class="map">
     <div [innerHTML]="popupik" id="popup">
     </div>
@@ -30,7 +30,7 @@
     <div class="selectOptions" *ngIf="popupOn" #popupMenu>
       <div *ngFor="let name of names">
         <div class="selectOption" (click)="chooseOption(name.id, name.name, date)">
-          <img src="{{name.image}}">
+          <img src="{{name.image}}" alt="avatar">
           {{name.name}}
         </div>
       </div>
