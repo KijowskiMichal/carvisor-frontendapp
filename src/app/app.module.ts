@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +14,7 @@ import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MapComponent } from './map/map.component';
 import {FormsModule} from "@angular/forms";
-import {DatePipe} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import { TracksComponent } from './tracks/tracks.component';
 import { EcodriveComponent } from './ecodrive/ecodrive.component';
 import { MapDevicesComponent } from './map-devices/map-devices.component';
@@ -28,6 +28,12 @@ import { SafetyUserComponent } from './safety-user/safety-user.component';
 import { WarningsComponent } from './warnings/warnings.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ReportsComponent } from './reports/reports.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import '@angular/common/locales/global/pl';
 
 @NgModule({
   declarations: [
@@ -55,12 +61,17 @@ import { ReportsComponent } from './reports/reports.component';
     ReportsComponent
   ],
   imports: [
+    CommonModule,
+    NgbModalModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {provide: LOCALE_ID, useValue: 'pl-PL'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

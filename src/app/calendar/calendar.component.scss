@@ -27,7 +27,8 @@
 
 #generate-button {
   background: $ColorBlue;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); border-radius: 0.72rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 0.72rem;
   @include manropeFont(500, 1rem);
   line-height: 2.11rem;
   color: $ColorWhite;
@@ -41,4 +42,69 @@
 
 #generate-button:hover {
   background: $ColorBlueHover;
+}
+
+.content_calendar {
+  padding: 2rem;
+}
+
+/***********************
+    angular-calendar
+ ***********************/
+
+h3 {
+  margin: 0 0 10px;
+}
+
+pre {
+  padding: 15px;
+}
+
+.cal-header {
+  @include manropeFont(700, 1.33rem);
+  font-size: 1.33rem !important;
+  color: $ColorGrayDark;
+}
+
+.cal-day-number {
+  @include manropeFont(600, 1.11rem);
+  color: $ColorGrayDark;
+}
+
+.cal-weekend .cal-day-number {
+  @include manropeFont(700, 1.11rem);
+  color: $ColorGrayDark !important;
+}
+
+.content_calendar .cal-month-view .cal-day-badge {
+  background-color: #9EA7B1;
+}
+
+.content_calendar .cal-month-view .cal-open-day-events {
+  box-shadow: none;
+}
+
+.content_calendar .cal-month-view {
+  background-color: transparent;
+}
+
+.content_calendar .cal-month-view > * {
+  border: none;
+}
+
+.content_calendar .cal-cell {
+  border: solid #9EA7B1 1px;
+  border-bottom: none;
+}
+
+.content_calendar .cal-cell:not(:last-child) {
+  border-right: none;
+}
+
+.content_calendar .cal-cell-row {
+  border:none;
+}
+
+.content_calendar .cal-month-view {
+  border-bottom: solid #9EA7B1 1px;
 }
