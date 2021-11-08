@@ -1,8 +1,9 @@
 <app-leftpanel></app-leftpanel>
+<div [ngClass]="addEventPopup==true ? 'shutItDown' : ''"></div>
 <div class="main-map">
   <div class="header">
     <div id="header-wrapper">
-      <div id="generate-button">
+      <div id="generate-button" (click)="addEventPopup=true">
         Nowe zdarzenie
       </div>
     </div>
@@ -36,3 +37,4 @@
     </mwl-calendar-month-view>
   </div>
 </div>
+<app-add-event [(popup)]="addEventPopup"></app-add-event>

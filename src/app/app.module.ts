@@ -34,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import '@angular/common/locales/global/pl';
+import { AddEventComponent } from './add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import '@angular/common/locales/global/pl';
     SafetyUserComponent,
     WarningsComponent,
     CalendarComponent,
-    ReportsComponent
+    ReportsComponent,
+    AddEventComponent
   ],
   imports: [
     CommonModule,

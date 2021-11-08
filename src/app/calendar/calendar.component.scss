@@ -67,17 +67,16 @@ pre {
 }
 
 .cal-day-number {
-  @include manropeFont(600, 1.11rem);
+  @include manropeFont(700, 1.11rem);
   color: $ColorGrayDark;
 }
 
 .cal-weekend .cal-day-number {
-  @include manropeFont(700, 1.11rem);
   color: $ColorGrayDark !important;
 }
 
 .content_calendar .cal-month-view .cal-day-badge {
-  background-color: #9EA7B1;
+  background-color: $ColorGrayBlueish;
 }
 
 .content_calendar .cal-month-view .cal-open-day-events {
@@ -93,7 +92,7 @@ pre {
 }
 
 .content_calendar .cal-cell {
-  border: solid #9EA7B1 1px;
+  border: solid $ColorGrayBlueish 1px;
   border-bottom: none;
 }
 
@@ -106,5 +105,29 @@ pre {
 }
 
 .content_calendar .cal-month-view {
-  border-bottom: solid #9EA7B1 1px;
+  border-bottom: solid $ColorGrayBlueish 1px;
+}
+
+.content_calendar .cal-month-view .cal-cell-row:hover {
+  background-color: $ColorGrayLight;
+}
+
+.content_calendar .cal-month-view .cal-cell-row .cal-cell:hover {
+  background-color: $ColorWhiteHover;
+}
+
+.cal-month-view .cal-open-day-events {
+  color: $ColorGrayDark;
+  background-color: $ColorGrayCalendar;
+  @include manropeFont(500, 1rem);
+}
+
+.fa, .fas {
+  font-weight: 500;
+  color: $ColorGrayDark;
+  font-size: 1rem;
+}
+
+.fa, .fas:hover {
+  color: $ColorGrayDarkHover;
 }

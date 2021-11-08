@@ -28,16 +28,16 @@ import {
 
 const colors: any = {
   red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
+    primary: '#ef476f',
+    secondary: '#f58294',
   },
   blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
+    primary: '#118AB2',
+    secondary: '#63adc4',
   },
   yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
+    primary: '#FFD166',
+    secondary: '#fdeab3',
   },
 };
 
@@ -124,6 +124,7 @@ export class CalendarComponent implements OnInit {
   ];
 
   activeDayIsOpen: boolean = true;
+  addEventPopup: boolean;
 
   constructor(private modal: NgbModal) {}
 

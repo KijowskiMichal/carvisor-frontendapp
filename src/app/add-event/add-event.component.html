@@ -1,0 +1,77 @@
+<div class="popup" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie dodano nowe zdarzenie.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupOk=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popup">
+  <div class="header">
+    <div class="event-popup-title">
+      Nowe zdarzenie
+    </div>
+    <div class="cancel-button" (click)="closeWindow()">
+      <i class="fal fa-times"></i>
+    </div>
+    <div class="event-popup-line"></div>
+  </div>
+  <div class="panel">
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Nazwa" #name>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Opis" #description>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Data" #date>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Typ" #type>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Pojazd" #device>
+      </div>
+    </div>
+  </div>
+  <div class="popup-green">
+    Utwórz
+  </div>
+</div>
+

@@ -1,0 +1,123 @@
+@import "./../../styles.scss";
+
+.popup {
+  background-color: $ColorGrayLight;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.83rem;
+  padding: 1.67rem;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1.67rem;
+}
+
+.event-popup-title {
+  @include manropeFont(600, 1.11rem);
+  color: $ColorGrayDark;
+}
+
+.cancel-button {
+  position: fixed;
+  right: 5%;
+  top: 5%;
+}
+
+.cancel-button > i {
+  color: $ColorGrayDark;
+  font-size: 2.22rem;
+  cursor: pointer;
+}
+
+.cancel-button > i:hover {
+  color: $ColorGrayDarkHover;
+}
+
+.event-popup-line {
+  height: 1px;
+  width: 19.44rem;
+  margin-left: 0.1%;
+  background-color: $ColorGrayDark;
+}
+
+.event-popup-text {
+  @include manropeFont(normal, 1.11rem);
+  text-align: center;
+  color: $ColorGrayDark;
+  box-sizing: border-box;
+  margin: 1.67rem 0;
+}
+
+.popup-text-footer {
+  @include manropeFont(normal, 1rem);
+  text-align: right;
+  color: $ColorGrayDark;
+  box-sizing: border-box;
+  margin: 1.67rem 15%;
+}
+
+.popup-green {
+  background: $ColorGreen;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0.72rem;
+  @include manropeFont(500, 1.11rem);
+  line-height: 1.5rem;
+  text-align: center;
+  color: $ColorWhite;
+  padding: 0.83rem 1.67rem;
+  box-sizing: border-box;
+  float: right;
+  cursor: pointer;
+}
+
+.popup-green:hover {
+  background: $ColorGreenHover;
+}
+
+.panel {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.11rem;
+}
+
+.editContent {
+  width: 90%;
+  text-align: center;
+  margin-top: 2.22rem;
+  padding-left: 5%;
+  box-sizing: border-box;
+  transform: translateX(-5%);
+}
+
+.inputWrapper {
+  width: 70%;
+  margin-left: 15%;
+  position: relative;
+}
+
+.inputWrapper > input {
+  @include manropeFont(normal, 1rem);
+  color: $ColorGrayDark;
+  padding: 0.56rem 0.28rem 0.56rem 2.78rem;
+  background: $ColorWhite;
+  border-radius: 0.56rem;
+  border: 0;
+  width: 100%;
+}
+
+.inputWrapper > i {
+  position: absolute;
+  color: $ColorGrayDark;
+  top: 0.89rem;
+  left: 0.83rem;
+  font-size: 1rem;
+}
+
+.error {
+  border: $ColorPink solid 0.11rem !important;
+}
