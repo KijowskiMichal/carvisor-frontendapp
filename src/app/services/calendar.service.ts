@@ -1,0 +1,66 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CalendarService {
+
+  constructor(private http: HttpClient) {
+  }
+
+  public getEvents(month: number, year: number): Observable<EventDetail> {
+    return this.http.get<EventDetail>('/API/calendar/get/' + month + '/' + year + '/');
+  }
+
+  public addEvent(start: number, end: number, title: string, description: string, type: string,
+                  draggable: boolean, remind: boolean): Observable<unknown> {
+    return this.http.post('/API/calendar/add/',
+      {
+        "start": start,
+        "end": end,
+        "title": title,
+        "description": description,
+        "type": type,
+        "draggable": draggable,
+        "remind": remind
+      });
+  }
+
+  public getEvent(id: number): Observable<EventDetail> {
+    return this.http.get<EventDetail>('/API/calendar/getEvent/' + id + '/');
+  }
+
+  public putEvent(id: number, start: number, end: number, title: string, description: string, type: string,
+  draggable: boolean, remind: boolean): Observable<unknown> {
+    return this.http.post('/API/calendar/updateEvent/' + id + '/',
+      {
+        "id": id,
+        "start": start,
+        "end": end,
+        "title": title,
+        "description": description,
+        "type": type,
+        "draggable": draggable,
+        "remind": remind
+      });
+  }
+
+  public deleteEvent(id: number): Observable<unknown> {
+    return this.http.delete('/API/calendar/remove/' + id + '/');
+  }
+}
+
+export interface EventDetail {
+  id: number;
+  start: number;
+  end: number;
+  title: string;
+  description: string;
+  type: string;
+  color: string;
+  draggable: boolean;
+  remind: boolean;
+}
+
