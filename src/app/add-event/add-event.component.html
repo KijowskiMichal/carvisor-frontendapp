@@ -48,25 +48,55 @@
     <div class="editContent">
       <div class="inputWrapper">
         <i class="far fa-pen"></i>
-        <input type="text" placeholder="Opis" #description>
+        <textarea placeholder="Opis" #description></textarea>
       </div>
     </div>
     <div class="editContent">
       <div class="inputWrapper">
-        <i class="far fa-pen"></i>
-        <input type="text" placeholder="Data" #date>
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" [(ngModel)]="dateFromValue" #datefrom>
       </div>
     </div>
     <div class="editContent">
       <div class="inputWrapper">
-        <i class="far fa-pen"></i>
-        <input type="text" placeholder="Typ" #type>
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" [(ngModel)]="dateToValue" #dateto>
       </div>
     </div>
-    <div class="editContent">
+    <div class="editContent2">
       <div class="inputWrapper">
-        <i class="far fa-pen"></i>
-        <input type="text" placeholder="Pojazd" #device>
+        <i class="far fa-info-circle"></i>
+      </div>
+      <div class="comboBoxWrapper">
+        <select #type>
+          <option value="" disabled selected hidden>Typ</option>
+          <option value="jeden">Opcja pierwsza</option>
+          <option value="dwa">Opcja druga</option>
+          <option value="trzy">Opcja trzecia</option>
+        </select>
+        <i class="fal fa-chevron-down"></i>
+      </div>
+    </div>
+    <div class="editContent2">
+      <div class="inputWrapper">
+        <i class="far fa-car"></i>
+        <div class="select" (click)="showPopup()"  #popupTrigger>
+          Wybierz pojazd
+        </div>
+      </div>
+      <div class="selectOptions" *ngIf="popupOn" #popupMenu>
+        <div *ngFor="let name of names">
+          <div class="selectOption" (click)="chooseOption(name.id, name.name)">
+            <img src="{{name.image}}" alt="avatar">
+            {{name.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="editContent2">
+      <div class="event-popup-text">
+        Przypomnienie:
+        <input class="checkbox" type="checkbox">
       </div>
     </div>
   </div>
