@@ -207,3 +207,14 @@ a {
     font-size: 10px;
   }
 }
+
+.no-data {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2.22rem;
+  float: left;
+  position: relative;
+  text-align: center;
+  @include manropeFont(500, 1.22rem);
+  color: $ColorGrayDark;
+}

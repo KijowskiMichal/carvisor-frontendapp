@@ -3,12 +3,33 @@
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
-      <input type="text" placeholder="Szukaj">
+      <input type="text" placeholder="Szukaj" (keydown.enter)="list(1, search.value)" #search>
     </div>
   </div>
-<!--
+
+  <div class="no-data" *ngIf="!listOfReports">
+    Brak raportów.
+  </div>
+
+  <div id="table">
+    <table *ngIf="listOfReports">
+      <tr id="firstRow">
+        <td>Nazwa</td>
+        <td>Opis</td>
+        <td>Typ</td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let report of listOfReports.listOfRaports">
+        <td>{{report.name}}</td>
+        <td>{{report.description}}</td>
+        <td>{{report.type}}</td>
+        <td><i class="far fa-file-download"></i><i class="far fa-trash-alt"></i></td>
+      </tr>
+    </table>
+  </div>
+
   <div id="pages">
-    <div id="pagesWrapper" *ngIf="listOfUser">
+    <div id="pagesWrapper" *ngIf="listOfReports">
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1, search.value)" class="far fa-chevron-double-left"></i>
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1, search.value)" class="far fa-chevron-left"></i>
       <div id="pagesText">
@@ -18,5 +39,5 @@
       <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax, search.value)"  class="far fa-chevron-double-right"></i>
     </div>
   </div>
--->
+
 </div>
