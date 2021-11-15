@@ -7,6 +7,10 @@
     </div>
   </div>
 
+  <div class="no-data" *ngIf="!listOfUser">
+    Brak użytkowników.
+  </div>
+
   <div id="table">
     <table *ngIf="listOfUser">
       <tr id="firstRow">

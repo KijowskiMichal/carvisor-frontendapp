@@ -7,6 +7,10 @@
     </div>
   </div>
 
+  <div class="no-data" *ngIf="!listOfDevicesWrapper">
+    Brak pojazdów.
+  </div>
+
   <div id="table">
     <table *ngIf="listOfDevicesWrapper">
       <tr id="firstRow">

@@ -8,6 +8,10 @@
     </div>
   </div>
 
+  <div class="no-data" *ngIf="!listOfUsers">
+    Brak użytkowników.
+  </div>
+
   <div id="table">
     <table *ngIf="listOfUsers">
       <tr id="firstRow">
