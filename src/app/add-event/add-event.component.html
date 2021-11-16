@@ -84,7 +84,7 @@
           Wybierz pojazd
         </div>
       </div>
-      <div class="selectOptions" *ngIf="popupOn" #popupMenu>
+      <div class="selectOptions" *ngIf="popupOn">
         <div *ngFor="let name of names">
           <div class="selectOption" (click)="chooseOption(name.id, name.name)">
             <img src="{{name.image}}" alt="avatar">
@@ -96,11 +96,11 @@
     <div class="editContent2">
       <div class="event-popup-text">
         Przypomnienie:
-        <input class="checkbox" type="checkbox">
+        <input class="checkbox" type="checkbox" [(ngModel)]="checkbox">
       </div>
     </div>
   </div>
-  <div class="popup-green">
+  <div class="popup-green" (click)="sendForm(name, description, type, datefrom, dateto)">
     Utwórz
   </div>
 </div>

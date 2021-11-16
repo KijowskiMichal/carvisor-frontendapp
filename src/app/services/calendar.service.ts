@@ -14,7 +14,7 @@ export class CalendarService {
     return this.http.get<EventDetail>('/API/calendar/get/' + month + '/' + year + '/');
   }
 
-  public addEvent(start: number, end: number, title: string, description: string, type: string,
+  public addEvent(start: number, end: number, title: string, description: string, type: string, device: number,
                   draggable: boolean, remind: boolean): Observable<unknown> {
     return this.http.post('/API/calendar/add/',
       {
@@ -23,6 +23,7 @@ export class CalendarService {
         "title": title,
         "description": description,
         "type": type,
+        "device": device,
         "draggable": draggable,
         "remind": remind
       });
@@ -33,7 +34,7 @@ export class CalendarService {
   }
 
   public putEvent(id: number, start: number, end: number, title: string, description: string, type: string,
-  draggable: boolean, remind: boolean): Observable<unknown> {
+                  device: number, draggable: boolean, remind: boolean): Observable<unknown> {
     return this.http.post('/API/calendar/updateEvent/' + id + '/',
       {
         "id": id,
@@ -42,6 +43,7 @@ export class CalendarService {
         "title": title,
         "description": description,
         "type": type,
+        "device": device,
         "draggable": draggable,
         "remind": remind
       });
@@ -59,6 +61,7 @@ export interface EventDetail {
   title: string;
   description: string;
   type: string;
+  device: number;
   color: string;
   draggable: boolean;
   remind: boolean;

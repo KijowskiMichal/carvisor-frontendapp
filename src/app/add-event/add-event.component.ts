@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {listNames, MapService} from "../services/map.service";
+import {CalendarService} from "../services/calendar.service";
 
 @Component({
   selector: 'app-add-event',
@@ -13,7 +14,8 @@ export class AddEventComponent implements OnInit {
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
-  constructor(public datePipe: DatePipe, private mapService: MapService, private renderer: Renderer2) {
+  constructor(public datePipe: DatePipe, private mapService: MapService, private calendarService: CalendarService,
+              private renderer: Renderer2) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       if(e.target !== this.toggleButton.nativeElement && this.popupOn){
         this.disablePopup();
@@ -30,6 +32,7 @@ export class AddEventComponent implements OnInit {
   dateToValue!:string;
   dateFromTimestamp!: number;
   dateToTimestamp!: number;
+  checkbox!: boolean;
   deviceID = 0;
 
   ngAfterViewInit() {
@@ -66,6 +69,63 @@ export class AddEventComponent implements OnInit {
       this.names = value;
       this.showPopup();
     });
+  }
+
+  sendForm(name:HTMLInputElement, description:HTMLTextAreaElement, type:HTMLSelectElement, datefrom:HTMLInputElement,
+           dateto:HTMLInputElement) {
+    this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
+    this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+    let nameValue = name.value;
+    let descriptionValue = description.value;
+    let typeValue = type.value;
+    let allClear = true;
+    name.classList.remove('error');
+    description.classList.remove('error');
+    type.classList.remove('error');
+    datefrom.classList.remove('error');
+    dateto.classList.remove('error');
+    //validator
+    if (!/^.{3,60}$/.test(description.value)) {
+      description.focus();
+      description.classList.add('error');
+      description.value = "";
+      description.placeholder = "Od 3 do 60 znaków.";
+      allClear = false;
+    }
+    if (!/^.{3,60}$/.test(name.value)) {
+      name.focus();
+      name.classList.add('error');
+      name.value = "";
+      name.placeholder = "Od 3 do 30 znaków.";
+      allClear = false;
+    }
+    if (typeValue === "") {
+      type.focus();
+      type.classList.add('error');
+      allClear = false;
+    }
+    if (this.dateFromTimestamp > this.dateToTimestamp) {
+      datefrom.classList.add('error');
+      dateto.classList.add('error');
+      allClear = false;
+    }
+    if (!allClear) return;
+    //others
+    this.calendarService.addEvent(this.dateFromTimestamp, this.dateToTimestamp, nameValue, descriptionValue, typeValue,
+      0,true, this.checkbox).subscribe(
+      () => {
+      },
+      () => {
+        this.closeWindow();
+        this.popupFail = true;
+        this.checkbox = false;
+      },
+      () => {
+        this.closeWindow();
+        this.popupOk = true;
+        this.checkbox = false;
+      });
+
   }
 
 }
