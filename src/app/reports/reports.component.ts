@@ -11,6 +11,13 @@ import {ReportService, ListOfReports} from "../services/report.service";
 export class ReportsComponent implements OnInit {
 
   constructor(private reportService: ReportService, private pageService: PageService, private router: Router) { }
+
+  popupOk = false;
+  popupFail = false;
+  popupDelete = false;
+
+  idToDelete!: number;
+
   listOfReports!: ListOfReports;
   page!: number;
   pageMax!: number;
@@ -38,6 +45,20 @@ export class ReportsComponent implements OnInit {
         }
       });
     }
+  }
+
+  public deleteReport() {
+    this.reportService.deleteReport(this.idToDelete).subscribe(
+      () => {
+        },
+        () => {
+          this.popupDelete = false;
+          this.popupFail = true;
+        },
+        () => {
+          this.popupDelete = false;
+          this.popupOk = true;
+        });
   }
 
 }
