@@ -16,6 +16,7 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
   userID = 0;
 
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
+  @ViewChild('mapElementRef', { static: true }) mapElementRef: ElementRef;
 
   constructor(private route: ActivatedRoute, private mapService: MapService, private router:Router,
               private renderer: Renderer2, public datePipe: DatePipe) {
@@ -64,6 +65,7 @@ export class MapDevicesComponent implements OnInit, AfterViewInit {
         zoom: 16
       })
     });
+    this.map.setTarget(this.mapElementRef.nativeElement);
 
     var popup = new ol.Overlay({
       element: document.getElementById('popup')

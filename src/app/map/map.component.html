@@ -1,8 +1,8 @@
 <app-leftpanel></app-leftpanel>
 <div id="mapContainer">
-  <div id="map" class="map">
-    <div [innerHTML]="popupik" id="popup">
-    </div>
+  <div #mapElementRef id="map" class="map">
+  </div>
+  <div [innerHTML]="popupik" id="popup">
   </div>
   <div id="chooserWrapper">
     <div [routerLink]="['/map/devices']" class="chooserEntityWrapper">
