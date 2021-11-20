@@ -38,6 +38,7 @@
     </div>
     <div class="event-popup-line"></div>
   </div>
+
   <div class="panel">
     <div class="inputWrapper inputWrapperMargin">
       <i class="far fa-pen"></i>
@@ -69,7 +70,7 @@
     </div>
     <div class="inputWrapper" (click)="popupOn ? disablePopup() : showPopup()">
       <i *ngIf="!selected" class="far fa-car"></i>
-      <img *ngIf="selected" src="{{selected.image}}" class="avatar">
+      <img *ngIf="selected" src="{{selected.image}}" class="avatar" alt="img">
       <div class="select"  #popupTrigger>
         {{ selected ? selected.name : "Wybierz pojazd" }}
       </div>
@@ -87,7 +88,7 @@
       <input class="checkbox" type="checkbox" [(ngModel)]="checkbox">
     </div>
   </div>
-  <div class="popup-green" >
+  <div class="popup-green" (click)="sendForm(name, description, type, datefrom, dateto, popupTrigger)">
     Utwórz
   </div>
 </div>

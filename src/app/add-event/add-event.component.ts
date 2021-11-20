@@ -10,7 +10,6 @@ import {
   ViewChild
 } from '@angular/core';
 import {DatePipe} from "@angular/common";
-import {listNames, MapService} from "../services/map.service";
 import {CalendarService, ListNames} from "../services/calendar.service";
 
 @Component({
@@ -87,7 +86,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
   }
 
   sendForm(name:HTMLInputElement, description:HTMLTextAreaElement, type:HTMLSelectElement, datefrom:HTMLInputElement,
-           dateto:HTMLInputElement) {
+           dateto:HTMLInputElement, device:HTMLDivElement) {
     this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
     this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
     let nameValue = name.value;
@@ -99,6 +98,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
     type.classList.remove('error');
     datefrom.classList.remove('error');
     dateto.classList.remove('error');
+    device.classList.remove('error');
     //validator
     if (!/^.{3,60}$/.test(description.value)) {
       description.focus();
@@ -124,10 +124,14 @@ export class AddEventComponent implements OnInit, AfterViewInit {
       dateto.classList.add('error');
       allClear = false;
     }
+    if (!this.selected) {
+      device.classList.add('error');
+      allClear = false;
+    }
     if (!allClear) return;
     //others
     this.calendarService.addEvent(this.dateFromTimestamp, this.dateToTimestamp, nameValue, descriptionValue, typeValue,
-      0,true, this.checkbox).subscribe(
+      this.selected.id,true, this.checkbox).subscribe(
       () => {
       },
       () => {
