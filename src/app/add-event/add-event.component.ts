@@ -1,20 +1,30 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {listNames, MapService} from "../services/map.service";
-import {CalendarService} from "../services/calendar.service";
+import {CalendarService, ListNames} from "../services/calendar.service";
 
 @Component({
   selector: 'app-add-event',
   templateUrl: './add-event.component.html',
   styleUrls: ['./add-event.component.scss']
 })
-export class AddEventComponent implements OnInit {
+export class AddEventComponent implements OnInit, AfterViewInit {
 
   @Input() popup = false;
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
-  constructor(public datePipe: DatePipe, private mapService: MapService, private calendarService: CalendarService,
+  constructor(public datePipe: DatePipe, private calendarService: CalendarService,
               private renderer: Renderer2) {
     this.renderer.listen('window', 'click',(e:Event)=>{
       if(e.target !== this.toggleButton.nativeElement && this.popupOn){
@@ -26,7 +36,7 @@ export class AddEventComponent implements OnInit {
   popupOk = false;
   popupFail = false;
   popupOn = false;
-  names!: listNames[];
+  names!: ListNames[];
   popupTrigger!: HTMLDivElement;
   dateFromValue!:string;
   dateToValue!:string;
@@ -34,6 +44,7 @@ export class AddEventComponent implements OnInit {
   dateToTimestamp!: number;
   checkbox!: boolean;
   deviceID = 0;
+  selected: ListNames;
 
   ngAfterViewInit() {
     this.popupTrigger = this.toggleButton.nativeElement;
@@ -42,6 +53,7 @@ export class AddEventComponent implements OnInit {
   ngOnInit(): void {
     this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.showDevices();
   }
 
   closeWindow() {
@@ -59,13 +71,16 @@ export class AddEventComponent implements OnInit {
     this.popupOn = false;
   }
 
-  chooseOption(value:number, text:string) {
-    this.deviceID = value;
-    this.popupTrigger.innerHTML = text;
+  chooseOption(value:number, text:string, image:string) {
+    this.selected = {
+      name: text,
+      id: value,
+      image: image,
+    }
   }
 
   showDevices() {
-    this.mapService.getListOfDevice('$').subscribe(value => {
+    this.calendarService.getListOfDevice('$').subscribe(value => {
       this.names = value;
       this.showPopup();
     });

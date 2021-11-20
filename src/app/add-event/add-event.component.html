@@ -28,7 +28,7 @@
   </div>
 </div>
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
-<div class="popup" *ngIf="popup">
+<div class="popup" [ngStyle]="{'display': popup ? 'block' : 'none' }">
   <div class="header">
     <div class="event-popup-title">
       Nowe zdarzenie
@@ -39,68 +39,55 @@
     <div class="event-popup-line"></div>
   </div>
   <div class="panel">
-    <div class="editContent">
-      <div class="inputWrapper">
-        <i class="far fa-pen"></i>
-        <input type="text" placeholder="Nazwa" #name>
+    <div class="inputWrapper inputWrapperMargin">
+      <i class="far fa-pen"></i>
+      <input type="text" placeholder="Nazwa" #name>
+    </div>
+    <div class="inputWrapper inputWrapperMargin">
+      <i class="far fa-pen"></i>
+      <textarea placeholder="Opis" #description></textarea>
+    </div>
+    <div class="inputWrapper inputWrapperMargin">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" [(ngModel)]="dateFromValue" #datefrom>
+    </div>
+    <div class="inputWrapper inputWrapperMargin">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" [(ngModel)]="dateToValue" #dateto>
+    </div>
+    <div class="inputWrapper inputWrapperMargin">
+      <i class="far fa-info-circle"></i>
+    </div>
+    <div class="comboBoxWrapper inputWrapperMargin">
+      <select #type>
+        <option value="" disabled selected hidden>Typ</option>
+        <option value="jeden">Opcja pierwsza</option>
+        <option value="dwa">Opcja druga</option>
+        <option value="trzy">Opcja trzecia</option>
+      </select>
+      <i class="fal fa-chevron-down"></i>
+    </div>
+    <div class="inputWrapper" (click)="popupOn ? disablePopup() : showPopup()">
+      <i *ngIf="!selected" class="far fa-car"></i>
+      <img *ngIf="selected" src="{{selected.image}}" class="avatar">
+      <div class="select"  #popupTrigger>
+        {{ selected ? selected.name : "Wybierz pojazd" }}
       </div>
     </div>
-    <div class="editContent">
-      <div class="inputWrapper">
-        <i class="far fa-pen"></i>
-        <textarea placeholder="Opis" #description></textarea>
-      </div>
-    </div>
-    <div class="editContent">
-      <div class="inputWrapper">
-        <i class="far fa-calendar-alt"></i>
-        <input type="date" [(ngModel)]="dateFromValue" #datefrom>
-      </div>
-    </div>
-    <div class="editContent">
-      <div class="inputWrapper">
-        <i class="far fa-calendar-alt"></i>
-        <input type="date" [(ngModel)]="dateToValue" #dateto>
-      </div>
-    </div>
-    <div class="editContent2">
-      <div class="inputWrapper">
-        <i class="far fa-info-circle"></i>
-      </div>
-      <div class="comboBoxWrapper">
-        <select #type>
-          <option value="" disabled selected hidden>Typ</option>
-          <option value="jeden">Opcja pierwsza</option>
-          <option value="dwa">Opcja druga</option>
-          <option value="trzy">Opcja trzecia</option>
-        </select>
-        <i class="fal fa-chevron-down"></i>
-      </div>
-    </div>
-    <div class="editContent2">
-      <div class="inputWrapper">
-        <i class="far fa-car"></i>
-        <div class="select" (click)="showPopup()"  #popupTrigger>
-          Wybierz pojazd
-        </div>
-      </div>
-      <div class="selectOptions" *ngIf="popupOn">
-        <div *ngFor="let name of names">
-          <div class="selectOption" (click)="chooseOption(name.id, name.name)">
-            <img src="{{name.image}}" alt="avatar">
-            {{name.name}}
-          </div>
+    <div class="selectOptions" *ngIf="popupOn" [ngStyle]="{'width': popupTrigger.offsetWidth+'px' }">
+      <div *ngFor="let name of names">
+        <div class="selectOption" (click)="chooseOption(name.id, name.name, name.image)">
+          <img src="{{name.image}}" alt="avatar">
+          {{name.name}}
         </div>
       </div>
     </div>
-    <div class="editContent2">
-      <div class="event-popup-text">
-        Przypomnienie:
-        <input class="checkbox" type="checkbox" [(ngModel)]="checkbox">
-      </div>
+    <div class="event-popup-text inputWrapperMargin">
+      Przypomnienie:
+      <input class="checkbox" type="checkbox" [(ngModel)]="checkbox">
     </div>
   </div>
-  <div class="popup-green" (click)="sendForm(name, description, type, datefrom, dateto)">
+  <div class="popup-green" >
     Utwórz
   </div>
 </div>

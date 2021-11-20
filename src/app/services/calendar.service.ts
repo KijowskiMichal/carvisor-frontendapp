@@ -33,6 +33,11 @@ export class CalendarService {
     return this.http.get<EventDetail>('/API/calendar/getEvent/' + id + '/');
   }
 
+
+  public getListOfDevice(regex: string): Observable<ListNames[]> {
+    return this.http.get<ListNames[]>('/API/devices/listDevicesNames/'+ regex +'/');
+  }
+
   public putEvent(id: number, start: number, end: number, title: string, description: string, type: string,
                   device: number, draggable: boolean, remind: boolean): Observable<unknown> {
     return this.http.post('/API/calendar/updateEvent/' + id + '/',
@@ -67,3 +72,8 @@ export interface EventDetail {
   remind: boolean;
 }
 
+export interface ListNames {
+  image: string;
+  name: string;
+  id: number;
+}
