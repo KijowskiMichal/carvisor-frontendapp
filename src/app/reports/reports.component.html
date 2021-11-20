@@ -1,4 +1,5 @@
 <app-leftpanel></app-leftpanel>
+<div [ngClass]="addReportPopup==true ? 'shutItDown' : ''"></div>
 <div class="popup" *ngIf="popupDelete" >
   <div class="popup-title">
     Uwaga
@@ -56,7 +57,7 @@
   </div>
 
   <div class="header">
-    <div id="generate-button">
+    <div id="generate-button" (click)="addReportPopup=true">
       Nowy raport
     </div>
   </div>
@@ -95,3 +96,4 @@
   </div>
 
 </div>
+<app-add-report [(popup)]="addReportPopup"></app-add-report>

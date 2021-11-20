@@ -24,7 +24,6 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import {ListNames} from "../services/calendar.service";
 
 
 const colors: any = {

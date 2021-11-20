@@ -23,6 +23,8 @@ export class ReportsComponent implements OnInit {
   pageMax!: number;
   pageSize = 10;
 
+  addReportPopup: boolean;
+
   ngOnInit(): void {
     this.pageService.getLoginStatus().subscribe(value => {
       if (!value.logged) {

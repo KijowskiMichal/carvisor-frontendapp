@@ -35,6 +35,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import '@angular/common/locales/global/pl';
 import { AddEventComponent } from './add-event/add-event.component';
+import { AddReportComponent } from './add-report/add-report.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { AddEventComponent } from './add-event/add-event.component';
     WarningsComponent,
     CalendarComponent,
     ReportsComponent,
-    AddEventComponent
+    AddEventComponent,
+    AddReportComponent
   ],
   imports: [
     CommonModule,
