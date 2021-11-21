@@ -29,7 +29,7 @@
 </div>
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
 
-<div class="popup" [ngStyle]="{'display': popup ? 'block' : 'none' }">
+<div class="popup" [ngStyle]="{'display': popup ? 'block' : 'none' }" [ngSwitch]="page">
   <div class="header">
     <div class="event-popup-title">
       Nowy raport
@@ -40,30 +40,79 @@
     <div class="event-popup-line"></div>
   </div>
 
-  <div class="panel">
-    <div class="inputWrapper inputWrapperMargin">
-      <i class="far fa-pen"></i>
-      <input type="text" placeholder="Nazwa" #name>
+  <ng-container *ngSwitchCase="0">
+    <div class="panel">
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Nazwa" #name>
+      </div>
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-pen"></i>
+        <textarea placeholder="Opis" #description></textarea>
+      </div>
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-info-circle"></i>
+      </div>
+      <div class="comboBoxWrapper inputWrapperMargin">
+        <select #type>
+          <option value="" disabled selected hidden>Typ</option>
+          <option value="jeden">Opcja pierwsza</option>
+          <option value="dwa">Opcja druga</option>
+          <option value="trzy">Opcja trzecia</option>
+        </select>
+        <i class="fal fa-chevron-down"></i>
+      </div>
     </div>
-    <div class="inputWrapper inputWrapperMargin">
-      <i class="far fa-pen"></i>
-      <textarea placeholder="Opis" #description></textarea>
+    <div class="popup-green" (click)="page=1">
+      Dalej
     </div>
-    <div class="inputWrapper inputWrapperMargin">
-      <i class="far fa-info-circle"></i>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="1">
+    <div class="panel">
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-search"></i>
+        <input type="text" placeholder="Szukaj" [(ngModel)]="searchUsers" (ngModelChange)="changeSearch()">
+      </div>
+      <div class="userList">
+        <div class="userList__row" *ngFor="let user of usersList">
+          <img [src]="user.image" class="avatar">
+          {{user.name}}
+          <input type="checkbox" class="userList__checkbox" [checked]="selectedUsers.has(user.id)" (click)="changeStateOfUser(user.id)">
+        </div>
+      </div>
     </div>
-    <div class="comboBoxWrapper inputWrapperMargin">
-      <select #type>
-        <option value="" disabled selected hidden>Typ</option>
-        <option value="jeden">Opcja pierwsza</option>
-        <option value="dwa">Opcja druga</option>
-        <option value="trzy">Opcja trzecia</option>
-      </select>
-      <i class="fal fa-chevron-down"></i>
+    <div class="popup-green" (click)="page=2">
+      Dalej
     </div>
-  </div>
-  <div class="popup-green">
-    Dalej
-  </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="2">
+    <div class="panel">
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Nazwa" #name>
+      </div>
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-pen"></i>
+        <textarea placeholder="Opis" #description></textarea>
+      </div>
+      <div class="inputWrapper inputWrapperMargin">
+        <i class="far fa-info-circle"></i>
+      </div>
+      <div class="comboBoxWrapper inputWrapperMargin">
+        <select #type>
+          <option value="" disabled selected hidden>Typ</option>
+          <option value="jeden">Opcja pierwsza</option>
+          <option value="dwa">Opcja druga</option>
+          <option value="trzy">Opcja trzecia</option>
+        </select>
+        <i class="fal fa-chevron-down"></i>
+      </div>
+    </div>
+    <div class="popup-green">
+      Dalej
+    </div>
+  </ng-container>
 </div>
 

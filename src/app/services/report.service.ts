@@ -30,6 +30,10 @@ export class ReportService {
   public deleteReport(id: number): Observable<unknown> {
     return this.http.delete('/API/raports/remove/' + id + '/');
   }
+
+  public getListOfUser(regex: string): Observable<ListNames[]> {
+    return this.http.get<ListNames[]>('/API/users/listUserNames/'+ regex +'/');
+  }
 }
 
 export interface ListOfReport {
@@ -46,4 +50,8 @@ export interface ListOfReports {
   listOfRaports: ListOfReport[];
 }
 
-
+export interface ListNames {
+  image: string;
+  name: string;
+  id: number;
+}

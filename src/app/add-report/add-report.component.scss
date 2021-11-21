@@ -9,6 +9,7 @@
   border-radius: 0.83rem;
   padding: 1.67rem;
   box-sizing: border-box;
+  width: 30rem;
 }
 
 .header {
@@ -178,4 +179,27 @@ select::-ms-expand {
 
 .inputWrapperMargin {
   margin-bottom: 1.5rem;
+}
+
+.userList {
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.userList__row {
+  width: 100%;
+  padding: 1rem 0;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+.userList__row > .avatar {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.5rem;
+}
+
+.userList__checkbox {
+  float: right;
+  transform: scale(1.5);
 }

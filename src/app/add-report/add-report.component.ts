@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DatePipe} from "@angular/common";
-import {ReportService} from "../services/report.service";
+import {ListNames, ReportService} from "../services/report.service";
 
 @Component({
   selector: 'app-add-report',
@@ -16,9 +16,15 @@ export class AddReportComponent implements OnInit {
 
   popupOk = false;
   popupFail = false;
+  page = 0;
+  searchUsers: string;
+  usersList: ListNames[];
+  selectedUsers: Set<number> = new Set<number>();
 
   ngOnInit(): void {
-
+    this.reportService.getListOfUser("$").subscribe((value) => {
+      this.usersList = value
+    });
   }
 
   closeWindow() {
@@ -27,5 +33,18 @@ export class AddReportComponent implements OnInit {
   }
 
 
+  changeSearch() {
+    this.reportService.getListOfUser(this.searchUsers === "" ? "$" : this.searchUsers).subscribe((value) => {
+      this.usersList = value
+    });
+  }
 
+  changeStateOfUser(id: number) {
+    if (this.selectedUsers.has(id)) {
+      this.selectedUsers.delete(id);
+    }
+    else {
+      this.selectedUsers.add(id);
+    }
+  }
 }
