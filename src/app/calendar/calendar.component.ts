@@ -91,16 +91,22 @@ export class CalendarComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[];
+  events: CalendarEvent[] = [];
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
   addEventPopup: boolean;
 
   constructor(private modal: NgbModal, private calendarService: CalendarService) {}
 
   ngOnInit(): void {
-    this.calendarService.getEvents(this.viewDate.getMonth(), this.viewDate.getFullYear()).subscribe((events) => {
-      this.events = events as unknown as CalendarEvent[];
+    this.calendarService.getEvents(this.viewDate.getMonth() + 1, this.viewDate.getFullYear()).subscribe((events) => {
+      this.events = events.map((event) => {
+        event.color = colors.red;
+        //event.color = colors[event.color];
+        event.start = new Date(event.start as number * 1000);
+        event.end = new Date(event.end as number * 1000);
+        return event;
+      }) as unknown as CalendarEvent[];
     })
   }
 
@@ -139,23 +145,6 @@ export class CalendarComponent implements OnInit {
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

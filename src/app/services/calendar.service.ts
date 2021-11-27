@@ -10,8 +10,8 @@ export class CalendarService {
   constructor(private http: HttpClient) {
   }
 
-  public getEvents(month: number, year: number): Observable<EventDetail> {
-    return this.http.get<EventDetail>('/API/calendar/get/' + month + '/' + year + '/');
+  public getEvents(month: number, year: number): Observable<EventDetail[]> {
+    return this.http.get<EventDetail[]>('/API/calendar/get/' + month + '/' + year + '/');
   }
 
   public addEvent(start: number, end: number, title: string, description: string, type: string, device: number,
@@ -29,8 +29,8 @@ export class CalendarService {
       });
   }
 
-  public getEvent(id: number): Observable<EventDetail[]> {
-    return this.http.get<EventDetail[]>('/API/calendar/getEvent/' + id + '/');
+  public getEvent(id: number): Observable<EventDetail> {
+    return this.http.get<EventDetail>('/API/calendar/getEvent/' + id + '/');
   }
 
 
@@ -61,8 +61,8 @@ export class CalendarService {
 
 export interface EventDetail {
   id: number;
-  start: number;
-  end: number;
+  start: number | Date;
+  end: number | Date;
   title: string;
   description: string;
   type: string;
