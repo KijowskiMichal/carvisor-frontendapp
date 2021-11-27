@@ -30,8 +30,8 @@
       </tr>
       <tr *ngFor="let warning of Warnings.listOfNotification">
         <td>
-          <div [ngClass]="{'alert-pink':warning.type === 'important', 'alert-blue':warning.type === 'information'}">
-            <i [ngClass]="{'far fa-ban':warning.type === 'important', 'far fa-info-circle':warning.type === 'information'}"></i>
+          <div class="alert-pink">
+            <i class="far fa-ban"></i>
             <span>
               {{warning.value}}
             </span>

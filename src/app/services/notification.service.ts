@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ListOfSafety} from "./safety.service";
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +21,7 @@ export class NotificationService {
 }
 
 export interface ListOfWarning {
-  type: string;
-  value: number;
+  value: string; //brak typów
   date: number;
   location: string;
   userID: number;
@@ -39,7 +37,7 @@ export interface Warnings {
 }
 
 export interface ListOfNotification {
-  type: string;
+  type: string; //SPEEDING, LEAVING_THE_ZONE
   value: number;
   date: number;
   location: string;

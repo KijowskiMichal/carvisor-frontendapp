@@ -18,7 +18,7 @@ export class ReportService {
                    end: number, listOfUserIds: number[]): Observable<unknown> {
     return this.http.post('/API/raports/add/',
       {
-        "type": type,
+        "type": type, //TRACK, ECO, SAFETY
         "name": name,
         "description": description,
         "start": start,

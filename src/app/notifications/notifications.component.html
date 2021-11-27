@@ -30,10 +30,13 @@
       </tr>
       <tr *ngFor="let notification of Notifications.listOfNotification">
         <td>
-          <div [ngClass]="{'alert-pink':notification.type === 'important', 'alert-yellow':notification.type === 'medium', 'alert-green':notification.type === 'trivial'}">
-            <i [ngClass]="{'far fa-ban':notification.type === 'important', 'far fa-info-circle':notification.type === 'medium', 'far fa-shield-check':notification.type === 'trivial'}"></i>
-            <span>
-              {{notification.value}}
+          <div [ngClass]="{'alert-pink':notification.type === 'SPEEDING', 'alert-yellow':notification.type === 'LEAVING_THE_ZONE', 'alert-green':notification.type === 'placeholder'}">
+            <i [ngClass]="{'far fa-ban':notification.type === 'SPEEDING', 'far fa-info-circle':notification.type === 'LEAVING_THE_ZONE', 'far fa-shield-check':notification.type === 'placeholder'}"></i>
+            <span *ngIf="notification.type === 'SPEEDING'">
+              Przekroczenie dozwolonej prędkości o {{notification.value}} km/h.
+            </span>
+            <span *ngIf="notification.type === 'LEAVING_THE_ZONE'">
+              Pojazd wyjechał ze strefy o {{notification.value}} m.
             </span>
           </div>
         </td>
