@@ -29,8 +29,8 @@ export class CalendarService {
       });
   }
 
-  public getEvent(id: number): Observable<EventDetail> {
-    return this.http.get<EventDetail>('/API/calendar/getEvent/' + id + '/');
+  public getEvent(id: number): Observable<EventDetail[]> {
+    return this.http.get<EventDetail[]>('/API/calendar/getEvent/' + id + '/');
   }
 
 
