@@ -63,7 +63,7 @@
         <i class="fal fa-chevron-down"></i>
       </div>
     </div>
-    <div class="popup-green" (click)="page=1">
+    <div class="popup-green" (click)="checkPage0(name, description, type)">
       Dalej
     </div>
   </ng-container>
@@ -81,8 +81,12 @@
           <input type="checkbox" class="userList__checkbox" [checked]="selectedUsers.has(user.id)" (click)="changeStateOfUser(user.id)">
         </div>
       </div>
+      <div class="event-popup-text inputWrapperMargin">
+        Wszystko:
+        <input class="checkbox" type="checkbox" [(ngModel)]="checkbox" (ngModelChange)="selectAll()">
+      </div>
     </div>
-    <div class="popup-green" (click)="page=2">
+    <div [ngClass]="this.selectedUsers.size > 0 ? 'popup-green' : 'popup-gray'" (click)="checkPage1()">
       Dalej
     </div>
   </ng-container>
@@ -90,28 +94,16 @@
   <ng-container *ngSwitchCase="2">
     <div class="panel">
       <div class="inputWrapper inputWrapperMargin">
-        <i class="far fa-pen"></i>
-        <input type="text" placeholder="Nazwa" #name>
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" [(ngModel)]="dateFromValue" #datefrom>
       </div>
       <div class="inputWrapper inputWrapperMargin">
-        <i class="far fa-pen"></i>
-        <textarea placeholder="Opis" #description></textarea>
-      </div>
-      <div class="inputWrapper inputWrapperMargin">
-        <i class="far fa-info-circle"></i>
-      </div>
-      <div class="comboBoxWrapper inputWrapperMargin">
-        <select #type>
-          <option value="" disabled selected hidden>Typ</option>
-          <option value="jeden">Opcja pierwsza</option>
-          <option value="dwa">Opcja druga</option>
-          <option value="trzy">Opcja trzecia</option>
-        </select>
-        <i class="fal fa-chevron-down"></i>
+        <i class="far fa-calendar-alt"></i>
+        <input type="date" [(ngModel)]="dateToValue" #dateto>
       </div>
     </div>
-    <div class="popup-green">
-      Dalej
+    <div class="popup-green" (click)="checkPage2(datefrom, dateto)">
+      Generuj
     </div>
   </ng-container>
 </div>
