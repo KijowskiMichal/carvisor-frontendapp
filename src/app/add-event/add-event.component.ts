@@ -21,6 +21,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
 
   @Input() popup = false;
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() eventAdd: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
   constructor(public datePipe: DatePipe, private calendarService: CalendarService,
@@ -143,6 +144,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
         this.closeWindow();
         this.popupOk = true;
         this.checkbox = false;
+        this.eventAdd.emit();
       });
 
   }

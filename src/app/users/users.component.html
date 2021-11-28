@@ -21,7 +21,8 @@
       <tr *ngFor="let user of listOfUser.listOfUsers">
         <td class="firstColumn">
           <div class="driver">
-            <img src="{{user.image}}" alt="avatar">
+            <img *ngIf="user.image" src="{{user.image}}" alt="avatar">
+            <img *ngIf="!user.image" src="../../assets/default.jpg" alt="avatar">
             <div>
               <div class="name">
                 {{user.name}} {{user.surname}}

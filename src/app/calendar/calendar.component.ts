@@ -99,15 +99,7 @@ export class CalendarComponent implements OnInit {
   constructor(private modal: NgbModal, private calendarService: CalendarService) {}
 
   ngOnInit(): void {
-    this.calendarService.getEvents(this.viewDate.getMonth() + 1, this.viewDate.getFullYear()).subscribe((events) => {
-      this.events = events.map((event) => {
-        event.color = colors.red;
-        //event.color = colors[event.color];
-        event.start = new Date(event.start as number * 1000);
-        event.end = new Date(event.end as number * 1000);
-        return event;
-      }) as unknown as CalendarEvent[];
-    })
+    this.updateEvent();
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -159,4 +151,15 @@ export class CalendarComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
+  updateEvent() {
+    this.calendarService.getEvents(this.viewDate.getMonth() + 1, this.viewDate.getFullYear()).subscribe((events) => {
+      this.events = events.map((event) => {
+        event.color = colors.red;
+        //event.color = colors[event.color];
+        event.start = new Date(event.start as number * 1000);
+        event.end = new Date(event.end as number * 1000);
+        return event;
+      }) as unknown as CalendarEvent[];
+    })
+  }
 }

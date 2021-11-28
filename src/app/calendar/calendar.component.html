@@ -37,4 +37,4 @@
     </mwl-calendar-month-view>
   </div>
 </div>
-<app-add-event [(popup)]="addEventPopup"></app-add-event>
+<app-add-event [(popup)]="addEventPopup" (eventAdd)="updateEvent()"></app-add-event>
