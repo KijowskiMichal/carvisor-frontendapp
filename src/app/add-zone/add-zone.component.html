@@ -1,0 +1,74 @@
+<div class="popup-small" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie dodano nową strefę.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupOk=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup-small" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popup">
+  <div class="header">
+    <div class="user-popup-title">
+      Tworzenie nowej strefy
+    </div>
+    <div class="cancel-button" (click)="closeWindow()">
+      <i class="fal fa-times"></i>
+    </div>
+    <div class="user-popup-line"></div>
+  </div>
+  <div id="panel-left">
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Nazwa" title="Nazwa strefy, od 3 do 30 znaków." #name>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-location"></i>
+        <input type="text" placeholder="Współrzędna X" title="Współrzędne punktu X" #pointX>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-location"></i>
+        <input type="text" placeholder="Współrzędna Y" title="Współrzędne punktu Y" #pointY>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-circle-notch"></i>
+        <input type="text" placeholder="Promień strefy" title="Promień strefy w metrach" #radius>
+        <span> m </span>
+      </div>
+    </div>
+  </div>
+  <div id="panel-right">
+    <div id="map"></div>
+  </div>
+  <div class="popup-green" (click)="sendForm(name, pointX, pointY, radius)">
+    Utwórz
+  </div>
+</div>

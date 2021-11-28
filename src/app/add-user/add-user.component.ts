@@ -1,7 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {UserService} from "../services/user.service";
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-user',
@@ -17,14 +15,9 @@ export class AddUserComponent implements OnInit {
   popupOk = false;
   popupFail = false;
 
-  constructor(public userService: UserService, private pageService: PageService, private router: Router) {}
+  constructor(public userService: UserService) {}
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
   }
 
   closeWindow()

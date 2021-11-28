@@ -97,7 +97,7 @@ export class AddReportComponent implements OnInit {
       description.placeholder = "Od 3 do 60 znaków.";
       allClear = false;
     }
-    if (!/^.{3,60}$/.test(name.value)) {
+    if (!/^.{3,30}$/.test(name.value)) {
       name.focus();
       name.classList.add('error');
       name.value = "";

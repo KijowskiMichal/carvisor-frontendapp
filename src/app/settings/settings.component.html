@@ -43,7 +43,7 @@
     </div>
   </div>
 </div>
-<div [ngClass]="popupFail==true || addUserPopup==true ? 'shutItDown' : ''"></div>
+<div [ngClass]="popupFail==true || addUserPopup==true || addZonePopup==true ? 'shutItDown' : ''"></div>
 <div class="main">
     <div class="panel">
       <div id="title">
@@ -71,7 +71,7 @@
         <div class="addButton" (click)="addUserPopup=true">
           Dodaj użytkownika
         </div>
-        <div class="addButton">
+        <div class="addButton" (click)="addZonePopup=true">
           Dodaj strefę
         </div>
       </div>
@@ -126,3 +126,4 @@
     </div>
 </div>
 <app-add-user [(popup)]="addUserPopup"></app-add-user>
+<app-add-zone [(popup)]="addZonePopup"></app-add-zone>

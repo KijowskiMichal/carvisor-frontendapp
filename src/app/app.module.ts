@@ -36,6 +36,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import '@angular/common/locales/global/pl';
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddReportComponent } from './add-report/add-report.component';
+import { AddZoneComponent } from './add-zone/add-zone.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AddReportComponent } from './add-report/add-report.component';
     CalendarComponent,
     ReportsComponent,
     AddEventComponent,
-    AddReportComponent
+    AddReportComponent,
+    AddZoneComponent
   ],
   imports: [
     CommonModule,
