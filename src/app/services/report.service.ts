@@ -34,6 +34,14 @@ export class ReportService {
   public getListOfUser(regex: string): Observable<ListNames[]> {
     return this.http.get<ListNames[]>('/API/users/listUserNames/'+ regex +'/');
   }
+
+  public testowyRaport(): Observable<any> {
+    return this.http.get('API/demo/getPdf', {responseType: 'arraybuffer'});
+  }
+
+  public downloadReport(id: number): Observable<unknown> {
+    return this.http.get('/API/raports/download/' + id + '/');
+  }
 }
 
 export interface ListOfReport {

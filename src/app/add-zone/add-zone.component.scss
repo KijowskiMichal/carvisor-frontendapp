@@ -83,7 +83,7 @@
 #panel-left {
   box-sizing: border-box;
   width: 40%;
-  padding: 10% 1.11rem;
+  padding: 5% 1.11rem;
   float: left;
   height: 35rem;
 }
@@ -149,4 +149,12 @@ span {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.popup-text {
+  @include manropeFont(normal, 1rem);
+  text-align: left;
+  color: $ColorGrayDark;
+  box-sizing: border-box;
+  margin: 1.67rem 15%;
 }
