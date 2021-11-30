@@ -28,7 +28,7 @@
   </div>
 </div>
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
-<div class="popup" *ngIf="popup">
+<div class="popup" [style.display]="popup ? 'block' : 'none'">
   <div class="header">
     <div class="user-popup-title">
       Tworzenie nowej strefy
@@ -48,25 +48,25 @@
     <div class="editContent">
       <div class="inputWrapper">
         <i class="far fa-location"></i>
-        <input type="text" placeholder="Współrzędna X" title="Współrzędne punktu X" #pointX>
+        <input type="text" placeholder="Współrzędna X" title="Współrzędne punktu X" [(ngModel)]="posX" (ngModelChange)="drawCircle(posY, posX)" #pointX>
       </div>
     </div>
     <div class="editContent">
       <div class="inputWrapper">
         <i class="far fa-location"></i>
-        <input type="text" placeholder="Współrzędna Y" title="Współrzędne punktu Y" #pointY>
+        <input type="text" placeholder="Współrzędna Y" title="Współrzędne punktu Y" [(ngModel)]="posY" (ngModelChange)="drawCircle(posY, posX)" #pointY>
       </div>
     </div>
     <div class="editContent">
       <div class="inputWrapper">
         <i class="far fa-circle-notch"></i>
-        <input type="text" placeholder="Promień strefy" title="Promień strefy w metrach" #radius>
+        <input type="number" placeholder="Promień strefy" title="Promień strefy w metrach" [(ngModel)]="radiusValue" (ngModelChange)="drawCircle(posY, posX)" #radius step="10">
         <span> m </span>
       </div>
     </div>
   </div>
   <div id="panel-right">
-    <div id="map"></div>
+    <div #mapElementRef id="map" class="map"></div>
   </div>
   <div class="popup-green" (click)="sendForm(name, pointX, pointY, radius)">
     Utwórz

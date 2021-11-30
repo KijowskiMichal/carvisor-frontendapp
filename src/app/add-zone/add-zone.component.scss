@@ -135,7 +135,7 @@
 
 span {
   position: absolute;
-  right: -2rem;
+  right: -1rem;
   top: 0.55rem;
   @include manropeFont(normal, 1rem);
   color: $ColorGrayDark;
@@ -143,8 +143,6 @@ span {
 
 #map {
   border: $ColorGrayDark solid 0.1rem;
-  background-image: url("./../../assets/placeholder.png");
-  background-size: cover;
   width: 30rem;
   height: 30rem;
   position: relative;
