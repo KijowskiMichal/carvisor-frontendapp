@@ -37,6 +37,7 @@ import '@angular/common/locales/global/pl';
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddReportComponent } from './add-report/add-report.component';
 import { AddZoneComponent } from './add-zone/add-zone.component';
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AddZoneComponent } from './add-zone/add-zone.component';
     ReportsComponent,
     AddEventComponent,
     AddReportComponent,
-    AddZoneComponent
+    AddZoneComponent,
+    SummaryComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,65 @@
+<app-leftpanel></app-leftpanel>
+<div class="main">
+  <div class="searchBar">
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" [(ngModel)]="dateToValue" (change)="list(1)">
+    </div>
+    <div class="inputDivider">
+      -
+    </div>
+    <div class="inputWrapper">
+      <i class="far fa-calendar-alt"></i>
+      <input type="date" [(ngModel)]="dateFromValue" (change)="list(1)">
+    </div>
+  </div>
+<!--
+  <div id="hello" *ngIf="Summary">
+    Witaj ponownie {{Summary.name}}!
+  </div>
+  -->
+  <div id="hello">
+    Witaj ponownie Janusz!
+  </div>
+
+  <div class="panel">
+    Ocena ekojazdy:
+    <!--<div [ngClass]="{'grade-none':safety.rate === 0.0, 'grade-bad':safety.rate > 0.0 && safety.rate < 2.5, 'grade-medium':safety.rate >= 2.5 && safety.rate < 3.5, 'grade-good':safety.rate >= 3.5}">-->
+    <div class="grade-good">
+      <div class="grade-text">
+        2.5
+        <!--{{safety.rate | number : '1.1-1'}}-->
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    Pozycja w rankingu:
+  </div>
+
+  <div class="panel">
+    Ocena bezpieczeństwa:
+    <div class="grade-good">
+      <div class="grade-text">
+        2.5
+        <!--{{safety.rate | number : '1.1-1'}}-->
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    Pozycja w rankingu:
+  </div>
+
+  <div id="pages" *ngIf="Summary">
+    <div id="pagesWrapper">
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>
+      <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1)" class="far fa-chevron-left"></i>
+      <div id="pagesText">
+        strona {{page}} z {{pageMax}}
+      </div>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.page+1)"  class="far fa-chevron-right"></i>
+      <i [ngClass]="page==pageMax ? 'disableLink' : ''" (click)="list(this.pageMax)"  class="far fa-chevron-double-right"></i>
+    </div>
+  </div>
+</div>

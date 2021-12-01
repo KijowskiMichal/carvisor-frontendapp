@@ -15,6 +15,7 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { WarningsComponent } from "./warnings/warnings.component";
 import { CalendarComponent } from "./calendar/calendar.component";
 import { ReportsComponent } from "./reports/reports.component";
+import {SummaryComponent} from "./summary/summary.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
@@ -32,7 +33,8 @@ const routes: Routes = [  { path: '', component: LoginComponent},
                           { path: 'notifications', component: NotificationsComponent},
                           { path: 'warnings', component: WarningsComponent},
                           { path: 'calendar', component: CalendarComponent},
-                          { path: 'reports', component: ReportsComponent}];
+                          { path: 'reports', component: ReportsComponent},
+                          { path: 'summary', component: SummaryComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: true})],

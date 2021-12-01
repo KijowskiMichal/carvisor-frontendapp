@@ -1,0 +1,151 @@
+@import "./../../styles.scss";
+
+.inputDivider {
+  float: right;
+  text-align: center;
+  width: 5%;
+  box-sizing: border-box;
+  margin-top: 0.56rem;
+  font-size: 1rem;
+}
+
+.searchBar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.11rem 2.22rem;
+  margin-bottom: 1.5rem;
+}
+
+.inputWrapper {
+  float: right;
+  position: relative;
+}
+
+.inputWrapper > input {
+  @include manropeFont(normal, 1rem);
+  color: $ColorGrayDark;
+  padding: 0.56rem 0.28rem 0.56rem 2.78rem;
+  background: $ColorWhite;
+  border-radius: 0.56rem;
+  border: 0;
+}
+
+.inputWrapper > i {
+  position: absolute;
+  color: $ColorGrayDark;
+  top: 0.89rem;
+  left: 0.83rem;
+  font-size: 1rem;
+}
+
+#pages {
+  @include manropeFont(normal, 1rem);
+  color: $ColorGrayDark;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.1rem 2.2rem;
+  margin-top: 5.5rem;
+  margin-bottom: 2.7rem;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  line-height: 2.5rem;
+}
+
+#pagesWrapper {
+  float: right;
+  position: relative;
+}
+
+#pagesText {
+  margin: 0 1.1rem;
+  float: left;
+  line-height: 2.5rem;
+}
+
+#pagesWrapper > i {
+  margin: 0 0.83rem;
+  color: $ColorGrayDark;
+  cursor: pointer;
+  float: left;
+  line-height: 2.5rem;
+}
+
+#firstRow > td {
+  @include manropeFont(normal, 1.1rem);
+  text-transform: uppercase;
+  line-height: 50%;
+  padding: 1.67rem;
+  align-items: center;
+  text-align: center;
+  color: $ColorGrayDark;
+}
+
+.firstColumn {
+  text-align: left !important;
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+  width: 100%;
+  table-layout: auto;
+}
+
+#table {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.55rem 1.67rem;
+}
+
+td {
+  border-bottom: 0.11rem solid $ColorGrayBlueish;
+  box-sizing: border-box;
+  padding: 0.55rem 1.67rem;
+  align-items: center;
+  text-align: center;
+}
+
+td > a > i {
+  color: $ColorGrayDark;
+  font-size: 1.11rem;
+  cursor: pointer;
+}
+
+td > a > i:hover {
+  color: $ColorGrayDarkHover;
+}
+
+td {
+  @include manropeFont(500, 1rem);
+  color: $ColorGrayDark;
+}
+
+.disableLink {
+  color: rgba(106, 106, 106, 0.11) !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+#hello {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.11rem;
+  float: left;
+  position: relative;
+  text-align: left;
+  @include manropeFont(500, 1.22rem);
+  color: $ColorGrayDark;
+}
+
+.panel {
+  @include manropeFont(500, 1rem);
+  color: $ColorGrayDark;
+  box-sizing: border-box;
+  width: 25%;
+  padding: 1.11rem;
+  float: left;
+}
+
