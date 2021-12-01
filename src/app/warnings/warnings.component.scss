@@ -155,7 +155,7 @@ a {
   @include alert-type($ColorBlue);
 }
 
-i {
+.far.fa-ban {
   color: $ColorGrayDark;
   font-size: 2rem;
   margin-right: 1rem;

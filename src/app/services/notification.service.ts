@@ -18,6 +18,10 @@ export class NotificationService {
     return this.http.get<Warnings>('API/errors/getErrors/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
   }
 
+  public getReverseGeocoding(coords: string[]): Observable<Address> {
+    return this.http.get<Address>('/API/track/reverseGeocoding/' + coords[0] + '/' + coords[1] + '/');
+  }
+
 }
 
 export interface ListOfWarning {
@@ -51,4 +55,8 @@ export interface Notifications {
   page: number;
   pageMax: number;
   listOfNotification: ListOfNotification[];
+}
+
+export interface Address {
+  address: string;
 }

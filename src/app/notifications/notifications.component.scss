@@ -159,7 +159,7 @@ a {
   @include alert-type($ColorGreen);
 }
 
-i {
+.far.fa-ban, .far.fa-info-circle, .far.fa-shield-check {
   color: $ColorGrayDark;
   font-size: 2rem;
   margin-right: 1rem;

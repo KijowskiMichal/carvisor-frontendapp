@@ -31,7 +31,11 @@
       <tr *ngFor="let notification of Notifications.listOfNotification">
         <td>
           <div [ngClass]="{'alert-pink':notification.type === 'SPEEDING', 'alert-yellow':notification.type === 'LEAVING_THE_ZONE', 'alert-green':notification.type === 'placeholder'}">
-            <i [ngClass]="{'far fa-ban':notification.type === 'SPEEDING', 'far fa-info-circle':notification.type === 'LEAVING_THE_ZONE', 'far fa-shield-check':notification.type === 'placeholder'}"></i>
+            <div [ngSwitch]="notification.type">
+              <i class="far fa-ban" *ngSwitchCase="'SPEEDING'"></i>
+              <i class="far fa-info-circle" *ngSwitchCase="'LEAVING_THE_ZONE'"></i>
+              <i class="far fa-shield-check" *ngSwitchCase="'placeholder'"></i>
+            </div>
             <span *ngIf="notification.type === 'SPEEDING'">
               Przekroczenie dozwolonej prędkości o {{notification.value}} km/h.
             </span>
@@ -52,7 +56,7 @@
             </div>
           </div>
         </td>
-        <td>{{notification.date | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>{{notification.date * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
         <td>{{notification.location}}</td>
       </tr>
     </table>

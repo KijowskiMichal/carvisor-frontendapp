@@ -28,7 +28,7 @@ export class NotificationsComponent implements OnInit {
         this.router.navigate(['./']);
       }
     });
-    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);
   }
@@ -42,6 +42,12 @@ export class NotificationsComponent implements OnInit {
           this.Notifications = value;
           this.page = value.page;
           this.pageMax = value.pageMax;
+          for (let notification of this.Notifications.listOfNotification) {
+            let coords = notification.location.split(";");
+            this.notificationService.getReverseGeocoding(coords).subscribe(value => {
+              notification.location =  value.address;
+            });
+          }
         }
       });
     }

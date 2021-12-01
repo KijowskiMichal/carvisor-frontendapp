@@ -13,7 +13,7 @@ import {TrackService} from "../services/track.service";
 export class WarningsComponent implements OnInit {
 
   constructor(private notificationService: NotificationService, private pageService: PageService,
-              private router: Router, public datePipe: DatePipe, private trackService: TrackService) { }
+              private router: Router, public datePipe: DatePipe) { }
   Warnings!: Warnings;
   dateFromValue!: string;
   dateFromTimestamp!: number;
@@ -29,7 +29,7 @@ export class WarningsComponent implements OnInit {
         this.router.navigate(['./']);
       }
     });
-    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);
   }
@@ -45,21 +45,13 @@ export class WarningsComponent implements OnInit {
           this.pageMax = value.pageMax;
           for (let warning of this.Warnings.listOfNotification) {
             let coords = warning.location.split(";");
-            this.trackService.getReverseGeocoding(coords).subscribe(value => {
+            this.notificationService.getReverseGeocoding(coords).subscribe(value => {
               warning.location =  value.address;
             });
           }
         }
       });
     }
-  }
-
-  showLocationOfPoints(joined: string):string {
-    let coords = joined.split(";");
-    this.trackService.getReverseGeocoding(coords).subscribe(value => {
-      return value.address;
-    });
-    return '---';
   }
 
 }

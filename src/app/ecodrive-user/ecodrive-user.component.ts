@@ -15,7 +15,7 @@ export class EcodriveUserComponent implements OnInit {
   @Input() set popup(value: boolean) {
     this.popup_ = value;
     if (this.popup_ === true) {
-      this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
       this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
       if (this.id) this.list();
     }

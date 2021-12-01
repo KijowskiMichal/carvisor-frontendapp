@@ -6,14 +6,14 @@
     <div class="searchBar">
       <div class="inputWrapper">
         <i class="far fa-calendar-alt"></i>
-        <input type="date" [(ngModel)]="dateToValue" (change)="list()">
+        <input type="date" [(ngModel)]="dateFromValue" (change)="list()">
       </div>
       <div class="inputDivider">
         -
       </div>
       <div class="inputWrapper">
         <i class="far fa-calendar-alt"></i>
-        <input type="date" [(ngModel)]="dateFromValue" (change)="list()">
+        <input type="date" [(ngModel)]="dateToValue" (change)="list()">
       </div>
     </div>
     <div class="cancel-button" (click)="closeWindow()">

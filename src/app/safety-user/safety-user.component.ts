@@ -16,7 +16,7 @@ export class SafetyUserComponent implements OnInit {
   @Input() set popup(value: boolean) {
     this.popup_ = value;
     if (this.popup_ === true) {
-      this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
       this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
       if (this.id) this.list();
     }
@@ -45,7 +45,7 @@ export class SafetyUserComponent implements OnInit {
     this.safetyService.getUserPoints(this.id, this.dateFromTimestamp, this.dateToTimestamp).subscribe(value => {
       this.userPoints = value;
       for (let off of this.userPoints.listOfOffencess) {
-        let coords = off.location.split(";");
+        let coords = off.location.split(",");
         this.trackService.getReverseGeocoding(coords).subscribe(value => {
           off.location =  value.address;
         });
@@ -58,11 +58,4 @@ export class SafetyUserComponent implements OnInit {
     this.popupChange.emit(this.popup_);
   }
 
-  showLocationOfPoints(joined: string):string {
-    let coords = joined.split(";");
-    this.trackService.getReverseGeocoding(coords).subscribe(value => {
-      return value.address;
-    });
-    return '---';
-  }
 }
