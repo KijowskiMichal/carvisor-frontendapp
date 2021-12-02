@@ -121,16 +121,8 @@ export class CalendarComponent implements OnInit {
                       newStart,
                       newEnd,
                     }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
+    this.updateEvent();
+    this.refresh.next();
     this.handleEvent('Dropped or resized', event);
   }
 
@@ -158,8 +150,13 @@ export class CalendarComponent implements OnInit {
         //event.color = colors[event.color];
         event.start = new Date(event.start as number * 1000);
         event.end = new Date(event.end as number * 1000);
+        event.title = event.title+" - "+event.description;
         return event;
       }) as unknown as CalendarEvent[];
     })
+  }
+
+  updateTime() {
+    this.updateEvent();
   }
 }

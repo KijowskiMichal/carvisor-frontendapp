@@ -13,14 +13,16 @@
       <i class="far fa-chevron-left" mwlCalendarPreviousView
          [view]="view"
          [(viewDate)]="viewDate"
-         (viewDateChange)="closeOpenMonthViewDay()"></i>
+         (viewDateChange)="closeOpenMonthViewDay()"
+          (click)="updateTime()"></i>
       <span mwlCalendarToday
            [(viewDate)]="viewDate">{{ viewDate | calendarDate:(view + 'ViewTitle'):'pl' }}
       </span>
       <i class="far fa-chevron-right" mwlCalendarNextView
          [view]="view"
          [(viewDate)]="viewDate"
-         (viewDateChange)="closeOpenMonthViewDay()"></i>
+         (viewDateChange)="closeOpenMonthViewDay()"
+         (click)="updateTime()"></i>
     </div>
   </div>
   <div class="content_calendar">
