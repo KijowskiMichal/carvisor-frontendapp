@@ -64,11 +64,11 @@ export class ReportsComponent implements OnInit {
   }
 
   public refresh() {
-    window.location.reload();
+    this.list(1, '$');
   }
 
-  public getpdf() {
-    this.reportService.testowyRaport().subscribe(
+  public getpdf(id: number) {
+    this.reportService.getReport(id).subscribe(
       value => {
         this.download(value, '{type: "application/pdf"}')
       });

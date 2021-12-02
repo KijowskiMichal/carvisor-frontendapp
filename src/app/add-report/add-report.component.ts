@@ -148,6 +148,10 @@ export class AddReportComponent implements OnInit {
       });
   }
 
+  public refresh() {
+    window.location.reload();
+  }
+
   selectAll() {
     if (this.checkbox) {
       this.usersList.forEach((user) => {
