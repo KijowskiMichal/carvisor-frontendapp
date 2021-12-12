@@ -14,6 +14,7 @@ export class VehiclesComponent implements OnInit {
   page!: number;
   pageMax!: number;
   pageSize = 6;
+  complete!: boolean;
 
   constructor(private vehicleService: VehicleService, private pageService: PageService, private router: Router) { }
 
@@ -28,6 +29,7 @@ export class VehiclesComponent implements OnInit {
 
   public list(page: number, regex: string): void
   {
+    this.complete = false;
     if (regex === '') {
       regex = '$';
     }
@@ -39,6 +41,12 @@ export class VehiclesComponent implements OnInit {
           this.page = value.page;
           this.pageMax = value.pageMax;
         }
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
     }
   }

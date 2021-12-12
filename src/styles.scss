@@ -218,3 +218,32 @@ a {
   @include manropeFont(500, 1.22rem);
   color: $ColorGrayDark;
 }
+
+// loader
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 5.55rem;
+  height: 5.55rem;
+  margin: 0.44rem;
+  border-radius: 50%;
+  border: 0.44rem solid $ColorGrayBlueish;
+  border-color: $ColorGrayBlueish transparent $ColorGrayBlueish transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+

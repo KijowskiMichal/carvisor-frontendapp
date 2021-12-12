@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   page!: number;
   pageMax!: number;
   pageSize = 6;
+  complete!: boolean;
 
   ngOnInit(): void
   {
@@ -28,6 +29,7 @@ export class UsersComponent implements OnInit {
 
   public list(page: number, regex: string): void
   {
+    this.complete = false;
     if (regex === '') {
       regex = '$';
     }
@@ -39,6 +41,12 @@ export class UsersComponent implements OnInit {
           this.page = value.page;
           this.pageMax = value.pageMax;
         }
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
     }
   }
