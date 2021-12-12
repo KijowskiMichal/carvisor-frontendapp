@@ -2,16 +2,16 @@
 
 .panel {
   box-sizing: border-box;
-  width: 33%;
-  padding: 1.11rem;
+  width: 50%;
+  padding: 1.11rem 1.11rem 1.11rem 7rem;
   float: left;
 }
 
 .panel2 {
-  margin-top: 5.56rem;
+  margin-top: 5.65rem;
   box-sizing: border-box;
-  width: 33%;
-  padding: 1.11rem;
+  width: 50%;
+  padding: 1.11rem 7rem 1.11rem 1.11rem;
   float: left;
 }
 
@@ -27,7 +27,7 @@
   @include manropeFont(500, 1.67rem);
   color: $ColorGrayDark;
   box-sizing: border-box;
-  margin-top: 4.44rem;
+  margin-top: 3.44rem;
   margin-bottom: 2.78rem;
 }
 
@@ -94,7 +94,9 @@
   left: 0;
   bottom: 0;
   box-sizing: border-box;
-  padding: 1.67rem;
+  padding-bottom: 1.67rem;
+  padding-right: 1.67rem;
+  padding-top: 0;
 }
 
 #deleteButton:hover {
@@ -161,8 +163,8 @@
 }
 
 .inputWrapper {
-  width: 60%;
-  margin-left: 20%;
+  width: 70%;
+  margin-left: 15%;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;

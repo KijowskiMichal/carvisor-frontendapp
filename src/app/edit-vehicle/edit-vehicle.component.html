@@ -47,7 +47,8 @@
   </div>
 </div>
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
-<div class="main" *ngIf="deviceInfo && configuration">
+<!--<div class="main" *ngIf="deviceInfo && configuration">-->
+<div class="main" >
   <div id="content">
     <div class="panel">
       <div class="title">
@@ -86,13 +87,13 @@
       <div class="editContent">
         <div class="inputWrapper">
           <div class="inputWrapper2">
-            <input type="text" placeholder="od" title="Godzina w formacie gg:mm." value="{{deviceInfo.timeFrom}}" #timeFrom>
+            <input type="time" name="time" placeholder="od" title="Godzina w formacie gg:mm." value="{{deviceInfo.timeFrom}}" #timeFrom>
           </div>
           <div class="inputDivider">
             -
           </div>
           <div class="inputWrapper2">
-            <input type="text" placeholder="do" title="Godzina w formacie gg:mm." value="{{deviceInfo.timeTo}}" #timeTo>
+            <input type="time" name="time" placeholder="do" title="Godzina w formacie gg:mm." value="{{deviceInfo.timeTo}}" #timeTo>
           </div>
         </div>
       </div>
@@ -157,18 +158,6 @@
         <div class="inputWrapper">
           <i class="far fa-tachometer"></i>
           <input type="text" placeholder="Norma spalania" title="Norma spalania." value="{{deviceInfo.norm}}" #norm>
-        </div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="title">
-        <i class="far fa-map-marker-alt"></i>
-        Strefy
-      </div>
-      <div class="editContent">
-        <div class="inputWrapper">
-          <i class="far fa-search"></i>
-          <input type="text" placeholder="Szukaj">
         </div>
       </div>
     </div>

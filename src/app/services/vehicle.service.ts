@@ -74,9 +74,9 @@ export class VehicleService {
 }
 
 export interface DeviceInfo {
-  timeFrom: number;
+  timeFrom: string;
   licensePlate: string;
-  timeTo: number;
+  timeTo: string;
   engine: string;
   fuel: string;
   yearOfProduction: string;

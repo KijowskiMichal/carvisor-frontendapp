@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Configuration, DeviceInfo, VehicleService} from "../services/vehicle.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class EditVehicleComponent implements OnInit {
   private id!:number;
   deviceInfo!: DeviceInfo;
   configuration!: Configuration;
-  constructor(private vehicleService: VehicleService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private vehicleService: VehicleService, private route: ActivatedRoute) { }
 
   popupText = "To się nie powinno wyświetlać.";
   popupOk = false;
@@ -58,13 +58,13 @@ export class EditVehicleComponent implements OnInit {
     brandInput.classList.remove('error');
     normInput.classList.remove('error');
     //validator
-    /*if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(timeFrom)) {
+    if (!/^[0-9]{2}:[0-9]{2}$/.test(timeFrom)) {
       timeFromInput.focus();
       timeFromInput.classList.add('error');
       timeFromInput.value = "";
       timeFromInput.placeholder = "gg:mm";
       allClear = false;
-    }*/
+    }
     if (!/^[A-Za-z0-9]{4,7}$/.test(licensePlate)) {
       licensePlateInput.focus();
       licensePlateInput.classList.add('error');
@@ -72,13 +72,13 @@ export class EditVehicleComponent implements OnInit {
       licensePlateInput.placeholder = "Litery i cyfry od 4 do 7 znaków.";
       allClear = false;
     }
-    /*if (!/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/.test(timeTo)) {
+    if (!/^[0-9]{2}:[0-9]{2}$/.test(timeTo)) {
       timeToInput.focus();
       timeToInput.classList.add('error');
       timeToInput.value = "";
       timeToInput.placeholder = "gg:mm";
       allClear = false;
-    }*/
+    }
     if (!/^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ .,:;]{2,30}$/.test(engine)) {
       engineInput.focus();
       engineInput.classList.add('error');
