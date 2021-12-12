@@ -1,0 +1,15 @@
+<div class="popup" *ngIf="popup_">
+  <div class="header">
+    <div class="user-popup-title">
+      Wykres bezpieczeństwa jazdy:
+    </div>
+    <div class="cancel-button" (click)="closeWindow()">
+      <i class="fal fa-times"></i>
+    </div>
+  </div>
+  <div class="panel">
+    <div id="table">
+      <p-chart type="bar" [data]="multiAxisData" [options]="multiAxisOptions"></p-chart>
+    </div>
+  </div>
+</div>

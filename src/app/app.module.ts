@@ -38,6 +38,8 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { AddReportComponent } from './add-report/add-report.component';
 import { AddZoneComponent } from './add-zone/add-zone.component';
 import { SummaryComponent } from './summary/summary.component';
+import {SafetyChartComponent} from "./safety-chart/safety-chart.component";
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { SummaryComponent } from './summary/summary.component';
     AddEventComponent,
     AddReportComponent,
     AddZoneComponent,
-    SummaryComponent
+    SummaryComponent,
+    SafetyChartComponent,
+
   ],
   imports: [
     CommonModule,
@@ -77,7 +81,8 @@ import { SummaryComponent } from './summary/summary.component';
     HttpClientModule,
     FormsModule,
     FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    ChartModule,
   ],
   providers: [DatePipe, {provide: LOCALE_ID, useValue: 'pl-PL'}],
   bootstrap: [AppComponent]
