@@ -1,10 +1,16 @@
 <app-leftpanel></app-leftpanel>
-<div [ngClass]="userPopup==true ? 'shutItDown' : ''"></div>
+<div [ngClass]="userPopup==true || chartPopup==true ? 'shutItDown' : ''"></div>
 <div class="main">
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
       <input type="text" placeholder="Szukaj" (keydown.enter)="list(1, search.value)" #search>
+    </div>
+  </div>
+
+  <div class="header">
+    <div id="chart-button" (click)="chartPopup=true">
+      Wykres
     </div>
   </div>
 
@@ -51,4 +57,4 @@
   </div>
 </div>
 <app-safety-user [id]="userId" [(popup)]="userPopup"></app-safety-user>
-<app-safety-chart [popup]="true"></app-safety-chart>
+<app-safety-chart [(popup)]="chartPopup"></app-safety-chart>

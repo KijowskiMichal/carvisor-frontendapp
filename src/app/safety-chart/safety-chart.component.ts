@@ -1,32 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
-import {SafetyService, UserPoints} from "../services/safety.service";
-import {DatePipe} from "@angular/common";
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {SafetyService} from "../services/safety.service";
 import {TrackService} from "../services/track.service";
 
 @Component({
   selector: 'app-safety-chart',
   templateUrl: './safety-chart.component.html',
-  styleUrls: ['./safety-chart.component.scss']
+  styleUrls: ['./safety-chart.component.scss'],
+  //encapsulation: ViewEncapsulation.ShadowDom
 })
 export class SafetyChartComponent implements OnInit {
 
   @Input() set popup(value: boolean) {
     this.popup_ = value;
-    if (this.popup_ === true) {
-      //
-    }
-    else {
-      //
-    }
   }
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   multiAxisData: any;
-
   multiAxisOptions: any;
-
   popup_ = false;
 
   constructor(private safetyService: SafetyService, private trackService: TrackService) { }
@@ -46,12 +36,12 @@ export class SafetyChartComponent implements OnInit {
         datasets: [
           {
             label: 'Ocena',
-            backgroundColor: '#FFFF00',
+            backgroundColor: '#FFD166',
             data: rate
           },
           {
             label: 'Liczba tras',
-            backgroundColor: '#ff0000',
+            backgroundColor: '#ef476f',
             data: tracks
           }
         ]
