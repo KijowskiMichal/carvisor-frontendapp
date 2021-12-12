@@ -1,10 +1,16 @@
 <app-leftpanel></app-leftpanel>
-<div [ngClass]="userPopup==true ? 'shutItDown' : ''"></div>
+<div [ngClass]="userPopup==true || chartPopup==true ? 'shutItDown' : ''"></div>
 <div class="main">
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
       <input type="text" placeholder="Szukaj" (keydown.enter)="list(1, search.value)" #search>
+    </div>
+  </div>
+
+  <div class="header">
+    <div id="chart-button" (click)="chartPopup=true">
+      Wykres
     </div>
   </div>
 
@@ -57,3 +63,4 @@
   </div>
 </div>
 <app-ecodrive-user [id]="userId" [(popup)]="userPopup"></app-ecodrive-user>
+<app-ecodrive-chart [regex]="search.value" [(popup)]="chartPopup"></app-ecodrive-chart>

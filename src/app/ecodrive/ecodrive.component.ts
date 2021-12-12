@@ -16,6 +16,7 @@ export class EcodriveComponent implements OnInit {
   pageMax!: number;
   pageSize = 6;
   userPopup: boolean;
+  chartPopup: boolean;
   userId: number;
 
   ngOnInit(): void {

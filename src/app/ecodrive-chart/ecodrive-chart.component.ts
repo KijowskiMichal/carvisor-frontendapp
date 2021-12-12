@@ -1,20 +1,19 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {SafetyService} from "../services/safety.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {EcoService} from "../services/eco.service";
 
 @Component({
-  selector: 'app-safety-chart',
-  templateUrl: './safety-chart.component.html',
-  styleUrls: ['./safety-chart.component.scss'],
-  //encapsulation: ViewEncapsulation.ShadowDom
+  selector: 'app-ecodrive-chart',
+  templateUrl: './ecodrive-chart.component.html',
+  styleUrls: ['./ecodrive-chart.component.scss']
 })
-export class SafetyChartComponent implements OnInit {
+export class EcodriveChartComponent implements OnInit {
 
   @Input() regex;
   @Input() set popup(value: boolean) {
     this.popup_ = value;
     if (this.popup_ === true) {
       !this.regex ? this.regex = '$' : this.regex;
-      this.safetyService.listSafetyPoints(1, 9999, this.regex).subscribe((value) => {
+      this.ecoService.listEcoPoints(1, 9999, this.regex).subscribe((value) => {
         let labels: string[] = [];
         let rate: number[] = [];
         let tracks: number[] = [];
@@ -97,7 +96,7 @@ export class SafetyChartComponent implements OnInit {
   multiAxisOptions: any;
   popup_ = false;
 
-  constructor(private safetyService: SafetyService) { }
+  constructor(private ecoService: EcoService) { }
 
   ngOnInit(): void {
   }
