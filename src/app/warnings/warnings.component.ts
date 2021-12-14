@@ -3,7 +3,6 @@ import { DatePipe } from '@angular/common';
 import {NotificationService, Warnings} from "../services/notification.service";
 import {PageService} from "../services/page.service";
 import {Router} from "@angular/router";
-import {TrackService} from "../services/track.service";
 
 @Component({
   selector: 'app-warnings',
@@ -22,6 +21,7 @@ export class WarningsComponent implements OnInit {
   page!: number;
   pageMax!: number;
   pageSize = 6;
+  complete!: boolean;
 
   ngOnInit(): void {
     this.pageService.getLoginStatus().subscribe(value => {
@@ -35,6 +35,7 @@ export class WarningsComponent implements OnInit {
   }
 
   public list(page: number): void {
+    this.complete = false;
     if (page >= 1) {
       this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
       this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
@@ -50,6 +51,12 @@ export class WarningsComponent implements OnInit {
             });
           }
         }
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
     }
   }

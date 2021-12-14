@@ -16,11 +16,17 @@
       <input type="date" [(ngModel)]="dateFromValue" (change)="list(1)">
     </div>
   </div>
-  <div id="no-tracks" *ngIf="!listOfTracks">
+
+  <div class="no-data" *ngIf="!complete">
+    <div class="lds-dual-ring"></div>
+  </div>
+
+  <div id="no-tracks" *ngIf="complete && !listOfTracks">
     Brak tras w danym przedziale czasowym.
   </div>
+
   <div id="table">
-    <table *ngIf="listOfTracks">
+    <table *ngIf="complete && listOfTracks">
       <tr id="firstRow">
         <td>Skąd</td>
         <td>Dokąd</td>

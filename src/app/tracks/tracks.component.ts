@@ -21,6 +21,7 @@ export class TracksComponent implements OnInit {
   page!: number;
   pageMax!: number;
   pageSize = 6;
+  complete!: boolean;
 
   constructor(private trackService: TrackService, private pageService: PageService, public datePipe: DatePipe,
               private route: ActivatedRoute, private router: Router) { }
@@ -37,6 +38,7 @@ export class TracksComponent implements OnInit {
   }
 
   public list(page: number): void {
+    this.complete = false;
     if (page >= 1) {
       this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
       this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
@@ -59,6 +61,12 @@ export class TracksComponent implements OnInit {
               });
             }
           }
+        },
+        () => {
+          this.complete = true;
+        },
+        () => {
+          this.complete = true;
         });
       });
     }

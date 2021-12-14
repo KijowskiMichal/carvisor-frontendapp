@@ -22,6 +22,7 @@ export class ReportsComponent implements OnInit {
   page!: number;
   pageMax!: number;
   pageSize = 10;
+  complete!: boolean;
 
   addReportPopup: boolean;
 
@@ -35,6 +36,7 @@ export class ReportsComponent implements OnInit {
   }
 
   public list(page: number, regex: string): void {
+    this.complete = false;
     if (regex === '') {
       regex = '$';
     }
@@ -45,6 +47,12 @@ export class ReportsComponent implements OnInit {
           this.page = value.page;
           this.pageMax = value.pageMax;
         }
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
     }
   }

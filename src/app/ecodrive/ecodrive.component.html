@@ -14,12 +14,16 @@
     </div>
   </div>
 
-  <div class="no-data" *ngIf="!listOfUsers">
+  <div class="no-data" *ngIf="!complete">
+    <div class="lds-dual-ring"></div>
+  </div>
+
+  <div class="no-data" *ngIf="complete && !listOfUsers">
     Brak użytkowników.
   </div>
 
   <div id="table">
-    <table *ngIf="listOfUsers">
+    <table *ngIf="complete && listOfUsers">
       <tr id="firstRow">
         <td>Ocena</td>
         <td>Kierowca</td>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute} from "@angular/router";
 import {UserInfo, UserService} from "../services/user.service";
 
 @Component({
@@ -13,19 +12,27 @@ export class EditUserComponent implements OnInit {
   private routeSub!: Subscription;
   private id!:number;
   userInfo!: UserInfo;
-  constructor(private userService: UserService, private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   popupText = "Pomyślnie zaktualizowano.";
   popupReset = false;
   popupOk = false;
   popupFail = false;
   popupDelete = false;
+  complete!: boolean;
 
   ngOnInit(): void {
+    this.complete = false;
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.userService.getUserInfo(this.id).subscribe(value => {
         this.userInfo = value;
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
     });
   }

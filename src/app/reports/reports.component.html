@@ -62,12 +62,16 @@
     </div>
   </div>
 
-  <div class="no-data" *ngIf="!listOfReports">
+  <div class="no-data" *ngIf="!complete">
+    <div class="lds-dual-ring"></div>
+  </div>
+
+  <div class="no-data" *ngIf="complete && !listOfReports">
     Brak raportów.
   </div>
 
   <div id="table">
-    <table *ngIf="listOfReports">
+    <table *ngIf="complete && listOfReports">
       <tr id="firstRow">
         <td>Nazwa</td>
         <td>Opis</td>

@@ -18,6 +18,7 @@ export class EcodriveComponent implements OnInit {
   userPopup: boolean;
   chartPopup: boolean;
   userId: number;
+  complete!: boolean;
 
   ngOnInit(): void {
     this.pageService.getLoginStatus().subscribe(value => {
@@ -29,6 +30,7 @@ export class EcodriveComponent implements OnInit {
   }
 
   public list(page: number, regex: string): void {
+    this.complete = false;
     if (regex === '') {
       regex = '$';
     }
@@ -39,6 +41,12 @@ export class EcodriveComponent implements OnInit {
           this.page = value.page;
           this.pageMax = value.pageMax;
         }
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
     }
   }

@@ -65,60 +65,68 @@
   </div>
 </div>
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
-<div class="main" *ngIf="userInfo">
-  <div id="content">
-    <div class="panel" >
-      <div class="title">
-        <i class="far fa-user"></i>
-        Dane użytkownika
-      </div>
-      <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
-      <div class="logo" [ngStyle]="{'background-image': 'url('+userInfo.image+')'}">
-        <div (click)="fileInput.click()">
-          <i class="far fa-pen"></i>
-          Edytuj zdjęcie
-        </div>
-      </div>
-      <div class="editContent">
-        <div class="inputWrapper">
-          <i class="far fa-user"></i>
-          <input type="text" placeholder="Imię i nazwisko" title="Imię i nazwisko, tylko litery, dwa człony, od 2 do 30 znaków." value="{{userInfo.name}}" #name>
-        </div>
-      </div>
-      <div class="editContent">
-        <div class="inputWrapper">
-          <i class="far fa-phone"></i>
-          <input type="text" placeholder="Telefon" title="Telefon, 9 cyfr bez spacji, znaków specjalnych i numeru kierunkowego." value="{{userInfo.phoneNumber}}" #phone>
-        </div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="title">
-        <i class="far fa-map-marker-alt"></i>
-        Strefy
-      </div>
-      <div class="editContent">
-        <div class="inputWrapper">
-          <i class="far fa-search"></i>
-          <input type="text" placeholder="Szukaj">
-        </div>
-      </div>
-    </div>
+
+<div class="main">
+
+  <div class="loading" *ngIf="!complete">
+    <div class="lds-dual-ring"></div>
   </div>
-  <div id="buttons">
-    <div id="acceptButton" (click)="sendData(name, phone)">
-      Aktualizuj
-    </div>
-    <a [routerLink]="['/users']" >
-      <div id="cancelButton">
-        Anuluj
+
+  <div *ngIf="complete && userInfo">
+    <div id="content">
+      <div class="panel" >
+        <div class="title">
+          <i class="far fa-user"></i>
+          Dane użytkownika
+        </div>
+        <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <div class="logo" [ngStyle]="{'background-image': 'url('+userInfo.image+')'}">
+          <div (click)="fileInput.click()">
+            <i class="far fa-pen"></i>
+            Edytuj zdjęcie
+          </div>
+        </div>
+        <div class="editContent">
+          <div class="inputWrapper">
+            <i class="far fa-user"></i>
+            <input type="text" placeholder="Imię i nazwisko" title="Imię i nazwisko, tylko litery, dwa człony, od 2 do 30 znaków." value="{{userInfo.name}}" #name>
+          </div>
+        </div>
+        <div class="editContent">
+          <div class="inputWrapper">
+            <i class="far fa-phone"></i>
+            <input type="text" placeholder="Telefon" title="Telefon, 9 cyfr bez spacji, znaków specjalnych i numeru kierunkowego." value="{{userInfo.phoneNumber}}" #phone>
+          </div>
+        </div>
       </div>
-    </a>
-    <div id="deleteButton" (click)="popupDelete=true">
-      Usuń
+      <div class="panel">
+        <div class="title">
+          <i class="far fa-map-marker-alt"></i>
+          Strefy
+        </div>
+        <div class="editContent">
+          <div class="inputWrapper">
+            <i class="far fa-search"></i>
+            <input type="text" placeholder="Szukaj">
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="resetButton" (click)="popupReset=true">
-      Resetuj hasło
+    <div id="buttons">
+      <div id="acceptButton" (click)="sendData(name, phone)">
+        Aktualizuj
+      </div>
+      <a [routerLink]="['/users']" >
+        <div id="cancelButton">
+          Anuluj
+        </div>
+      </a>
+      <div id="deleteButton" (click)="popupDelete=true">
+        Usuń
+      </div>
+      <div id="resetButton" (click)="popupReset=true">
+        Resetuj hasło
+      </div>
     </div>
   </div>
 </div>

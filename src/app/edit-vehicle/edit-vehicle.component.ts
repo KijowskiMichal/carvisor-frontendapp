@@ -19,12 +19,20 @@ export class EditVehicleComponent implements OnInit {
   popupOk = false;
   popupFail = false;
   popupDelete = false;
+  complete!: boolean;
 
   ngOnInit(): void {
+    this.complete = false;
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.vehicleService.getDeviceInfo(this.id).subscribe(value => {
         this.deviceInfo = value;
+      },
+      () => {
+        this.complete = true;
+      },
+      () => {
+        this.complete = true;
       });
       this.vehicleService.getConfiguration(this.id).subscribe(value => {
         this.configuration = value;

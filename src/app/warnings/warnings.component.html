@@ -14,12 +14,16 @@
     </div>
   </div>
 
-  <div id="no-data" *ngIf="!Warnings">
+  <div class="no-data" *ngIf="!complete">
+    <div class="lds-dual-ring"></div>
+  </div>
+
+  <div id="no-data" *ngIf="complete && !Warnings">
     Brak powiadomień w danym przedziale czasowym.
   </div>
 
   <div id="table">
-    <table *ngIf="Warnings">
+    <table *ngIf="complete && Warnings">
       <tr id="firstRow">
         <td class="col-notification">
           Awaria / Naprawa
