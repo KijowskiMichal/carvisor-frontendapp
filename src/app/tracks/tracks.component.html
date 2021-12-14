@@ -36,8 +36,8 @@
         <td></td>
       </tr>
       <tr *ngFor="let track of listOfTracks.listOfTracks">
-        <td>{{track.from}}</td>
-        <td>{{track.to}}</td>
+        <td>{{!track.fromEncoded ? "Wczytywanie..." : track.fromEncoded}}</td>
+        <td>{{!track.toEncoded ? "Wczytywanie..." : track.toEncoded}}</td>
         <td>{{track.start * 1000 | date:'HH:mm'}}</td>
         <td>{{track.end == 0 ? '------' : track.end * 1000 | date:'HH:mm'}}</td>
         <td>{{track.distance / 1000 | number : '1.2-2'}} km</td>

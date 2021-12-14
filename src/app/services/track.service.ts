@@ -28,6 +28,8 @@ export interface ListOfTrack {
   end: number;
   id: number;
   to: string;
+  fromEncoded: string;
+  toEncoded: string;
 }
 
 export interface ListOfTracks {

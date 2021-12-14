@@ -32,6 +32,7 @@ export interface ListOfWarning {
   deviceID: number;
   userName: string;
   deviceLicensePlate: string;
+  locationEncoded: string;
 }
 
 export interface Warnings {
@@ -49,6 +50,7 @@ export interface ListOfNotification {
   deviceID: number;
   userName: string;
   deviceLicensePlate: string;
+  locationEncoded: string;
 }
 
 export interface Notifications {

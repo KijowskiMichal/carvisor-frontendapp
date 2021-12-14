@@ -53,11 +53,11 @@ export class TracksComponent implements OnInit {
             {
               var coords = track.from.split(";");
               this.trackService.getReverseGeocoding(coords).subscribe(value => {
-                track.from =  value.address;
+                track.fromEncoded =  value.address;
               });
               coords = track.to.split(";");
               this.trackService.getReverseGeocoding(coords).subscribe(value => {
-                track.to =  value.address;
+                track.toEncoded =  value.address;
               });
             }
           }

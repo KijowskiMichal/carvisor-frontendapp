@@ -47,7 +47,7 @@ export class WarningsComponent implements OnInit {
           for (let warning of this.Warnings.listOfNotification) {
             let coords = warning.location.split(";");
             this.notificationService.getReverseGeocoding(coords).subscribe(value => {
-              warning.location =  value.address;
+              warning.locationEncoded =  value.address;
             });
           }
         }

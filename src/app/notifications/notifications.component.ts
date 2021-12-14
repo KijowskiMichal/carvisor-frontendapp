@@ -47,7 +47,7 @@ export class NotificationsComponent implements OnInit {
           for (let notification of this.Notifications.listOfNotification) {
             let coords = notification.location.split(";");
             this.notificationService.getReverseGeocoding(coords).subscribe(value => {
-              notification.location =  value.address;
+              notification.locationEncoded =  value.address;
             });
           }
         }

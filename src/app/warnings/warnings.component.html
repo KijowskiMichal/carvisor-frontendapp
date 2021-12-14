@@ -54,7 +54,7 @@
           </div>
         </td>
         <td>{{warning.date * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
-        <td>{{warning.location}}</td>
+        <td>{{!warning.locationEncoded ? "Wczytywanie..." : warning.locationEncoded}}</td>
       </tr>
     </table>
   </div>
