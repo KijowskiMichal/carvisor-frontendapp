@@ -17,8 +17,13 @@
 
 #panelLogo {
   width: 100%;
-  margin-bottom: 5.55rem;
+  height: 10vh;
+  margin-bottom: 3.33rem;
   margin-top: 2.22rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('./../../assets/logo.png');
+  box-sizing: content-box;
 }
 
 .menuItem {
