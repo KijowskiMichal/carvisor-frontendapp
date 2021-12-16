@@ -76,6 +76,7 @@ export class CalendarComponent implements OnInit {
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
+        this.editEventPopup = true;
       },
     },
     {
@@ -84,6 +85,7 @@ export class CalendarComponent implements OnInit {
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
         this.handleEvent('Deleted', event);
+        //this.deleteEvent();
       },
     },
   ];
@@ -95,6 +97,7 @@ export class CalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
   addEventPopup: boolean;
+  editEventPopup: boolean;
 
   constructor(private modal: NgbModal, private calendarService: CalendarService) {}
 
@@ -131,8 +134,8 @@ export class CalendarComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
+  deleteEvent(id: number) {
+    this.calendarService.deleteEvent(id).subscribe();
   }
 
   setView(view: CalendarView) {
@@ -162,4 +165,5 @@ export class CalendarComponent implements OnInit {
   updateTime() {
     this.updateEvent();
   }
+
 }

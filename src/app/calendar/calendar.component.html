@@ -1,5 +1,5 @@
 <app-leftpanel></app-leftpanel>
-<div [ngClass]="addEventPopup==true ? 'shutItDown' : ''"></div>
+<div [ngClass]="addEventPopup==true || editEventPopup==true ? 'shutItDown' : ''"></div>
 <div class="main-map">
   <div class="header">
     <div id="header-wrapper">
@@ -40,3 +40,4 @@
   </div>
 </div>
 <app-add-event [(popup)]="addEventPopup" (eventAdd)="updateEvent()"></app-add-event>
+<app-edit-event [(popup)]="editEventPopup"></app-edit-event>

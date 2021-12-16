@@ -41,6 +41,7 @@ import { SummaryComponent } from './summary/summary.component';
 import {SafetyChartComponent} from "./safety-chart/safety-chart.component";
 import {ChartModule} from 'primeng/chart';
 import { EcodriveChartComponent } from './ecodrive-chart/ecodrive-chart.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { EcodriveChartComponent } from './ecodrive-chart/ecodrive-chart.componen
     SummaryComponent,
     SafetyChartComponent,
     EcodriveChartComponent,
+    EditEventComponent,
 
   ],
   imports: [

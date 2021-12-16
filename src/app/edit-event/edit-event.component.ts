@@ -1,23 +1,13 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {CalendarService, ListNames} from "../services/calendar.service";
 
 @Component({
-  selector: 'app-add-event',
-  templateUrl: './add-event.component.html',
-  styleUrls: ['./add-event.component.scss']
+  selector: 'app-edit-event',
+  templateUrl: './edit-event.component.html',
+  styleUrls: ['./edit-event.component.scss']
 })
-export class AddEventComponent implements OnInit, AfterViewInit {
+export class EditEventComponent implements OnInit {
 
   @Input() popup = false;
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -45,15 +35,13 @@ export class AddEventComponent implements OnInit, AfterViewInit {
   checkbox!: boolean;
   deviceID = 0;
   selected: ListNames;
+  eventId: number;
 
   ngAfterViewInit() {
     this.popupTrigger = this.toggleButton.nativeElement;
   }
 
   ngOnInit(): void {
-    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.showDevices();
   }
 
   closeWindow() {
@@ -131,7 +119,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
     }
     if (!allClear) return;
     //others
-    this.calendarService.addEvent(this.dateFromTimestamp, this.dateToTimestamp, nameValue, descriptionValue, typeValue,
+    this.calendarService.putEvent(this.eventId, this.dateFromTimestamp, this.dateToTimestamp, nameValue, descriptionValue, typeValue,
       this.selected.id,true, this.checkbox).subscribe(
       () => {
       },
@@ -146,7 +134,6 @@ export class AddEventComponent implements OnInit, AfterViewInit {
         this.checkbox = false;
         this.eventAdd.emit();
       });
-
-  }
+    }
 
 }
