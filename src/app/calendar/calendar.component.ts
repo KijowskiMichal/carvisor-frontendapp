@@ -26,7 +26,6 @@ import {
 } from 'angular-calendar';
 import {CalendarService, EventDetail} from "../services/calendar.service";
 
-
 const colors: any = {
   red: {
     primary: '#ef476f',
@@ -91,6 +90,7 @@ export class CalendarComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
+  eventsOrigin: EventDetail[] = [];
   events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = false;
@@ -145,13 +145,16 @@ export class CalendarComponent implements OnInit {
 
   updateEvent() {
     this.calendarService.getEvents(this.viewDate.getMonth() + 1, this.viewDate.getFullYear()).subscribe((events) => {
+      this.eventsOrigin = events;
       this.events = events.map((event) => {
-        event.color = colors.red;
-        //event.color = colors[event.color];
-        event.start = new Date(event.start as number * 1000);
-        event.end = new Date(event.end as number * 1000);
-        event.title = event.title+" - "+event.description;
-        return event;
+        return {
+          color: colors.red,
+          start: new Date(event.end as number * 1000),
+          end: new Date(event.end as number * 1000),
+          title: event.title+" - "+event.description,
+          actions: this.actions,
+          draggable: event.draggable,
+        }
       }) as unknown as CalendarEvent[];
     })
   }
