@@ -11,11 +11,11 @@ export class NotificationService {
   }
 
   public listNotifications(page: number, pageSize: number, dateFrom: number, dateTo: number): Observable<Notifications> {
-    return this.http.get<Notifications>('API/notification/getNotification/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
+    return this.http.get<Notifications>('/API/notification/getNotification/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
   }
 
   public listWarnings(page: number, pageSize: number, dateFrom: number, dateTo: number): Observable<Warnings> {
-    return this.http.get<Warnings>('API/errors/getErrors/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
+    return this.http.get<Warnings>('/API/errors/getErrors/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
   }
 
   public getReverseGeocoding(coords: string[]): Observable<Address> {
