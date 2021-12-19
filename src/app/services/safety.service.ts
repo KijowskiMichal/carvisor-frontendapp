@@ -11,11 +11,11 @@ export class SafetyService {
   }
 
   public listSafetyPoints(page: number, pageSize: number, regex: string): Observable<ListOfSafety> {
-    return this.http.get<ListOfSafety>('API/safetyPoints/list/' + page + '/' + pageSize + '/' + regex + '/');
+    return this.http.get<ListOfSafety>('/API/safetyPoints/list/' + page + '/' + pageSize + '/' + regex + '/');
   }
 
   public getUserPoints(id: number, dateFrom: number, dateTo: number): Observable<UserPoints> {
-    return this.http.get<UserPoints>('API/safetyPoints/getUserDetails/' + id + '/' + dateFrom + '/' + dateTo + '/');
+    return this.http.get<UserPoints>('/API/safetyPoints/getUserDetails/' + id + '/' + dateFrom + '/' + dateTo + '/');
   }
 }
 
