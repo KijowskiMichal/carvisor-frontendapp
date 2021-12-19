@@ -36,7 +36,7 @@ export class ReportService {
   }
 
   public testowyRaport(): Observable<any> {
-    return this.http.get('API/demo/getPdf', {responseType: 'arraybuffer'});
+    return this.http.get('/API/demo/getPdf', {responseType: 'arraybuffer'});
   }
 
   public getReport(id: number): Observable<any> {
