@@ -12,7 +12,7 @@ export class SummaryService {
   }
 
   public getSummary(dateFrom: number, dateTo: number, page: number, pageSize: number): Observable<Summary> {
-    return this.http.get<Summary>('API/ranking/getUserSummary/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
+    return this.http.get<Summary>('/API/ranking/getUserSummary/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
   }
 
 }
