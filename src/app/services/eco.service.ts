@@ -15,7 +15,7 @@ export class EcoService {
   }
 
   public getUserPoints(id: number, dateFrom: number, dateTo: number): Observable<UserPoints> {
-    return this.http.get<UserPoints>('API/ecoPoints/getUserDetails/' + id + '/' + dateFrom + '/' + dateTo + '/');
+    return this.http.get<UserPoints>('/API/ecoPoints/getUserDetails/' + id + '/' + dateFrom + '/' + dateTo + '/');
   }
 
 }
