@@ -1,0 +1,87 @@
+<app-leftpanel></app-leftpanel>
+<div [ngClass]="addZonePopup==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupDelete" >
+  <div class="popup-title">
+    Uwaga
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Czy na pewno chcesz usunąć tę strefę?
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="deleteZone()">
+      Tak
+    </div>
+    <div class="popup-red" (click)="popupDelete=false">
+      Nie
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupDelete==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie usunięto strefę.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupOk=false;refresh()">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div class="main">
+  <div id="searchBar">
+    <div id="searchBarWrapper">
+      <i class="far fa-search"></i>
+      <input type="text" placeholder="Szukaj" (keydown.enter)="list(search.value)" #search>
+    </div>
+  </div>
+
+  <div class="header">
+    <div id="generate-button" (click)="addZonePopup=true">
+      Nowa strefa
+    </div>
+  </div>
+
+  <div class="no-data" *ngIf="!complete">
+    <div class="lds-dual-ring"></div>
+  </div>
+
+  <div class="no-data" *ngIf="complete && !listOfZones">
+    Brak stref.
+  </div>
+
+  <div id="table">
+    <table *ngIf="complete && listOfZones">
+      <tr id="firstRow">
+        <td>Nazwa strefy</td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let zone of listOfZones">
+        <td>{{zone.name}}</td>
+        <td class="icons"><i class="far fa-pen"></i><i class="far fa-trash-alt" (click)="popupDelete=true; idToDelete=zone.id"></i></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+<app-add-zone [(popup)]="addZonePopup"></app-add-zone>
