@@ -39,13 +39,13 @@
     <div class="user-popup-line"></div>
   </div>
   <div id="panel-left">
-    <div class="popup-text">
+    <div class="popup-text-zone">
       Kliknij w dowolnym miejscu na mapie aby utworzyć strefę lub ją przesunąć.
     </div>
     <div class="editContent">
       <div class="inputWrapper">
         <i class="far fa-pen"></i>
-        <input type="text" placeholder="Nazwa" title="Nazwa strefy, od 3 do 30 znaków." #name>
+        <input type="text" placeholder="Nazwa" title="Nazwa strefy, od 3 do 30 znaków." [(ngModel)]="zoneName" #name>
       </div>
     </div>
     <div class="editContent">

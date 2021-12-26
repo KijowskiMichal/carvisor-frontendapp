@@ -151,7 +151,7 @@ span {
   transform: translate(-50%, -50%);
 }
 
-.popup-text {
+.popup-text-zone {
   @include manropeFont(normal, 1rem);
   text-align: left;
   color: $ColorGrayDark;

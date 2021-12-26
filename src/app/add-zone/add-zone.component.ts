@@ -34,6 +34,7 @@ export class AddZoneComponent implements OnInit {
   dateTimestamp!: number;
   radiusValue: string = '1000';
   circle: any;
+  zoneName: string;
   posY: string;
   posX: string;
 
@@ -89,6 +90,7 @@ export class AddZoneComponent implements OnInit {
     this.popupChange.emit(this.popup);
     this.posY = null;
     this.posX = null;
+    this.zoneName = null;
     this.radiusValue = '1000';
     this.map.removeLayer(this.circle);
     this.map.getView().setCenter(ol.proj.fromLonLat([this.longitude, this.latitude]));
