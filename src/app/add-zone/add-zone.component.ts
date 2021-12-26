@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ZoneService} from "../services/zone.service";
 import {listNames, Rate} from "../services/map.service";
 declare var ol: any;
@@ -147,6 +147,10 @@ export class AddZoneComponent implements OnInit {
         this.closeWindow();
         this.popupOk = true;
       });
+  }
+
+  public refresh() {
+    window.location.reload();
   }
 
 }

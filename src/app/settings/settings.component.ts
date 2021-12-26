@@ -15,7 +15,6 @@ export class SettingsComponent implements OnInit {
   popupOk = false;
   popupFail = false;
   addUserPopup: boolean;
-  addZonePopup: boolean;
 
   ngOnInit(): void {
     this.vehicleService.getGlobalConfiguration().subscribe(value => {
