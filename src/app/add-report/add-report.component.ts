@@ -28,7 +28,7 @@ export class AddReportComponent implements OnInit {
 
   nameValue!: string;
   descriptionValue!: string;
-  typeValue!: string;
+  typeValue = "";
 
   checkbox!: boolean;
 
@@ -51,17 +51,16 @@ export class AddReportComponent implements OnInit {
   }
 
   closeWindow() {
-    this.popup = !(this.popup);
-    this.popupChange.emit(this.popup);
-
-    this.nameValue = "";
-    this.descriptionValue = "";
+    this.nameValue = null;
+    this.descriptionValue = null;
     this.typeValue = "";
     this.selectedUsers.clear();
     this.page = 0;
     this.checkbox = false;
     this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.popup = !(this.popup);
+    this.popupChange.emit(this.popup);
   }
 
   changeSearch() {

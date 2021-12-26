@@ -44,17 +44,17 @@
     <div class="panel">
       <div class="inputWrapper inputWrapperMargin">
         <i class="far fa-pen"></i>
-        <input type="text" placeholder="Nazwa" title="Nazwa raportu, od 3 do 30 znaków." #name>
+        <input type="text" placeholder="Nazwa" title="Nazwa raportu, od 3 do 30 znaków." [(ngModel)]="nameValue" #name>
       </div>
       <div class="inputWrapper inputWrapperMargin">
         <i class="far fa-pen"></i>
-        <textarea placeholder="Opis" title="Opis raportu, od 3 do 60 znaków." #description></textarea>
+        <textarea placeholder="Opis" title="Opis raportu, od 3 do 60 znaków." [(ngModel)]="descriptionValue" #description></textarea>
       </div>
       <div class="inputWrapper inputWrapperMargin">
         <i class="far fa-info-circle"></i>
       </div>
       <div class="comboBoxWrapper inputWrapperMargin">
-        <select #type>
+        <select [(ngModel)]="typeValue" #type>
           <option value="" disabled selected hidden>Typ raportu</option>
           <option value="TRACK">Raport tras</option>
           <option value="ECO">Raport ekojazdy</option>

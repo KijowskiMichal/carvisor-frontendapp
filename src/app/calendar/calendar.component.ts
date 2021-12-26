@@ -85,7 +85,7 @@ export class CalendarComponent implements OnInit {
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
         this.handleEvent('Deleted', event);
-        //this.deleteEvent();
+        this.deleteEvent(Number(event.id));
       },
     },
   ];
@@ -151,7 +151,8 @@ export class CalendarComponent implements OnInit {
       this.eventsOrigin = events;
       this.events = events.map((event) => {
         return {
-          color: colors.red,
+          id: event.id,
+          color: colors[event.color],
           start: new Date(event.end as number * 1000),
           end: new Date(event.end as number * 1000),
           title: event.title+" - "+event.description,

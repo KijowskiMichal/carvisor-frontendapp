@@ -42,11 +42,11 @@
   <div class="panel">
     <div class="inputWrapper inputWrapperMargin">
       <i class="far fa-pen"></i>
-      <input type="text" placeholder="Nazwa" title="Nazwa wydarzenia, od 3 do 30 znaków." #name>
+      <input type="text" placeholder="Nazwa" title="Nazwa wydarzenia, od 3 do 30 znaków." [(ngModel)]="eventName" #name>
     </div>
     <div class="inputWrapper inputWrapperMargin">
       <i class="far fa-pen"></i>
-      <textarea placeholder="Opis" title="Opis wydarzenia, od 3 do 60 znaków." #description></textarea>
+      <textarea placeholder="Opis" title="Opis wydarzenia, od 3 do 60 znaków." [(ngModel)]="eventDesc" #description></textarea>
     </div>
     <div class="inputWrapper inputWrapperMargin">
       <i class="far fa-calendar-alt"></i>
@@ -60,7 +60,7 @@
       <i class="far fa-info-circle"></i>
     </div>
     <div class="comboBoxWrapper inputWrapperMargin">
-      <select #type>
+      <select [(ngModel)]="eventType" #type>
         <option value="" disabled selected hidden>Typ wydarzenia</option>
         <option value="SERVICE">Serwis pojazdu</option>
         <option value="CLEANING">Sprzątanie pojazdu</option>

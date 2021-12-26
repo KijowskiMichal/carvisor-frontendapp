@@ -46,6 +46,10 @@ export class AddEventComponent implements OnInit, AfterViewInit {
   deviceID = 0;
   selected: ListNames;
 
+  eventName!: string;
+  eventDesc!: string;
+  eventType = "";
+
   ngAfterViewInit() {
     this.popupTrigger = this.toggleButton.nativeElement;
   }
@@ -57,6 +61,14 @@ export class AddEventComponent implements OnInit, AfterViewInit {
   }
 
   closeWindow() {
+    this.eventName = null;
+    this.eventDesc = null;
+    this.eventType = "";
+    this.dateFromValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.deviceID = 0;
+    this.selected = null;
+    this.checkbox = false;
     this.popup = !(this.popup);
     this.popupChange.emit(this.popup);
   }
