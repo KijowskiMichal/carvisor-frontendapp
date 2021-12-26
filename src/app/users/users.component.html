@@ -1,9 +1,16 @@
 <app-leftpanel></app-leftpanel>
+<div [ngClass]="addUserPopup==true ? 'shutItDown' : ''"></div>
 <div class="main">
   <div id="searchBar">
     <div id="searchBarWrapper">
       <i class="far fa-search"></i>
       <input type="text" placeholder="Szukaj" (keydown.enter)="list(1, search.value)" #search>
+    </div>
+  </div>
+
+  <div class="header">
+    <div id="generate-button" (click)="addUserPopup=true">
+      Nowy użytkownik
     </div>
   </div>
 
@@ -62,3 +69,4 @@
     </div>
   </div>
 </div>
+<app-add-user [(popup)]="addUserPopup"></app-add-user>

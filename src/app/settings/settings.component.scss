@@ -7,6 +7,13 @@
   float: left;
 }
 
+.panel2 {
+  box-sizing: border-box;
+  width: 50%;
+  padding: 1.11rem;
+  float: left;margin-top: 5.77rem;
+}
+
 #title > i {
   font-size: 1.67rem;
   color: $ColorGrayBlueish;
@@ -21,21 +28,6 @@
   box-sizing: border-box;
   margin-top: 4.44rem;
   margin-bottom: 8.33rem;
-}
-
-.addButton {
-  background: $ColorBlue;
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));  border-radius: 0.72rem;
-  @include manropeFont(500, 1rem);
-  line-height: 2.11rem;
-  color: $ColorWhite;
-  box-sizing: border-box;
-  padding: 0.56rem 1.11rem;
-  text-align: center;
-  cursor: pointer;
-  width: 40%;
-  margin-left: 30%;
-  margin-bottom: 2.78rem;
 }
 
 .acceptButton {
@@ -54,10 +46,6 @@
   margin-top: 5.56rem;
 }
 
-.addButton:hover {
-  background: $ColorBlueHover;
-}
-
 .acceptButton:hover {
   background: $ColorGreenHover;
 }
@@ -68,16 +56,6 @@
   margin-bottom: 2.22rem;
   padding-left: 5%;
   box-sizing: border-box;
-}
-
-.editButton {
-  width: 90%;
-  text-align: center;
-  margin-top: 5.56rem;
-  margin-bottom: 2.22rem;
-  padding-left: 5%;
-  box-sizing: border-box;
-  float: left;
 }
 
 #editButton2 {

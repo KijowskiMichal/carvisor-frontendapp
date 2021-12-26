@@ -43,7 +43,7 @@
     </div>
   </div>
 </div>
-<div [ngClass]="popupFail==true || addUserPopup==true ? 'shutItDown' : ''"></div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
 <div class="main">
     <div class="panel">
       <div id="title">
@@ -66,12 +66,7 @@
         Aktualizuj hasło
       </div>
     </div>
-    <div class="panel" *ngIf="globalConfiguration">
-      <div class="editButton">
-        <div class="addButton" (click)="addUserPopup=true">
-          Dodaj użytkownika
-        </div>
-      </div>
+    <div class="panel2" *ngIf="globalConfiguration">
       <div class="set">
         <div class="smallTitle">
           Czas przechowywania historii:
@@ -122,4 +117,3 @@
       </div>
     </div>
 </div>
-<app-add-user [(popup)]="addUserPopup"></app-add-user>

@@ -117,6 +117,9 @@ export class AddUserComponent implements OnInit {
           this.closeWindow();
           this.popupOk = true;
         });
+  }
 
+  public refresh() {
+    window.location.reload();
   }
 }

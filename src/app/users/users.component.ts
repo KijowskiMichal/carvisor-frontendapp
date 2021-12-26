@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
   pageMax!: number;
   pageSize = 6;
   complete!: boolean;
+  addUserPopup: boolean;
 
   ngOnInit(): void
   {
