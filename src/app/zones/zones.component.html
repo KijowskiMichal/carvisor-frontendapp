@@ -74,10 +74,14 @@
     <table *ngIf="complete && listOfZones">
       <tr id="firstRow">
         <td>Nazwa strefy</td>
+        <td>Lokalizacja</td>
+        <td>Promień</td>
         <td></td>
       </tr>
       <tr *ngFor="let zone of listOfZones">
         <td>{{zone.name}}</td>
+        <td>{{!zone.location ? "Wczytywanie..." : zone.location}}</td>
+        <td>{{zone.radius}} m</td>
         <td class="icons"><i class="far fa-pen"></i><i class="far fa-trash-alt" (click)="popupDelete=true; idToDelete=zone.id"></i></td>
       </tr>
     </table>

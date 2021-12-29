@@ -39,6 +39,12 @@ export class ZonesComponent implements OnInit {
     }
     this.zoneService.getZones(regex).subscribe(value => {
         this.listOfZones = value;
+        for (let zone of this.listOfZones) {
+          let coords = [zone.pointX, zone.pointY];
+          this.zoneService.getReverseGeocoding(coords).subscribe(value => {
+            zone.location =  value.address;
+          });
+        }
       },
       () => {
         this.complete = true;

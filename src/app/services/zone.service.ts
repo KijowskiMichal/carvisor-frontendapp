@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Address} from "./notification.service";
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,10 @@ export class ZoneService {
   public deleteZone(id: number): Observable<unknown> {
     return this.http.delete('/API/zones/remove/' + id + '/');
   }
+
+  public getReverseGeocoding(coords: string[]): Observable<Address> {
+    return this.http.get<Address>('/API/track/reverseGeocoding/' + coords[0] + '/' + coords[1] + '/');
+  }
 }
 
 export interface ZoneDesc {
@@ -51,6 +56,10 @@ export interface ZoneDesc {
 }
 
 export interface Zones {
-  id: number,
+  id: number;
   name: string;
+  pointX: string;
+  pointY: string;
+  radius: number;
+  location: string;
 }
