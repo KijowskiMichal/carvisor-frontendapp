@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {UserService} from "../services/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-add-user',
@@ -109,9 +110,18 @@ export class AddUserComponent implements OnInit {
     this.userService.postNewUser(this.photo, nameValue, surnameValue, loginValue, Number(phoneValue), password1Value).subscribe(
         () => {
         },
-        () => {
-          this.closeWindow();
-          this.popupFail = true;
+        (error: HttpErrorResponse) => {
+          if (error.status === 406) {
+            login.focus();
+            login.classList.add('error');
+            login.value = "";
+            login.placeholder = "Podany login jest zajęty";
+            return;
+          }
+          else {
+            this.closeWindow();
+            this.popupFail = true;
+          }
         },
         () => {
           this.closeWindow();
