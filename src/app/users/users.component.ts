@@ -28,11 +28,13 @@ export class UsersComponent implements OnInit {
     }
     if (page >= 1) {
       this.userService.getListOfUsers(page, this.pageSize, regex).subscribe(value => {
-        if (page <= value.pageMax)
-        {
+        if (page <= value.pageMax) {
           this.listOfUser = value;
           this.page = value.page;
           this.pageMax = value.pageMax;
+        }
+        else if (value.pageMax === 0) {
+          this.listOfUser = null;
         }
       },
       () => {

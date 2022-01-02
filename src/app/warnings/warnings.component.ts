@@ -43,6 +43,9 @@ export class WarningsComponent implements OnInit {
             });
           }
         }
+        else if (value.pageMax === 0) {
+          this.Warnings = null;
+        }
       },
       () => {
         this.complete = true;

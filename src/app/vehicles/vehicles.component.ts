@@ -28,11 +28,13 @@ export class VehiclesComponent implements OnInit {
     }
     if (page >= 1) {
       this.vehicleService.getListOfDevices(page, this.pageSize, regex).subscribe(value => {
-        if (page <= value.pageMax)
-        {
+        if (page <= value.pageMax) {
           this.listOfDevicesWrapper = value;
           this.page = value.page;
           this.pageMax = value.pageMax;
+        }
+        else if (value.pageMax === 0) {
+          this.listOfDevicesWrapper = null;
         }
       },
       () => {

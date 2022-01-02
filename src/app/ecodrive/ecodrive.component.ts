@@ -34,6 +34,9 @@ export class EcodriveComponent implements OnInit {
           this.page = value.page;
           this.pageMax = value.pageMax;
         }
+        else if (value.pageMax === 0) {
+          this.listOfUsers = null;
+        }
       },
       () => {
         this.complete = true;

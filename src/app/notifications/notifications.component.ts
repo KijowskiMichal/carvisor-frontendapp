@@ -43,6 +43,9 @@ export class NotificationsComponent implements OnInit {
             });
           }
         }
+        else if (value.pageMax === 0) {
+          this.Notifications = null;
+        }
       },
       () => {
         this.complete = true;

@@ -44,8 +44,7 @@ export class TracksComponent implements OnInit {
             this.listOfTracks = value;
             this.page = value.page;
             this.pageMax = value.pageMax;
-            for (let track of this.listOfTracks.listOfTracks)
-            {
+            for (let track of this.listOfTracks.listOfTracks) {
               var coords = track.from.split(";");
               this.trackService.getReverseGeocoding(coords).subscribe(value => {
                 track.fromEncoded =  value.address;
@@ -55,6 +54,9 @@ export class TracksComponent implements OnInit {
                 track.toEncoded =  value.address;
               });
             }
+          }
+          else if (value.pageMax === 0) {
+            this.listOfTracks = null;
           }
         },
         () => {
