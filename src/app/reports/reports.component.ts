@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 import {ReportService, ListOfReports} from "../services/report.service";
 
 @Component({
@@ -10,7 +8,7 @@ import {ReportService, ListOfReports} from "../services/report.service";
 })
 export class ReportsComponent implements OnInit {
 
-  constructor(private reportService: ReportService, private pageService: PageService, private router: Router) { }
+  constructor(private reportService: ReportService) { }
 
   popupOk = false;
   popupFail = false;
@@ -27,11 +25,6 @@ export class ReportsComponent implements OnInit {
   addReportPopup: boolean;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.list(1, '$');
   }
 

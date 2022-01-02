@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {NotificationService, Warnings} from "../services/notification.service";
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-warnings',
@@ -11,8 +9,7 @@ import {Router} from "@angular/router";
 })
 export class WarningsComponent implements OnInit {
 
-  constructor(private notificationService: NotificationService, private pageService: PageService,
-              private router: Router, public datePipe: DatePipe) { }
+  constructor(private notificationService: NotificationService, public datePipe: DatePipe) { }
   Warnings!: Warnings;
   dateFromValue!: string;
   dateFromTimestamp!: number;
@@ -24,11 +21,6 @@ export class WarningsComponent implements OnInit {
   complete!: boolean;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);

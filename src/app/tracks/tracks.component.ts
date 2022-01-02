@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ListOfTracks, TrackService} from "../services/track.service";
 import {PageService} from "../services/page.service";
@@ -24,14 +24,9 @@ export class TracksComponent implements OnInit {
   complete!: boolean;
 
   constructor(private trackService: TrackService, private pageService: PageService, public datePipe: DatePipe,
-              private route: ActivatedRoute, private router: Router) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);

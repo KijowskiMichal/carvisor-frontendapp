@@ -14,11 +14,6 @@ export class LoginComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (value.logged) {
-        this.router.navigate(['./users']);
-      }
-    });
   }
 
   signIn(login:any, password:any, user:any, key:any)
@@ -37,7 +32,7 @@ export class LoginComponent implements OnInit {
           (password as HTMLElement).setAttribute('placeholder', 'Błędne dane logowania!');
         },
         () => {
-          this.pageService.getNewLoginStatus().subscribe(value => {
+          this.pageService.getNewLoginStatus().subscribe(() => {
             this.router.navigate(['./users']);
           })
         });

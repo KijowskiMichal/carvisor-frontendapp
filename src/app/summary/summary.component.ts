@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {SummaryService, Summary} from "../services/summary.service";
 
@@ -11,8 +9,7 @@ import {SummaryService, Summary} from "../services/summary.service";
 })
 export class SummaryComponent implements OnInit {
 
-  constructor(private summaryService: SummaryService, private pageService: PageService,
-              private router: Router, public datePipe: DatePipe) { }
+  constructor(private summaryService: SummaryService, public datePipe: DatePipe) { }
 
   Summary!: Summary;
   dateFromValue!: string;
@@ -24,11 +21,6 @@ export class SummaryComponent implements OnInit {
   pageSize = 6;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ZoneService, Zones} from "../services/zone.service";
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-zones',
@@ -10,7 +8,7 @@ import {Router} from "@angular/router";
 })
 export class ZonesComponent implements OnInit {
 
-  constructor(private zoneService: ZoneService, private pageService: PageService, private router: Router) { }
+  constructor(private zoneService: ZoneService) { }
 
   popupOk = false;
   popupFail = false;
@@ -24,11 +22,6 @@ export class ZonesComponent implements OnInit {
   addZonePopup: boolean;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.list('$');
   }
 

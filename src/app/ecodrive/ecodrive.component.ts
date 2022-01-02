@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {PageService} from "../services/page.service";
 import {EcoService, ListOfEco} from "../services/eco.service";
 
 @Component({
@@ -10,7 +8,7 @@ import {EcoService, ListOfEco} from "../services/eco.service";
 })
 export class EcodriveComponent implements OnInit {
 
-  constructor(private ecoService: EcoService, private pageService: PageService, private router: Router) { }
+  constructor(private ecoService: EcoService) { }
   listOfUsers!: ListOfEco;
   page!: number;
   pageMax!: number;
@@ -21,11 +19,6 @@ export class EcodriveComponent implements OnInit {
   complete!: boolean;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.list(1, '$');
   }
 

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {ListOfDevicesWrapper, VehicleService} from "../services/vehicle.service";
-import {PageService} from "../services/page.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -16,14 +14,9 @@ export class VehiclesComponent implements OnInit {
   pageSize = 6;
   complete!: boolean;
 
-  constructor(private vehicleService: VehicleService, private pageService: PageService, private router: Router) { }
+  constructor(private vehicleService: VehicleService) { }
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.list(1, '$');
   }
 

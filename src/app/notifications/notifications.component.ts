@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 import {Notifications, NotificationService} from "../services/notification.service";
 
 @Component({
@@ -11,8 +9,7 @@ import {Notifications, NotificationService} from "../services/notification.servi
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor(private notificationService: NotificationService, private pageService: PageService,
-              private router: Router, public datePipe: DatePipe) { }
+  constructor(private notificationService: NotificationService, public datePipe: DatePipe) { }
   Notifications!: Notifications;
   dateFromValue!: string;
   dateFromTimestamp!: number;
@@ -24,11 +21,6 @@ export class NotificationsComponent implements OnInit {
   complete!: boolean;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import {ListOfUser, UserService} from "../services/user.service";
-import {PageService} from "../services/page.service";
 
 @Component({
   selector: 'app-users',
@@ -10,7 +8,7 @@ import {PageService} from "../services/page.service";
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private userService: UserService, private pageService: PageService, private router: Router) { }
+  constructor(private userService: UserService) { }
   listOfUser!: ListOfUser;
   page!: number;
   pageMax!: number;
@@ -18,13 +16,7 @@ export class UsersComponent implements OnInit {
   complete!: boolean;
   addUserPopup: boolean;
 
-  ngOnInit(): void
-  {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
+  ngOnInit(): void {
     this.list(1, '$');
   }
 

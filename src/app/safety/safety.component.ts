@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
 import {PageService} from "../services/page.service";
 import {ListOfSafety, SafetyService} from "../services/safety.service";
 
@@ -10,7 +9,7 @@ import {ListOfSafety, SafetyService} from "../services/safety.service";
 })
 export class SafetyComponent implements OnInit {
 
-  constructor(private pageService: PageService, private safetyService: SafetyService, private router: Router) { }
+  constructor(private pageService: PageService, private safetyService: SafetyService) { }
   listOfUsers!: ListOfSafety;
   page!: number;
   pageMax!: number;
@@ -21,11 +20,6 @@ export class SafetyComponent implements OnInit {
   complete!: boolean;
 
   ngOnInit(): void {
-    this.pageService.getLoginStatus().subscribe(value => {
-      if (!value.logged) {
-        this.router.navigate(['./']);
-      }
-    });
     this.list(1, '$');
   }
 

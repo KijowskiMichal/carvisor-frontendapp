@@ -44,6 +44,7 @@ import { EcodriveChartComponent } from './ecodrive-chart/ecodrive-chart.componen
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { ZonesComponent } from './zones/zones.component';
 import { EditZoneComponent } from './edit-zone/edit-zone.component';
+import {httpInterceptorProviders} from "./services/HttpInterceptor.service";
 
 @NgModule({
   declarations: [
@@ -92,7 +93,7 @@ import { EditZoneComponent } from './edit-zone/edit-zone.component';
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     ChartModule,
   ],
-  providers: [DatePipe, {provide: LOCALE_ID, useValue: 'pl-PL'}],
+  providers: [DatePipe, {provide: LOCALE_ID, useValue: 'pl-PL'}, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

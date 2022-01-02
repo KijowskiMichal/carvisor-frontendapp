@@ -19,6 +19,7 @@ import {SummaryComponent} from "./summary/summary.component";
 import {ZonesComponent} from "./zones/zones.component";
 
 const routes: Routes = [  { path: '', component: LoginComponent},
+                          { path: 'login', component: LoginComponent},
                           { path: 'users', component: UsersComponent},
                           { path: 'editUser/:id', component: EditUserComponent},
                           { path: 'vehicles', component: VehiclesComponent},
