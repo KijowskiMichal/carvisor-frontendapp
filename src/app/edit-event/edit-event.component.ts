@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {DatePipe} from "@angular/common";
-import {CalendarService, ListNames} from "../services/calendar.service";
+import {CalendarService, EventDetail, ListNames} from "../services/calendar.service";
+import {elementAt} from "rxjs/operators";
 
 @Component({
   selector: 'app-edit-event',
@@ -9,7 +10,25 @@ import {CalendarService, ListNames} from "../services/calendar.service";
 })
 export class EditEventComponent implements OnInit {
 
-  @Input() popup = false;
+  popup = false;
+  @Input()
+  set popupFlag(value) {
+    if (value === true) {
+      this.calendarService.getEvent(this.eventId).subscribe(value => {
+        this.popup = true;
+        this.eventInfo = value;
+        this.dateFromValue = this.datePipe.transform(Number(this.eventInfo.start) * 1000, 'yyyy-MM-dd');
+        this.dateToValue = this.datePipe.transform(Number(this.eventInfo.end) * 1000, 'yyyy-MM-dd');
+        this.selected = this.names[value.device];
+        this.checkbox = this.eventInfo.remind;
+        this.popupOn = false;
+      });
+    }
+    else {
+      this.popup = false;
+    }
+  }
+  @Input() eventId = 0;
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() eventAdd: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
@@ -35,13 +54,14 @@ export class EditEventComponent implements OnInit {
   checkbox!: boolean;
   deviceID = 0;
   selected: ListNames;
-  eventId: number;
+  eventInfo: EventDetail;
 
   ngAfterViewInit() {
     this.popupTrigger = this.toggleButton.nativeElement;
   }
 
   ngOnInit(): void {
+    this.showDevices();
   }
 
   closeWindow() {

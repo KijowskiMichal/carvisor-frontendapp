@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status == 401) {
-          window.location.reload();
+          window.location.href = window.location.origin+window.location.pathname;
         } else {
           return throwError(err);
         }

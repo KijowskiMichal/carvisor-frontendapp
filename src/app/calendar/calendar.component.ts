@@ -75,7 +75,7 @@ export class CalendarComponent implements OnInit {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
+        this.eventId = Number(event.id);
         this.editEventPopup = true;
       },
     },
@@ -98,6 +98,7 @@ export class CalendarComponent implements OnInit {
   activeDayIsOpen: boolean = false;
   addEventPopup: boolean;
   editEventPopup: boolean;
+  eventId: number;
 
   constructor(private modal: NgbModal, private calendarService: CalendarService) {}
 
