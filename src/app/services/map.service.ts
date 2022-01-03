@@ -35,6 +35,7 @@ export interface StartPoint {
   speed: number;
   gpsY: number;
   vehicle: string;
+  private: boolean;
 }
 
 export interface Point {
@@ -55,6 +56,7 @@ export interface EndPoint {
   speed: number;
   gpsY: number;
   vehicle: string;
+  private: boolean;
 }
 
 export interface listNames {
