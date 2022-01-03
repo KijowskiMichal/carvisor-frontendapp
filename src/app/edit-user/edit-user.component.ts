@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {UserInfo, UserService} from "../services/user.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-edit-user',
@@ -15,6 +16,7 @@ export class EditUserComponent implements OnInit {
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   popupText = "Pomyślnie zaktualizowano.";
+  errorPopupText = "Wystąpił błąd.";
   popupReset = false;
   popupOk = false;
   popupFail = false;
@@ -64,6 +66,7 @@ export class EditUserComponent implements OnInit {
         () => {
         },
         () => {
+          this.errorPopupText = "Wystąpił błąd.";
           this.popupFail = true;
         },
         () => {
@@ -101,6 +104,7 @@ export class EditUserComponent implements OnInit {
             () => {
             },
             () => {
+              selff.errorPopupText = "Wystąpił błąd.";
               selff.popupFail = true;
             },
             () => {
@@ -117,7 +121,13 @@ export class EditUserComponent implements OnInit {
     this.userService.deleteUser(this.id).subscribe(
     () => {
       },
-      () => {
+      (error: HttpErrorResponse) => {
+        if (error.status === 406) {
+          this.errorPopupText = "Nie można usunąć administratora ani aktualnie zalogowanego użytkownika.";
+        }
+        else {
+          this.errorPopupText = "Wystąpił błąd.";
+        }
         this.popupFail = true;
       },
       () => {
@@ -133,6 +143,7 @@ export class EditUserComponent implements OnInit {
       () => {
       },
       () => {
+        this.errorPopupText = "Wystąpił błąd.";
         this.popupFail = true;
       },
       () => {

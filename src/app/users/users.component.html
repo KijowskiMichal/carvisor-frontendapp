@@ -37,7 +37,7 @@
         <td class="firstColumn">
           <div class="driver">
             <img *ngIf="user.image" src="{{user.image}}" alt="avatar">
-            <img *ngIf="!user.image" src="../../assets/default.jpg" alt="avatar">
+            <div class="no-image" *ngIf="!user.image"> </div>
             <div>
               <div class="name">
                 {{user.name}} {{user.surname}}
