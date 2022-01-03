@@ -40,4 +40,4 @@
   </div>
 </div>
 <app-add-event [(popup)]="addEventPopup" (eventAdd)="updateEvent()"></app-add-event>
-<app-edit-event [eventId]="eventId" [popupFlag]="editEventPopup" (popupChange)="editEventPopup=$event"></app-edit-event>
+<app-edit-event [eventId]="eventId" [popupFlag]="editEventPopup" (popupChange)="editEventPopup=$event" (eventEdit)="updateEvent();refresh.next()"></app-edit-event>

@@ -42,7 +42,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
   dateToValue!:string;
   dateFromTimestamp!: number;
   dateToTimestamp!: number;
-  checkbox!: boolean;
+  checkbox = false;
   deviceID = 0;
   selected: ListNames;
 

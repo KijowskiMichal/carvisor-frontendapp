@@ -1,7 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {CalendarService, EventDetail, ListNames} from "../services/calendar.service";
-import {elementAt} from "rxjs/operators";
 
 @Component({
   selector: 'app-edit-event',
@@ -19,7 +18,7 @@ export class EditEventComponent implements OnInit {
         this.eventInfo = value;
         this.dateFromValue = this.datePipe.transform(Number(this.eventInfo.start) * 1000, 'yyyy-MM-dd');
         this.dateToValue = this.datePipe.transform(Number(this.eventInfo.end) * 1000, 'yyyy-MM-dd');
-        this.selected = this.names[value.device];
+        this.selected = this.names.filter((device) => device.id === value.device).pop();
         this.checkbox = this.eventInfo.remind;
         this.popupOn = false;
       });
@@ -30,7 +29,7 @@ export class EditEventComponent implements OnInit {
   }
   @Input() eventId = 0;
   @Output() popupChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() eventAdd: EventEmitter<void> = new EventEmitter<void>();
+  @Output() eventEdit: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild('popupTrigger') toggleButton!: ElementRef;
 
   constructor(public datePipe: DatePipe, private calendarService: CalendarService,
@@ -152,7 +151,7 @@ export class EditEventComponent implements OnInit {
         this.closeWindow();
         this.popupOk = true;
         this.checkbox = false;
-        this.eventAdd.emit();
+        this.eventEdit.emit();
       });
     }
 
