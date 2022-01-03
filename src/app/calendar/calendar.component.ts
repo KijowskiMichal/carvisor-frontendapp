@@ -161,10 +161,11 @@ export class CalendarComponent implements OnInit {
     this.calendarService.getEvents(this.viewDate.getMonth() + 1, this.viewDate.getFullYear()).subscribe((events) => {
       this.eventsOrigin = events;
       this.events = events.map((event) => {
+        console.log()
         return {
           id: event.id,
           color: colors[event.color],
-          start: new Date(event.end as number * 1000),
+          start: new Date(event.start as number * 1000),
           end: new Date(event.end as number * 1000),
           title: event.title+" - "+event.description,
           actions: this.actions,
