@@ -125,8 +125,18 @@ export class CalendarComponent implements OnInit {
                       newStart,
                       newEnd,
                     }: CalendarEventTimesChangedEvent): void {
-    this.updateEvent();
-    this.refresh.next();
+    this.calendarService.getEvent(Number(event.id)).subscribe(value => {
+      this.calendarService.putEvent(value.id, newStart.valueOf() / 1000, newEnd.valueOf() / 1000, value.title, value.description, value.type,
+        value.device,value.draggable, value.remind).subscribe(
+        () => {
+          this.updateEvent();
+          this.refresh.next();
+        },
+        () => {
+        },
+        () => {
+        });
+    });
     this.handleEvent('Dropped or resized', event);
   }
 
