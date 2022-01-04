@@ -15,7 +15,7 @@ export class EditVehicleComponent implements OnInit {
   configuration!: Configuration;
   constructor(private vehicleService: VehicleService, private route: ActivatedRoute) { }
 
-  popupText = "To się nie powinno wyświetlać.";
+  popupText = "Pomyślnie zaktualizowano.";
   popupOk = false;
   popupFail = false;
   popupDelete = false;
@@ -27,6 +27,11 @@ export class EditVehicleComponent implements OnInit {
       this.id = params['id'];
       this.vehicleService.getDeviceInfo(this.id).subscribe(value => {
         this.deviceInfo = value;
+        let splitted: string[];
+        splitted = this.deviceInfo.timeFrom.split(":", 2);
+        this.deviceInfo.timeFrom = splitted[0] + ":" + splitted[1];
+        splitted = this.deviceInfo.timeTo.split(":", 2);
+        this.deviceInfo.timeTo = splitted[0] + ":" + splitted[1];
       },
       () => {
         this.complete = true;
