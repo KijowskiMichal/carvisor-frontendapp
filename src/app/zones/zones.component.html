@@ -1,5 +1,5 @@
 <app-leftpanel></app-leftpanel>
-<div [ngClass]="addZonePopup==true ? 'shutItDown' : ''"></div>
+<div [ngClass]="addZonePopup==true || editZonePopup==true ? 'shutItDown' : ''"></div>
 <div class="popup" *ngIf="popupDelete" >
   <div class="popup-title">
     Uwaga
@@ -82,10 +82,11 @@
         <td>{{zone.name}}</td>
         <td>{{!zone.location ? "Wczytywanie..." : zone.location}}</td>
         <td>{{zone.radius}} m</td>
-        <td class="icons"><i class="far fa-pen"></i><i class="far fa-trash-alt" (click)="popupDelete=true; idToDelete=zone.id"></i></td>
+        <td class="icons"><i class="far fa-pen" (click)="editZonePopup=true; zoneId=zone.id"></i><i class="far fa-trash-alt" (click)="popupDelete=true; zoneId=zone.id"></i></td>
       </tr>
     </table>
   </div>
 
 </div>
 <app-add-zone [(popup)]="addZonePopup"></app-add-zone>
+<app-edit-zone [zoneId]="zoneId" [popupFlag]="editZonePopup" (popupChange)="editZonePopup=false"></app-edit-zone>

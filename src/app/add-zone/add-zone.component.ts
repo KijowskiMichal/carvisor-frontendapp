@@ -27,11 +27,7 @@ export class AddZoneComponent implements OnInit {
   empList: Array<any> = [];
   line: Array<any> = [];
   popupik!: string;
-  popupTrigger!: HTMLDivElement;
-  popupDiv!: HTMLDivElement;
-  maxDate!:string;
   dateValue!:string;
-  dateTimestamp!: number;
   radiusValue: string = '1000';
   circle: any;
   zoneName: string;

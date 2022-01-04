@@ -14,12 +14,13 @@ export class ZonesComponent implements OnInit {
   popupFail = false;
   popupDelete = false;
 
-  idToDelete!: number;
+  zoneId!: number;
 
   listOfZones!: Zones[];
   complete!: boolean;
 
   addZonePopup: boolean;
+  editZonePopup: boolean;
 
   ngOnInit(): void {
     this.list('$');
@@ -48,7 +49,7 @@ export class ZonesComponent implements OnInit {
   }
 
   public deleteZone() {
-    this.zoneService.deleteZone(this.idToDelete).subscribe(
+    this.zoneService.deleteZone(this.zoneId).subscribe(
       () => {
       },
       () => {

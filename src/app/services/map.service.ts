@@ -56,7 +56,7 @@ export interface EndPoint {
   speed: number;
   gpsY: number;
   vehicle: string;
-  private: boolean;
+  privateTrack: boolean;
 }
 
 export interface listNames {

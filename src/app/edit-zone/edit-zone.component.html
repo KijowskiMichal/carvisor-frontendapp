@@ -1,1 +1,77 @@
-<p>edit-zone works!</p>
+<div class="popup-small" *ngIf="popupOk" >
+  <div class="popup-title">
+    Komunikat
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Pomyślnie zaktualizowano strefę.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupOk=false; refresh()">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupOk==true ? 'shutItDown' : ''"></div>
+<div class="popup-small" *ngIf="popupFail" >
+  <div class="popup-title">
+    Error
+  </div>
+  <div class="popup-line"></div>
+  <div class="popup-text">
+    Wystąpił błąd.
+  </div>
+  <div class="popup-footer">
+    <div class="popup-green" (click)="popupFail=false">
+      Ok
+    </div>
+  </div>
+</div>
+<div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
+<div class="popup" [style.display]="popup ? 'block' : 'none'">
+  <div class="header">
+    <div class="user-popup-title">
+      Edycja strefy
+    </div>
+    <div class="cancel-button" (click)="closeWindow()">
+      <i class="fal fa-times"></i>
+    </div>
+    <div class="user-popup-line"></div>
+  </div>
+  <div id="panel-left">
+    <div class="popup-text-zone">
+      Kliknij w dowolnym miejscu na mapie aby przesunąć strefę.
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-pen"></i>
+        <input type="text" placeholder="Nazwa" title="Nazwa strefy, od 3 do 30 znaków." [(ngModel)]="zoneName" #name>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-location"></i>
+        <input type="text" placeholder="Współrzędna X" title="Współrzędne punktu X" [(ngModel)]="posX" (ngModelChange)="drawCircle(posY, posX)" #pointX>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-location"></i>
+        <input type="text" placeholder="Współrzędna Y" title="Współrzędne punktu Y" [(ngModel)]="posY" (ngModelChange)="drawCircle(posY, posX)" #pointY>
+      </div>
+    </div>
+    <div class="editContent">
+      <div class="inputWrapper">
+        <i class="far fa-circle-notch"></i>
+        <input type="number" placeholder="Promień strefy" title="Promień strefy w metrach" [(ngModel)]="radiusValue" (ngModelChange)="drawCircle(posY, posX)" #radius step="10">
+        <span> m </span>
+      </div>
+    </div>
+  </div>
+  <div id="panel-right">
+    <div #mapElementRef id="map" class="map"></div>
+  </div>
+  <div class="popup-green" (click)="sendForm(name, pointX, pointY, radius)">
+    Utwórz
+  </div>
+</div>

@@ -89,14 +89,14 @@ export class MapComponent implements OnInit, AfterViewInit {
         {
           if ((coordInNormal[0].toFixed(10)===parseFloat(rate.gpsY).toFixed(10)) && (coordInNormal[1].toFixed(10)===parseFloat(rate.gpsX).toFixed(10)))
           {
-            this.popupik = '<strong>Koniec trasy</strong><br><strong>'+(rate.private ? 'Trasa prywatna' : 'Trasa firmowa')+'</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Pojazd:</strong> '+rate.vehicle+' ';
+            this.popupik = '<strong>Koniec trasy</strong><br><strong>'+(rate.privateTrack ? 'Trasa prywatna' : 'Trasa firmowa')+'</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Pojazd:</strong> '+rate.vehicle+' ';
           }
         }
         for(let rate of this.rates.startPoints)
         {
           if ((coordInNormal[0].toFixed(10)===parseFloat(rate.gpsY).toFixed(10)) && (coordInNormal[1].toFixed(10)===parseFloat(rate.gpsX).toFixed(10)))
           {
-            this.popupik = '<strong>Początek trasy</strong><br><strong>'+(rate.private ? 'Trasa prywatna' : 'Trasa firmowa')+'</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Pojazd:</strong> '+rate.vehicle+' ';
+            this.popupik = '<strong>Początek trasy</strong><br><strong>'+(rate.privateTrack ? 'Trasa prywatna' : 'Trasa firmowa')+'</strong><br><strong>Obroty:</strong> '+rate.rpm+' RPM<br><strong>Prędkość:</strong> '+rate.speed+' km/h<br><strong>Czas:</strong> '+this.datePipe.transform(rate.time*1000, 'H:mm')+'<br><strong>Pojazd:</strong> '+rate.vehicle+' ';
           }
         }
       }
