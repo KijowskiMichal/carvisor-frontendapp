@@ -30,7 +30,7 @@ export class WarningsComponent implements OnInit {
     this.complete = false;
     if (page >= 1) {
       this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-      this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+      this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
       this.notificationService.listWarnings(page, this.pageSize, this.dateFromTimestamp, this.dateToTimestamp).subscribe(value => {
         if (page <= value.pageMax) {
           this.Warnings = value;

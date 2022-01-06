@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { DatePipe } from '@angular/common';
-import {PageService} from "../services/page.service";
-import {Router} from "@angular/router";
 import {EcoService, UserPoints} from "../services/eco.service";
 
 @Component({
@@ -39,7 +37,7 @@ export class EcodriveUserComponent implements OnInit {
 
   list() {
     this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-    this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+    this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
     this.ecoService.getUserPoints(this.id, this.dateFromTimestamp, this.dateToTimestamp).subscribe(value => {
       this.userPoints = value;
     });

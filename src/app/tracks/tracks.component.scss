@@ -63,12 +63,13 @@
   color: $ColorGrayDark;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.11rem 2.22rem;
-  margin-top: 5.56rem;
-  margin-bottom: 2.78rem;
+  padding: 1.1rem 2.2rem;
+  margin-top: 5.5rem;
+  margin-bottom: 2.7rem;
   position: absolute;
   right: 0;
   bottom: 0;
+  line-height: 2.5rem;
 }
 
 #pagesWrapper {
@@ -77,8 +78,9 @@
 }
 
 #pagesText {
-  margin: 0 1.11rem;
+  margin: 0 1.1rem;
   float: left;
+  line-height: 2.5rem;
 }
 
 #pagesWrapper > i {
@@ -90,7 +92,7 @@
 }
 
 #firstRow > td {
-  @include manropeFont(normal, 1.11rem);
+  @include manropeFont(normal, 1.1rem);
   text-transform: uppercase;
   line-height: 50%;
   padding: 1.67rem 1.67rem;

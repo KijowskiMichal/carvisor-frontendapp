@@ -29,7 +29,7 @@ export class SummaryComponent implements OnInit {
   public list(page: number): void {
     if (page >= 1) {
       this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-      this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+      this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
       this.summaryService.getSummary(this.dateFromTimestamp, this.dateToTimestamp, page, this.pageSize).subscribe(value => {
         if (page <= value.pageMax) {
           this.Summary = value;

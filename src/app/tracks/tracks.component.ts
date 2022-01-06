@@ -36,7 +36,7 @@ export class TracksComponent implements OnInit {
     this.complete = false;
     if (page >= 1) {
       this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-      this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+      this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
       this.routeSub = this.route.params.subscribe(params => {
         this.id = params['id'];
         this.trackService.getListOfTracks(this.id, page, this.pageSize, this.dateFromTimestamp, this.dateToTimestamp).subscribe(value => {

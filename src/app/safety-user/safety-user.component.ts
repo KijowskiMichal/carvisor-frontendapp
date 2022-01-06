@@ -41,7 +41,7 @@ export class SafetyUserComponent implements OnInit {
 
   list() {
     this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-    this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+    this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
     this.safetyService.getUserPoints(this.id, this.dateFromTimestamp, this.dateToTimestamp).subscribe(value => {
       this.userPoints = value;
       for (let off of this.userPoints.listOfOffencess) {

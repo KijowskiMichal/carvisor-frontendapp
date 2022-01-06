@@ -101,7 +101,7 @@ export class AddEventComponent implements OnInit, AfterViewInit {
   sendForm(name:HTMLInputElement, description:HTMLTextAreaElement, type:HTMLSelectElement, datefrom:HTMLInputElement,
            dateto:HTMLInputElement, device:HTMLDivElement) {
     this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-    this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+    this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
     let nameValue = name.value;
     let descriptionValue = description.value;
     let typeValue = type.value;

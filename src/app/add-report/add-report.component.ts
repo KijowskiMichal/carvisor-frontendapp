@@ -124,7 +124,7 @@ export class AddReportComponent implements OnInit {
   checkPage2(datefrom:HTMLInputElement, dateto:HTMLInputElement) {
     let allClear = true;
     this.dateFromTimestamp = new Date(this.dateFromValue).valueOf() / 1000;
-    this.dateToTimestamp = new Date(this.dateToValue).valueOf() / 1000;
+    this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
     datefrom.classList.remove('error');
     dateto.classList.remove('error');
     if (this.dateFromTimestamp > this.dateToTimestamp) {
