@@ -30,17 +30,17 @@
 <div [ngClass]="popupFail==true ? 'shutItDown' : ''"></div>
 
 <div class="popup" [ngStyle]="{'display': popup ? 'block' : 'none' }" [ngSwitch]="page">
-  <div class="header">
-    <div class="event-popup-title">
-      Nowy raport
-    </div>
-    <div class="cancel-button" (click)="closeWindow()">
-      <i class="fal fa-times"></i>
-    </div>
-    <div class="event-popup-line"></div>
-  </div>
-
   <ng-container *ngSwitchCase="0">
+    <div class="header">
+      <div class="event-popup-title">
+        Nowy raport
+      </div>
+      <div class="cancel-button" (click)="closeWindow()">
+        <i class="fal fa-times"></i>
+      </div>
+      <div class="event-popup-line"></div>
+    </div>
+
     <div class="panel">
       <div class="inputWrapper inputWrapperMargin">
         <i class="far fa-pen"></i>
@@ -69,6 +69,16 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="1">
+    <div class="header">
+      <div class="event-popup-title">
+        Nowy raport
+      </div>
+      <div class="cancel-button" (click)="closeWindow()">
+        <i class="fal fa-times"></i>
+      </div>
+      <div class="event-popup-line"></div>
+    </div>
+
     <div class="panel">
       <div class="inputWrapper inputWrapperMargin">
         <i class="far fa-search"></i>
@@ -92,6 +102,16 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="2">
+    <div class="header">
+      <div class="event-popup-title">
+        Nowy raport
+      </div>
+      <div class="cancel-button" (click)="closeWindow()">
+        <i class="fal fa-times"></i>
+      </div>
+      <div class="event-popup-line"></div>
+    </div>
+
     <div class="panel">
       <div class="inputWrapper inputWrapperMargin">
         <i class="far fa-calendar-alt"></i>
