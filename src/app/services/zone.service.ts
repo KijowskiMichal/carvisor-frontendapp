@@ -46,6 +46,13 @@ export class ZoneService {
   public getReverseGeocoding(coords: string[]): Observable<Address> {
     return this.http.get<Address>('/API/track/reverseGeocoding/' + coords[0] + '/' + coords[1] + '/');
   }
+
+  public assignZones(zonesIds: number[], userId: number): Observable<unknown> {
+    return this.http.post('/API/zones/assignZones/' + userId + '/',
+      {
+        "zonesIds": zonesIds
+      });
+  }
 }
 
 export interface ZoneDesc {

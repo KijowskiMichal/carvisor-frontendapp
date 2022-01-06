@@ -168,3 +168,47 @@
 .error {
   border: $ColorPink solid 0.11rem !important;
 }
+
+.inputWrapperMargin {
+  margin-bottom: 1.5rem;
+}
+
+.zoneList {
+  height: 70%;
+  overflow-y: scroll;
+}
+
+.zoneList__row {
+  @include manropeFont(normal, 1.11rem);
+  color: $ColorGrayDark;
+  width: 100%;
+  padding: 1rem 1rem;
+  box-sizing: border-box;
+}
+
+.zoneList__checkbox {
+  float: right;
+  transform: scale(1.5);
+}
+
+.zone-text {
+  @include manropeFont(normal, 1.11rem);
+  color: $ColorGrayDark;
+  box-sizing: border-box;
+  position: relative;
+  padding: 1rem 1rem;
+  width: 100%;
+}
+
+.checkbox {
+  transform: scale(1.5);
+  float: right;
+  margin-right: 2.5%;
+}
+
+.zone-panel {
+  width: 70%;
+  margin-left: 15%;
+  box-sizing: border-box;
+  height: 500px;
+}

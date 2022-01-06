@@ -73,6 +73,7 @@
   </div>
 
   <div *ngIf="complete && userInfo">
+  <div>
     <div id="content">
       <div class="panel" >
         <div class="title">
@@ -99,18 +100,37 @@
           </div>
         </div>
       </div>
+
       <div class="panel">
         <div class="title">
           <i class="far fa-map-marker-alt"></i>
           Strefy
         </div>
-        <div class="editContent">
-          <div class="inputWrapper">
-            <i class="far fa-search"></i>
-            <input type="text" placeholder="Szukaj">
+
+        <div class="no-data" *ngIf="zonesList.length == 0">
+          Brak stref.
+        </div>
+
+        <div class="zone-panel" *ngIf="zonesList.length > 0">
+          <div class="editContent">
+            <div class="inputWrapper">
+              <i class="far fa-search"></i>
+              <input type="text" placeholder="Szukaj" [(ngModel)]="searchZones" (ngModelChange)="changeSearch()">
+            </div>
+          </div>
+          <div class="zoneList">
+            <div class="zoneList__row" *ngFor="let zone of zonesList">
+              {{zone.name}}
+              <input type="checkbox" class="zoneList__checkbox" [checked]="selectedZones.has(zone.id)" (click)="changeStateOfZone(zone.id)">
+            </div>
+          </div>
+          <div class="zone-text inputWrapperMargin">
+            Wszystko:
+            <input class="checkbox" type="checkbox" [(ngModel)]="checkbox" (ngModelChange)="selectAll()">
           </div>
         </div>
       </div>
+
     </div>
     <div id="buttons">
       <div id="acceptButton" (click)="sendData(name, phone)">
@@ -129,4 +149,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

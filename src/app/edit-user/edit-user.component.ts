@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {UserInfo, UserService} from "../services/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ZoneService, Zones} from "../services/zone.service";
 
 @Component({
   selector: 'app-edit-user',
@@ -13,7 +14,7 @@ export class EditUserComponent implements OnInit {
   private routeSub!: Subscription;
   private id!:number;
   userInfo!: UserInfo;
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private zoneService: ZoneService, private route: ActivatedRoute) { }
 
   popupText = "Pomyślnie zaktualizowano.";
   errorPopupText = "Wystąpił błąd.";
@@ -23,8 +24,18 @@ export class EditUserComponent implements OnInit {
   popupDelete = false;
   complete!: boolean;
 
+  searchZones: string;
+  zonesList: Zones[];
+
+  selectedZones: Set<number> = new Set<number>();
+
+  checkbox!: boolean;
+
   ngOnInit(): void {
     this.complete = false;
+    this.zoneService.getZones("$").subscribe(value => {
+      this.zonesList = value;
+    });
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.userService.getUserInfo(this.id).subscribe(value => {
@@ -36,7 +47,45 @@ export class EditUserComponent implements OnInit {
       () => {
         this.complete = true;
       });
+      //pobrać strefy per user
     });
+  }
+
+  shouldBeChecked(): boolean {
+    this.zonesList.forEach((zone) => {
+      if (!this.selectedZones.has(zone.id)) {
+        return true;
+      }
+    })
+    return false;
+  }
+
+  changeSearch() {
+    this.zoneService.getZones(this.searchZones === "" ? "$" : this.searchZones).subscribe((value) => {
+      this.zonesList = value;
+      this.checkbox = this.shouldBeChecked();
+    });
+  }
+
+  changeStateOfZone(id: number) {
+    if (this.selectedZones.has(id)) {
+      this.selectedZones.delete(id);
+    }
+    else {
+      this.selectedZones.add(id);
+    }
+    this.checkbox = this.shouldBeChecked();
+  }
+
+  selectAll() {
+    if (this.checkbox) {
+      this.zonesList.forEach((zone) => {
+        this.selectedZones.add(zone.id);
+      })
+    }
+    else {
+      this.selectedZones.clear();
+    }
   }
 
   sendData(nameInput:HTMLInputElement, phoneInput:HTMLInputElement) {
@@ -62,6 +111,7 @@ export class EditUserComponent implements OnInit {
     }
     if (!allClear) return;
     //others
+    this.zoneService.assignZones(Array.from(this.selectedZones), this.id);
     this.userService.putUserInfo(this.id, name, phone).subscribe(
         () => {
         },
