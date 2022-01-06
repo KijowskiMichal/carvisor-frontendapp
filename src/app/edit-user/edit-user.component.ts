@@ -111,7 +111,7 @@ export class EditUserComponent implements OnInit {
     }
     if (!allClear) return;
     //others
-    this.zoneService.assignZones(Array.from(this.selectedZones), this.id);
+    this.zoneService.assignZones(Array.from(this.selectedZones), this.id).subscribe(() => {});
     this.userService.putUserInfo(this.id, name, phone).subscribe(
         () => {
         },
