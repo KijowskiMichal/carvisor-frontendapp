@@ -30,16 +30,16 @@
       <tr id="firstRow">
         <td>Skąd</td>
         <td>Dokąd</td>
-        <td>Godzina startu</td>
-        <td>Godzina zakończenia</td>
+        <td>Data startu</td>
+        <td>Data zakończenia</td>
         <td>Dystans</td>
         <td></td>
       </tr>
       <tr *ngFor="let track of listOfTracks.listOfTracks">
         <td>{{!track.fromEncoded ? "Wczytywanie..." : track.fromEncoded}}</td>
         <td>{{!track.toEncoded ? "Wczytywanie..." : track.toEncoded}}</td>
-        <td>{{track.start * 1000 | date:'HH:mm'}}</td>
-        <td>{{track.end == 0 ? '------' : track.end * 1000 | date:'HH:mm'}}</td>
+        <td>{{track.start * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
+        <td>{{track.end == 0 ? '------' : track.end * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
         <td>{{track.distance / 1000 | number : '1.2-2'}} km</td>
         <td><a [routerLink]="['/map/' + id +' /'+ datePipe.transform(track.start*1000, 'yyyy-MM-dd')]"><i class="far fa-road"></i></a></td>
       </tr>
