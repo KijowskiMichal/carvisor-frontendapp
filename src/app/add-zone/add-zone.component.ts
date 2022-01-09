@@ -64,7 +64,7 @@ export class AddZoneComponent implements OnInit {
     this.circle = new ol.layer.Vector({
       source: new ol.source.Vector({
         projection: 'EPSG:4326',
-        features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, Number.parseInt(this.radiusValue)))]
+        features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, Number.parseInt(this.radiusValue) * 2))]
       }),
       style: [
         new ol.style.Style({
