@@ -79,11 +79,8 @@ export class ReportsComponent implements OnInit {
   }
 
   download(data: any, type: string) {
-    var blob = new Blob([data], {type: type.toString()});
-    var url = window.URL.createObjectURL(blob);
-    var pwa = window.open(url);
-    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
-      alert('Jeżeli raport nie otwiera się, to należy zezwolić w przeglądarce na otwieranie okien pop-up.');
-    }
+    var file = new Blob([data], {type: 'application/pdf'});
+    var fileURL = window.URL.createObjectURL(file);
+    window.open(fileURL, '_blank');
   }
 }
