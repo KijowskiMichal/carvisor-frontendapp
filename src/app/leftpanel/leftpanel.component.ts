@@ -75,7 +75,7 @@ export class LeftpanelComponent implements OnInit {
       title: "Kalendarz",
       link: "/calendar",
       rbac: ['MODERATOR', 'ADMINISTRATOR'],
-      classes: "far fa-calendar-alt",
+      classes: "far fa-fw fa-calendar-alt",
     },
   ]
 
@@ -98,7 +98,7 @@ export class LeftpanelComponent implements OnInit {
 
   logout() {
     this.authorizationService.logout().subscribe(
-      data => {
+      () => {
       },
       () => {
       },
