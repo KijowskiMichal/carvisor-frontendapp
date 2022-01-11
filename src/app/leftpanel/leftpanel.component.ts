@@ -51,7 +51,7 @@ export class LeftpanelComponent implements OnInit {
       title: "Awarie i naprawy",
       link: "/warnings",
       rbac: ['STANDARD_USER', 'MODERATOR', 'ADMINISTRATOR'],
-      classes: "far fa-fw fa-user",
+      classes: "far fa-fw fa-exclamation-triangle",
     },
     {
       title: "Punkty ekojazdy",
