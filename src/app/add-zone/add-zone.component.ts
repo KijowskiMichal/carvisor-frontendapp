@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ZoneService} from "../services/zone.service";
-import {listNames, Rate} from "../services/map.service";
+import {listNames, Point, Rate} from "../services/map.service";
 declare var ol: any;
 
 @Component({
@@ -60,11 +60,18 @@ export class AddZoneComponent implements OnInit {
 
   drawCircle(posY, posX) {
     this.map.removeLayer(this.circle);
+    var view = this.map.getView();
+    var projection = view.getProjection();
+    var resolutionAtEquator = view.getResolution();
+    var center = this.map.getView().getCenter();
+    var pointResolution = ol.proj.getPointResolution(projection, resolutionAtEquator, center);
+    var resolutionFactor = resolutionAtEquator / pointResolution;
+    var radius = (Number.parseInt(this.radiusValue) / ol.proj.METERS_PER_UNIT.m) * resolutionFactor;
     var centerLongitudeLatitude = ol.proj.fromLonLat([Number.parseFloat(posY), Number.parseFloat(posX)]);
     this.circle = new ol.layer.Vector({
       source: new ol.source.Vector({
         projection: 'EPSG:4326',
-        features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, Number.parseInt(this.radiusValue) * 2))]
+        features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, radius ))]
       }),
       style: [
         new ol.style.Style({
@@ -78,6 +85,7 @@ export class AddZoneComponent implements OnInit {
         })
       ]
     });
+    console.log(resolutionFactor)
     this.map.addLayer(this.circle);
   }
 
