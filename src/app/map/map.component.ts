@@ -2,6 +2,7 @@ import {OnInit, Component, ViewChild, ElementRef, Renderer2, AfterViewInit} from
 import {ActivatedRoute, Router} from "@angular/router";
 import { DatePipe } from '@angular/common';
 import {listNames, MapService, Rate} from "../services/map.service";
+import {PageService} from "../services/page.service";
 
 declare var ol: any;
 
@@ -15,16 +16,26 @@ export class MapComponent implements OnInit, AfterViewInit {
   popupOn = false;
   userID = 0;
 
-  @ViewChild('popupTrigger') toggleButton!: ElementRef;
-  @ViewChild('mapElementRef', { static: true }) mapElementRef: ElementRef;
+  toggleButton!: ElementRef;
+
+  @ViewChild('popupTrigger') set popupTriggers(toggleButton: ElementRef) {
+    if(toggleButton) {
+      this.toggleButton = toggleButton;
+    }
+  }
+
+  @ViewChild('mapElementRef')
+  mapElementRef: ElementRef;
 
   constructor(private route: ActivatedRoute, private mapService: MapService, private router:Router,
-              private renderer: Renderer2, public datePipe: DatePipe) {
-    this.renderer.listen('window', 'click',(e:Event)=>{
-      if(e.target !== this.toggleButton.nativeElement && this.popupOn){
-        this.disablePopup();
-      }
-    });
+              private renderer: Renderer2, public datePipe: DatePipe, public pageService: PageService) {
+    if (pageService.loginStatus.rbac != 'STANDARD_USER') {
+      this.renderer.listen('window', 'click',(e:Event)=>{
+        if(e.target !== this.toggleButton.nativeElement && this.popupOn){
+          this.disablePopup();
+        }
+      });
+    }
   }
 
   latitude: number = 52.460394146699365;
@@ -43,7 +54,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit()
   {
-    this.popupTrigger = this.toggleButton.nativeElement;
+    if (this.pageService.loginStatus.rbac !== 'STANDARD_USER') {
+      this.popupTrigger = this.toggleButton.nativeElement;
+    }
   }
 
   ngOnInit() {
@@ -51,7 +64,9 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.dateValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.maxDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.popupik = "Popup";
-    this.regexChanged('$');
+    if (this.pageService.loginStatus.rbac !== "STANDARD_USER") {
+      this.regexChanged('$');
+    }
 
     this.map = new ol.Map({
       target: 'map',
@@ -65,7 +80,6 @@ export class MapComponent implements OnInit, AfterViewInit {
         zoom: 16
       })
     });
-    this.map.setTarget(this.mapElementRef.nativeElement);
 
     var popup = new ol.Overlay({
       element: document.getElementById('popup')
@@ -110,17 +124,19 @@ export class MapComponent implements OnInit, AfterViewInit {
         {
           this.userID = params['id'];
           this.dateValue = params['date'];
-          this.changeMap();
           this.disablePopup();
-          for (let name of this.names)
-          {
-            if (name.id==this.userID)
+          if (this.pageService.loginStatus.rbac !== 'STANDARD_USER') {
+            for (let name of this.names)
             {
-              this.popupTrigger.innerHTML = name.name;
-              return;
+              if (name.id==this.userID)
+              {
+                this.popupTrigger.innerHTML = name.name;
+                return;
+              }
             }
           }
         }
+        this.changeMap();
       });
     }, 200);
   }
@@ -150,6 +166,9 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   changeMap() {
+    if (this.pageService.loginStatus.rbac == 'STANDARD_USER') {
+      this.userID = this.pageService.loginStatus.id;
+    }
     var that = this;
     this.dateTimestamp = new Date(this.dateValue).valueOf() / 1000;
     this.mapService.getTrackData(this.userID, this.dateTimestamp).subscribe(value => {
@@ -267,6 +286,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.empList.push(new ol.Feature({
           geometry: new ol.geom.Point(ol.proj.fromLonLat([rate.gpsY,rate.gpsX]))
         }))
+        this.map.getView().setCenter(ol.proj.transform([rate.gpsY, rate.gpsX], 'EPSG:4326', 'EPSG:3857'));
       }
       var layer = new ol.layer.Vector({
         source: new ol.source.Vector({
@@ -285,7 +305,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
       this.map.addLayer(layer);
 
-      this.map.getView().setCenter(ol.proj.transform([this.longitude, this.latitude], 'EPSG:4326', 'EPSG:3857'));
     });
   }
 }

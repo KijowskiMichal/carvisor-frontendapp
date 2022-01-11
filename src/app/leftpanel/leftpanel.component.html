@@ -1,71 +1,17 @@
 <div id="leftPanel">
-  <div id="leftPanelWrapper" >
+  <div id="leftPanelWrapper" *ngIf="pageService.loginStatus">
     <div id="panelLogo"> </div>
     <div id="menu">
-      <a [routerLink]="['/users']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-user"></i>
-        Moja flota
-      </div>
-      </a>
-      <a [routerLink]="['/vehicles']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-car"></i>
-        Moje pojazdy
-      </div>
-      </a>
-      <a [routerLink]="['/zones']" routerLinkActive="activeMenuItem">
-        <div class="menuItem" >
-          <i class="far fa-fw fa-location"></i>
-          Strefy
-        </div>
-      </a>
-      <a [routerLink]="['/map']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-map-marker-alt"></i>
-        Mapa
-      </div>
-      </a>
-      <a [routerLink]="['/notifications']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-bell"></i>
-        Powiadomienia
-      </div>
-      </a>
-      <a [routerLink]="['/warnings']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-exclamation-triangle"></i>
-        Awarie i naprawy
-      </div>
-      </a>
-      <a [routerLink]="['/ecodrive']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-trophy"></i>
-        Punkty ekojazdy
-      </div>
-      </a>
-      <a [routerLink]="['/safety']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-shield-check"></i>
-        Bezpieczeństwo
-      </div>
-      </a>
-      <a [routerLink]="['/reports']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-chart-bar"></i>
-        Raporty
-      </div>
-      </a>
-      <a [routerLink]="['/calendar']" routerLinkActive="activeMenuItem">
-      <div class="menuItem" >
-        <i class="far fa-fw fa-calendar-alt"></i>
-        Kalendarz
+      <a [routerLink]="[option.link]" routerLinkActive="activeMenuItem" *ngFor="let option of options">
+      <div class="menuItem" *ngIf="option.rbac.includes(pageService.loginStatus.rbac)" >
+        <i [class]="option.classes"></i>
+        {{ option.title }}
       </div>
       </a>
     </div>
     <div id="leftPanelFooter">
-      <a [routerLink]="['/settings']">
-        <i class="far fa-cogs"></i>
+      <a [routerLink]="[option.link]" *ngFor="let option of bottomMenu">
+        <i [class]="option.classes" *ngIf="option.rbac.includes(pageService.loginStatus.rbac)"></i>
       </a>
       <a (click)="logout()">
         <i class="far fa-sign-out"></i>

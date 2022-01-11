@@ -7,19 +7,32 @@ import {Observable} from "rxjs";
 })
 export class PageService {
 
-  loginStatus!: LoginStatus;
+  loginStatusOrig!: LoginStatus;
+  get loginStatus(): LoginStatus {
+    if (!this.loginStatusOrig) {
+      this.getLoginStatus().subscribe((value) => {
+        this.loginStatusOrig = value;
+        return this.loginStatusOrig;
+      })
+    }
+    return this.loginStatusOrig;
+  }
+  set loginStatus(value: LoginStatus) {
+    this.loginStatusOrig = value;
+  }
+
 
   constructor(private http: HttpClient) {
   }
 
   public getLoginStatus(): Observable<LoginStatus> {
     return new Observable<LoginStatus>((observer) => {
-      if (this.loginStatus) {
-        observer.next(this.loginStatus);
+      if (this.loginStatusOrig) {
+        observer.next(this.loginStatusOrig);
       } else {
         this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
-          this.loginStatus = value;
-          observer.next(this.loginStatus);
+          this.loginStatusOrig = value;
+          observer.next(this.loginStatusOrig);
         });
       }
     });
@@ -28,8 +41,8 @@ export class PageService {
   public getNewLoginStatus(): Observable<LoginStatus> {
     return new Observable<LoginStatus>((observer) => {
       this.http.get<LoginStatus>('/API/authorization/status').subscribe(value => {
-        this.loginStatus = value;
-        observer.next(this.loginStatus);
+        this.loginStatusOrig = value;
+        observer.next(this.loginStatusOrig);
       });
     });
   }
@@ -37,6 +50,7 @@ export class PageService {
 
 interface LoginStatus {
   logged: boolean;
-  rbac: string;
+  rbac: 'STANDARD_USER' | 'MODERATOR' | 'ADMINISTRATOR';
   nickname: string;
+  id: number;
 }

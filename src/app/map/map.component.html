@@ -5,7 +5,7 @@
   <div [innerHTML]="popupik" id="popup">
   </div>
   <div id="chooserWrapper">
-    <div [routerLink]="['/map/devices']" class="chooserEntityWrapper">
+    <div [routerLink]="['/map/devices']" class="chooserEntityWrapper" *ngIf="pageService.loginStatus.rbac != 'STANDARD_USER'">
       <i class="far fa-user users-icon"></i>
       <div class="select">
         <div class="users">
@@ -17,11 +17,11 @@
       </div>
       <i class="far fa-car cars-icon"></i>
     </div>
-    <div class="inputWrapper">
+    <div class="inputWrapper" *ngIf="pageService.loginStatus.rbac != 'STANDARD_USER'">
       <i class="far fa-search"></i>
       <input type="text" placeholder="Szukaj" (keyup)="regexChanged(search.value)" #search>
     </div>
-    <div class="inputWrapper">
+    <div class="inputWrapper" *ngIf="pageService.loginStatus.rbac != 'STANDARD_USER'">
       <i class="far fa-user"></i>
       <div class="select" (click)="showPopup()"  #popupTrigger>
         Wybierz użytkownika

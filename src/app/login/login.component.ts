@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
+    if (this.pageService.loginStatus) {
+      this.router.navigate(['./summary']);
+    }
   }
 
   signIn(login:any, password:any, user:any, key:any)
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
         },
         () => {
           this.pageService.getNewLoginStatus().subscribe(() => {
-            this.router.navigate(['./users']);
+            this.router.navigate(['./summary']);
           })
         });
   }

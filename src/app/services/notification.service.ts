@@ -1,16 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {PageService} from "./page.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private pageService: PageService) {
   }
 
   public listNotifications(page: number, pageSize: number, dateFrom: number, dateTo: number): Observable<Notifications> {
+    if (this.pageService.loginStatus.rbac == 'STANDARD_USER') {
+      return this.http.get<Notifications>('/API/notification/getNotificationOfCurrentUser/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
+    }
     return this.http.get<Notifications>('/API/notification/getNotification/' + dateFrom + '/' + dateTo + '/' + page + '/' + pageSize + '/');
   }
 
