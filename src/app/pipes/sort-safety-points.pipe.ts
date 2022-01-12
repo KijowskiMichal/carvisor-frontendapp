@@ -8,7 +8,7 @@ export class SortSafetyPointsPipe implements PipeTransform {
 
   transform(value: ListOfUser[], ...args: unknown[]): unknown {
     return value.sort((a: ListOfUser, b:ListOfUser) => {
-      return a.rate - b.rate;
+      return b.rate - a.rate;
     });
   }
 
