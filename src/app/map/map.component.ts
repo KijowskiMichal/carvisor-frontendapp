@@ -131,6 +131,7 @@ export class MapComponent implements OnInit, AfterViewInit {
               if (name.id==this.userID)
               {
                 this.popupTrigger.innerHTML = name.name;
+                this.changeMap();
                 return;
               }
             }
@@ -138,7 +139,7 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
         this.changeMap();
       });
-    }, 200);
+    }, 3000);
   }
 
   showPopup() {

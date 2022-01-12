@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {SummaryService, Summary} from "../services/summary.service";
+import {ZoneService} from "../services/zone.service";
 
 @Component({
   selector: 'app-summary',
@@ -9,18 +10,20 @@ import {SummaryService, Summary} from "../services/summary.service";
 })
 export class SummaryComponent implements OnInit {
 
-  constructor(private summaryService: SummaryService, public datePipe: DatePipe) { }
+  constructor(private summaryService: SummaryService, public datePipe: DatePipe, public zoneService: ZoneService) { }
 
-  Summary!: Summary;
+  summary!: Summary;
   dateFromValue!: string;
   dateFromTimestamp!: number;
   dateToValue!: string;
   dateToTimestamp!: number;
   page!: number;
   pageMax!: number;
-  pageSize = 6;
+  pageSize = 3;
+  complete!: boolean;
 
   ngOnInit(): void {
+    this.complete = false;
     this.dateFromValue = this.datePipe.transform(new Date((new Date()).getTime() - 1209600000), 'yyyy-MM-dd');
     this.dateToValue = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.list(1);
@@ -32,13 +35,22 @@ export class SummaryComponent implements OnInit {
       this.dateToTimestamp = (new Date(this.dateToValue).valueOf() / 1000) + 86399;
       this.summaryService.getSummary(this.dateFromTimestamp, this.dateToTimestamp, page, this.pageSize).subscribe(value => {
         if (page <= value.pageMax) {
-          this.Summary = value;
+          this.summary = value;
           this.page = value.page;
           this.pageMax = value.pageMax;
+          for (let track of value.listOfTracks) {
+            this.zoneService.getReverseGeocoding(track.locationFrom.split(";")).subscribe(value => {
+              track.locationFromL =  value.address;
+            });
+            this.zoneService.getReverseGeocoding(track.locationTo.split(";")).subscribe(value => {
+              track.locationToL =  value.address;
+            });
+          }
         }
         else if (value.pageMax === 0) {
-          this.Summary = null;
+          this.summary = null;
         }
+        this.complete = true;
       });
     }
   }

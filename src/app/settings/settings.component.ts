@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalConfiguration, VehicleService} from "../services/vehicle.service";
 import {UserService} from "../services/user.service";
+import {PageService} from "../services/page.service";
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +10,7 @@ import {UserService} from "../services/user.service";
 })
 export class SettingsComponent implements OnInit {
   globalConfiguration!: GlobalConfiguration;
-  constructor(private vehicleService: VehicleService, private userService: UserService) { }
+  constructor(private vehicleService: VehicleService, private userService: UserService, public pageService: PageService) { }
 
   popup = false;
   popupOk = false;

@@ -93,6 +93,7 @@ table {
 }
 
 #table {
+  margin-top: 1rem;
   width: 100%;
   box-sizing: border-box;
   padding: 0.55rem 1.67rem;
@@ -144,8 +145,16 @@ a {
   @include manropeFont(500, 1rem);
   color: $ColorGrayDark;
   box-sizing: border-box;
-  width: 25%;
+  width: 50%;
   padding: 1.11rem;
   float: left;
 }
 
+.row {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.row-center {
+  text-align: center;
+}

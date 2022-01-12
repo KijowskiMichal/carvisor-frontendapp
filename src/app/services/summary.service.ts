@@ -29,6 +29,8 @@ export interface ListOfTrack {
   date: string;
   locationFrom: string;
   locationTo: string;
+  locationFromL: string;
+  locationToL: string;
   safetyPoints: number;
   ecoPoints: number;
   listOfOffencess: ListOfOffencess[];

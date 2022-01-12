@@ -82,7 +82,7 @@ export class LeftpanelComponent implements OnInit {
   bottomMenu: Omit<MenuOption, "title">[] = [
     {
       link: "/settings",
-      rbac: ['MODERATOR', 'ADMINISTRATOR'],
+      rbac: ['STANDARD_USER', 'MODERATOR', 'ADMINISTRATOR'],
       classes: "far fa-cogs",
     },
   ]

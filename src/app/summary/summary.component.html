@@ -13,45 +13,82 @@
       <input type="date" [(ngModel)]="dateFromValue" (change)="list(1)">
     </div>
   </div>
-<!--
-  <div id="hello" *ngIf="Summary">
-    Witaj ponownie {{Summary.name}}!
-  </div>
-  -->
-  <div id="hello">
-    Witaj ponownie Janusz!
+  <div id="hello" *ngIf="summary">
+    Witaj ponownie {{ summary.name.split(" ")[0] }}!
   </div>
 
-  <div class="panel">
-    Ocena ekojazdy:
-    <!--<div [ngClass]="{'grade-none':safety.rate === 0.0, 'grade-bad':safety.rate > 0.0 && safety.rate < 2.5, 'grade-medium':safety.rate >= 2.5 && safety.rate < 3.5, 'grade-good':safety.rate >= 3.5}">-->
-    <div class="grade-good">
-      <div class="grade-text">
-        2.5
-        <!--{{safety.rate | number : '1.1-1'}}-->
+  <div class="panel" *ngIf="summary">
+    <div class="row">
+      Ocena ekojazdy:
+    </div>
+    <div class="row row-center">
+      <div [ngClass]="{'grade-none':summary.ecoPoints === 0.0, 'grade-bad':summary.ecoPoints > 0.0 && summary.ecoPoints < 2.5, 'grade-medium':summary.ecoPoints >= 2.5 && summary.ecoPoints < 3.5, 'grade-good':summary.ecoPoints >= 3.5}">
+        <div class="grade-text">
+          {{ summary.ecoPoints | number : '1.1-1'}}
+        </div>
       </div>
+    </div>
+    <div class="row row-center">
+      Pozycja w rankingu: {{ summary.ecoRankingPosition }}
     </div>
   </div>
 
-  <div class="panel">
-    Pozycja w rankingu:
-  </div>
-
-  <div class="panel">
-    Ocena bezpieczeństwa:
-    <div class="grade-good">
-      <div class="grade-text">
-        2.5
-        <!--{{safety.rate | number : '1.1-1'}}-->
+  <div class="panel" *ngIf="summary">
+    <div class="row">
+      Ocena bezpieczeństwa:
+    </div>
+    <div class="row row-center">
+      <div [ngClass]="{'grade-none':summary.safetyPoints === 0.0, 'grade-bad':summary.safetyPoints > 0.0 && summary.safetyPoints < 2.5, 'grade-medium':summary.safetyPoints >= 2.5 && summary.safetyPoints < 3.5, 'grade-good':summary.safetyPoints >= 3.5}">
+        <div class="grade-text">
+          {{ summary.safetyPoints | number : '1.1-1'}}
+        </div>
       </div>
+    </div>
+    <div class="row row-center">
+      Pozycja w rankingu: {{ summary.safetyRankingPosition }}
     </div>
   </div>
 
-  <div class="panel">
-    Pozycja w rankingu:
+  <div class="no-data" *ngIf="complete && !summary">
+    Brak tras.
   </div>
 
-  <div id="pages" *ngIf="Summary">
+  <div id="table">
+    <table *ngIf="complete && summary">
+      <tr id="firstRow">
+        <td>Ocena ekojazdy</td>
+        <td>Ocena bezpieczeństwa</td>
+        <td>Liczba wykroczeń</td>
+        <td>Skąd</td>
+        <td>Dokąd</td>
+      </tr>
+      <tr *ngFor="let track of summary.listOfTracks">
+        <td>
+          <div [ngClass]="{'grade-none':track.ecoPoints === 0.0, 'grade-bad':track.ecoPoints > 0.0 && track.ecoPoints < 2.5, 'grade-medium':track.ecoPoints >= 2.5 && track.ecoPoints < 3.5, 'grade-good':track.ecoPoints >= 3.5}">
+            <div class="grade-text">
+              {{track.ecoPoints | number : '1.1-1'}}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div [ngClass]="{'grade-none':track.safetyPoints === 0.0, 'grade-bad':track.safetyPoints > 0.0 && track.safetyPoints < 2.5, 'grade-medium':track.safetyPoints >= 2.5 && track.safetyPoints < 3.5, 'grade-good':track.safetyPoints >= 3.5}">
+            <div class="grade-text">
+              {{track.safetyPoints | number : '1.1-1'}}
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="name">
+            {{track.listOfOffencess.length}}
+          </div>
+        </td>
+        <td>{{!track.locationFromL ? "Wczytywanie..." : track.locationFromL}}</td>
+        <td>{{!track.locationToL ? "Wczytywanie..." : track.locationToL}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="pages" *ngIf="complete && summary">
     <div id="pagesWrapper">
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1)" class="far fa-chevron-left"></i>
