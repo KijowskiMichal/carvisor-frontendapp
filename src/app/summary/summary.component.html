@@ -49,12 +49,12 @@
     </div>
   </div>
 
-  <div class="no-data" *ngIf="complete && !summary">
+  <div class="no-data" *ngIf="complete && summary.listOfTracks.length === 0">
     Brak tras.
   </div>
 
   <div id="table">
-    <table *ngIf="complete && summary">
+    <table *ngIf="complete && summary.listOfTracks.length > 0">
       <tr id="firstRow">
         <td>Ocena ekojazdy</td>
         <td>Ocena bezpieczeństwa</td>
@@ -88,7 +88,7 @@
     </table>
   </div>
 
-  <div id="pages" *ngIf="complete && summary">
+  <div id="pages" *ngIf="complete && summary.listOfTracks.length > 0">
     <div id="pagesWrapper">
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1)" class="far fa-chevron-left"></i>
