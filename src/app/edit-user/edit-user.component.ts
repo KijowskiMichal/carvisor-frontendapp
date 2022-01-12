@@ -26,6 +26,7 @@ export class EditUserComponent implements OnInit {
 
   searchZones: string;
   zonesList: Zones[];
+  zonesInfo: Zones[];
 
   selectedZones: Set<number> = new Set<number>();
 
@@ -47,7 +48,12 @@ export class EditUserComponent implements OnInit {
       () => {
         this.complete = true;
       });
-      //pobrać strefy per user
+      this.zoneService.getUserZones(this.id).subscribe(value => {
+        this.zonesInfo = value;
+        this.zonesInfo.forEach((zone) => {
+          this.selectedZones.add(zone.id);
+        });
+      });
     });
   }
 

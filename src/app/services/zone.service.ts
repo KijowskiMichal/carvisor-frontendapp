@@ -53,6 +53,10 @@ export class ZoneService {
         "zonesIds": zonesIds
       });
   }
+
+  public getUserZones(id: number): Observable<Zones[]> {
+    return this.http.get<Zones[]>('/API/zones/listUserZones/' + id + '/');
+  }
 }
 
 export interface ZoneDesc {
