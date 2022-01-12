@@ -18,12 +18,12 @@
     <div class="lds-dual-ring"></div>
   </div>
 
-  <div id="no-data" *ngIf="complete && !Notifications">
+  <div id="no-data" *ngIf="complete && Notifications.listOfNotification.length === 0">
     Brak powiadomień w danym przedziale czasowym.
   </div>
 
   <div id="table">
-    <table *ngIf="complete && Notifications">
+    <table *ngIf="complete && Notifications.listOfNotification.length > 0">
       <tr id="firstRow">
         <td class="col-notification">
           Powiadomienie
@@ -67,7 +67,7 @@
   </div>
 
   <div id="pages">
-    <div id="pagesWrapper" *ngIf="Notifications">
+    <div id="pagesWrapper" *ngIf="Notifications.listOfNotification.length > 0">
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(this.page-1)" class="far fa-chevron-left"></i>
       <div id="pagesText">
