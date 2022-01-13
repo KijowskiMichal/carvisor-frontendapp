@@ -33,11 +33,12 @@ export class UserService {
       });
   }
 
-  public putUserInfo(id: number, name: string, phone: string): Observable<unknown> {
+  public putUserInfo(id: number, name: string, phone: string, userPrivileges: string): Observable<unknown> {
     return this.http.post('/API/users/changeUserData/' + id + '/',
       {
         "name": name,
-        "phoneNumber": phone
+        "phoneNumber": phone,
+        "userPrivileges": userPrivileges
       });
   }
 

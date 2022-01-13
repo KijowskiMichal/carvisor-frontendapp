@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserInfo, UserService} from "../services/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ZoneService, Zones} from "../services/zone.service";
+import { PageService } from '../services/page.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -14,7 +15,7 @@ export class EditUserComponent implements OnInit {
   private routeSub!: Subscription;
   private id!:number;
   userInfo!: UserInfo;
-  constructor(private userService: UserService, private zoneService: ZoneService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private zoneService: ZoneService, private route: ActivatedRoute, private pageService: PageService) { }
 
   popupText = "Pomyślnie zaktualizowano.";
   errorPopupText = "Wystąpił błąd.";
@@ -94,12 +95,14 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  sendData(nameInput:HTMLInputElement, phoneInput:HTMLInputElement) {
+  sendData(nameInput:HTMLInputElement, phoneInput:HTMLInputElement, permissionInput:HTMLSelectElement) {
     let name = nameInput.value;
     let phone = phoneInput.value;
+    let permission = permissionInput.value;
     let allClear = true;
     nameInput.classList.remove('error');
     phoneInput.classList.remove('error');
+    permissionInput.classList.remove('error');
     //validator
     if (!/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,12} [A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]{2,18}$/.test(name)) {
       nameInput.focus();
@@ -115,10 +118,15 @@ export class EditUserComponent implements OnInit {
       phoneInput.placeholder = "9 cyfr bez spacji i znaków specjalnych.";
       allClear = false;
     }
+    if ((this.pageService.loginStatus.rbac === 'MODERATOR') && (permission === 'ADMINISTRATOR')) {
+      permissionInput.focus();
+      permissionInput.classList.add('error');
+      allClear = false;
+    }
     if (!allClear) return;
     //others
     this.zoneService.assignZones(Array.from(this.selectedZones), this.id).subscribe(() => {});
-    this.userService.putUserInfo(this.id, name, phone).subscribe(
+    this.userService.putUserInfo(this.id, name, phone, permission).subscribe(
         () => {
         },
         () => {

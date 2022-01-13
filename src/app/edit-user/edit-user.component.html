@@ -99,6 +99,16 @@
             <input type="text" placeholder="Telefon" title="Telefon, 9 cyfr bez spacji, znaków specjalnych i numeru kierunkowego." value="{{userInfo.phoneNumber}}" #phone>
           </div>
         </div>
+        <div class="editContent">
+          <div class="inputWrapper">
+            <i class="far fa-user-shield"></i>
+            <select title="Poziom uprawnień użytkownika." value="{{userInfo.userPrivileges}}" #permissions>
+              <option value="STANDARD_USER" >Użytkownik standardowy</option>
+              <option value="MODERATOR" >Moderator</option>
+              <option value="ADMINISTRATOR" >Administrator</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div class="panel">
@@ -133,7 +143,7 @@
 
     </div>
     <div id="buttons">
-      <div id="acceptButton" (click)="sendData(name, phone)">
+      <div id="acceptButton" (click)="sendData(name, phone, permissions)">
         Aktualizuj
       </div>
       <a [routerLink]="['/users']" >
