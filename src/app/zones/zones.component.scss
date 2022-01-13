@@ -122,3 +122,94 @@ td > i:hover {
 #generate-button:hover {
   background: $ColorBlueHover;
 }
+
+
+@media screen and (max-width: 992px) {
+  .main {
+    width: 100% !important;
+    margin-top: 7rem;
+  }
+  #pages {
+    position: relative !important;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+    width: 100%;
+    float: left;
+    margin-bottom: 1rem;
+  }
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 40%;
+    float: left;
+    width: 100%;
+  }
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 35%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+  td:nth-of-type(1):before { content: "Nazwa strefy"; }
+  td:nth-of-type(2):before { content: "Lokalizacja"; }
+  td:nth-of-type(3):before { content: "Promień"; }
+  td:nth-of-type(4):before { content: "->"; }
+  td:nth-of-type(5):before { content: "->"; }
+}
+
+
+@media screen and (max-width: 992px) {
+  .main {
+    width: 100% !important;
+    margin-top: 7rem;
+  }
+  #pages {
+    position: relative !important;
+  }
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+    width: 100%;
+    float: left;
+    margin-bottom: 1rem;
+  }
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 40%;
+    float: left;
+    width: 100%;
+  }
+  td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 35%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+  td:nth-of-type(1):before { content: "Nazwa strefy"; }
+  td:nth-of-type(2):before { content: "Lokalizacja"; }
+  td:nth-of-type(3):before { content: "Promień"; }
+  td:nth-of-type(4):before { content: "->"; }
+}

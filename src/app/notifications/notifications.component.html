@@ -24,45 +24,49 @@
 
   <div id="table">
     <table *ngIf="complete && Notifications.listOfNotification.length > 0">
-      <tr id="firstRow">
-        <td class="col-notification">
-          Powiadomienie
-        </td>
-        <td>Kierowca</td>
-        <td>Czas</td>
-        <td>Lokalizacja</td>
-      </tr>
-      <tr *ngFor="let notification of Notifications.listOfNotification">
-        <td>
-          <div [ngClass]="{'alert-pink':notification.type === 'SPEEDING', 'alert-yellow':notification.type === 'LEAVING_THE_ZONE', 'alert-green':notification.type === 'placeholder'}">
-            <div [ngSwitch]="notification.type">
-              <i class="far fa-ban" *ngSwitchCase="'SPEEDING'"></i>
-              <i class="far fa-info-circle" *ngSwitchCase="'LEAVING_THE_ZONE'"></i>
-              <i class="far fa-shield-check" *ngSwitchCase="'placeholder'"></i>
-            </div>
-            <span *ngIf="notification.type === 'SPEEDING'">
-              Przekroczenie dozwolonej prędkości o {{notification.value}} km/h.
-            </span>
-            <span *ngIf="notification.type === 'LEAVING_THE_ZONE'">
-              Pojazd wyjechał ze strefy o {{notification.value}} m.
-            </span>
-          </div>
-        </td>
-        <td>
-          <div class="driver">
-            <div>
-              <div class="name">
-                {{notification.userName}}
+      <thead>
+        <tr id="firstRow">
+          <td class="col-notification">
+            Powiadomienie
+          </td>
+          <td>Kierowca</td>
+          <td>Czas</td>
+          <td>Lokalizacja</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let notification of Notifications.listOfNotification">
+          <td>
+            <div [ngClass]="{'alert-pink':notification.type === 'SPEEDING', 'alert-yellow':notification.type === 'LEAVING_THE_ZONE', 'alert-green':notification.type === 'placeholder'}">
+              <div [ngSwitch]="notification.type">
+                <i class="far fa-ban" *ngSwitchCase="'SPEEDING'"></i>
+                <i class="far fa-info-circle" *ngSwitchCase="'LEAVING_THE_ZONE'"></i>
+                <i class="far fa-shield-check" *ngSwitchCase="'placeholder'"></i>
               </div>
-              <div class="vehicle">
-                {{notification.deviceLicensePlate}}
+              <span *ngIf="notification.type === 'SPEEDING'">
+                Przekroczenie dozwolonej prędkości o {{notification.value}} km/h.
+              </span>
+              <span *ngIf="notification.type === 'LEAVING_THE_ZONE'">
+                Pojazd wyjechał ze strefy o {{notification.value}} m.
+              </span>
+            </div>
+          </td>
+          <td>
+            <div class="driver">
+              <div>
+                <div class="name">
+                  {{notification.userName}}
+                </div>
+                <div class="vehicle">
+                  {{notification.deviceLicensePlate}}
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-        <td>{{notification.date * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
-        <td>{{!notification.locationEncoded ? "Wczytywanie..." : notification.locationEncoded}}</td>
-      </tr>
+          </td>
+          <td>{{notification.date * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
+          <td>{{!notification.locationEncoded ? "Wczytywanie..." : notification.locationEncoded}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 

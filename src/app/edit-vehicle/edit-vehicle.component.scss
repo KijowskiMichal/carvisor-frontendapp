@@ -239,3 +239,18 @@ select::-ms-expand {
   border: $ColorPink solid 0.11rem !important;
 }
 
+@media screen and (max-width: 992px) {
+  .main {
+    width: 100% !important;
+    margin-top: 7rem;
+  }
+  .panel {
+    width: 100%;
+  }
+  .panel2 {
+    width: 100%;
+  }
+  #buttons {
+    position: relative;
+  }
+}

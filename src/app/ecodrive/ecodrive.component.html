@@ -24,34 +24,38 @@
 
   <div id="table">
     <table *ngIf="complete && listOfUsers">
-      <tr id="firstRow">
-        <td>Ocena</td>
-        <td>Kierowca</td>
-        <td>Liczba tras</td>
-        <td>Średnie spalanie</td>
-        <td>Średnie obroty</td>
-        <td>Średnia prędkość</td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let eco of listOfUsers.listOfUsers | sortEcoPoints">
-        <td>
-          <div [ngClass]="{'grade-none':eco.rate === 0.0, 'grade-bad':eco.rate > 0.0 && eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">
-            <div class="grade-text">
-              {{eco.rate | number : '1.1-1'}}
+      <thead>
+        <tr id="firstRow">
+          <td>Ocena</td>
+          <td>Kierowca</td>
+          <td>Liczba tras</td>
+          <td>Średnie spalanie</td>
+          <td>Średnie obroty</td>
+          <td>Średnia prędkość</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eco of listOfUsers.listOfUsers | sortEcoPoints">
+          <td>
+            <div [ngClass]="{'grade-none':eco.rate === 0.0, 'grade-bad':eco.rate > 0.0 && eco.rate < 2.5, 'grade-medium':eco.rate >= 2.5 && eco.rate < 3.5, 'grade-good':eco.rate >= 3.5}">
+              <div class="grade-text">
+                {{eco.rate | number : '1.1-1'}}
+              </div>
             </div>
-          </div>
-        </td>
-        <td>
-          <div class="name">
-            {{eco.name}} {{eco.surname}}
-          </div>
-        </td>
-        <td>{{eco.tracks}}</td>
-        <td>{{eco.combustion}} l</td>
-        <td>{{eco.revolutions}} RPM</td>
-        <td>{{eco.speed}} km/h</td>
-        <td><i class="far fa-info-circle" (click)="userId=eco.id; userPopup=true"></i></td>
-      </tr>
+          </td>
+          <td>
+            <div class="name">
+              {{eco.name}} {{eco.surname}}
+            </div>
+          </td>
+          <td>{{eco.tracks}}</td>
+          <td>{{eco.combustion}} l</td>
+          <td>{{eco.revolutions}} RPM</td>
+          <td>{{eco.speed}} km/h</td>
+          <td><i class="far fa-info-circle" (click)="userId=eco.id; userPopup=true"></i></td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div id="pages">

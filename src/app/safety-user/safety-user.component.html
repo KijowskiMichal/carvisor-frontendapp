@@ -26,25 +26,29 @@
   <div class="panel">
     <div id="table">
       <table *ngIf="userPoints?.listOfOffencess.length !== 0">
-        <tr id="firstRow">
-          <td class="col-notification">
-            Powiadomienie
-          </td>
-          <td>Czas</td>
-          <td>Lokalizacja</td>
-        </tr>
-        <tr *ngFor="let off of userPoints?.listOfOffencess">
-          <td>
-            <div class="alert-pink">
-              <i class="far fa-ban"></i>
-              <span>
-              {{off.value}}
-            </span>
-            </div>
-          </td>
-          <td>{{off.time * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
-          <td>{{off.location}}</td>
-        </tr>
+        <thead>
+          <tr id="firstRow">
+            <td class="col-notification">
+              Powiadomienie
+            </td>
+            <td>Czas</td>
+            <td>Lokalizacja</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let off of userPoints?.listOfOffencess">
+            <td>
+              <div class="alert-pink">
+                <i class="far fa-ban"></i>
+                <span>
+                {{off.value}}
+              </span>
+              </div>
+            </td>
+            <td>{{off.time * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
+            <td>{{off.location}}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

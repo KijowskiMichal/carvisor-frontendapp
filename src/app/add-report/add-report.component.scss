@@ -231,3 +231,12 @@ select::-ms-expand {
   left: 50%;
   position: relative;
 }
+
+@media screen and (max-width: 992px) {
+  .popup {
+    width: 80% !important;
+  }
+  .panel {
+    height: auto !important;
+  }
+}

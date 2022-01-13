@@ -55,39 +55,42 @@
 
   <div id="table">
     <table *ngIf="complete && summary.listOfTracks.length > 0">
-      <tr id="firstRow">
-        <td>Ocena ekojazdy</td>
-        <td>Ocena bezpieczeństwa</td>
-        <td>Liczba wykroczeń</td>
-        <td>Skąd</td>
-        <td>Dokąd</td>
-      </tr>
-      <tr *ngFor="let track of summary.listOfTracks">
-        <td>
-          <div [ngClass]="{'grade-none':track.ecoPoints === 0.0, 'grade-bad':track.ecoPoints > 0.0 && track.ecoPoints < 2.5, 'grade-medium':track.ecoPoints >= 2.5 && track.ecoPoints < 3.5, 'grade-good':track.ecoPoints >= 3.5}">
-            <div class="grade-text">
-              {{track.ecoPoints | number : '1.1-1'}}
+      <thead>
+        <tr id="firstRow">
+          <td>Ocena ekojazdy</td>
+          <td>Ocena bezpieczeństwa</td>
+          <td>Liczba wykroczeń</td>
+          <td>Skąd</td>
+          <td>Dokąd</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let track of summary.listOfTracks">
+          <td>
+            <div [ngClass]="{'grade-none':track.ecoPoints === 0.0, 'grade-bad':track.ecoPoints > 0.0 && track.ecoPoints < 2.5, 'grade-medium':track.ecoPoints >= 2.5 && track.ecoPoints < 3.5, 'grade-good':track.ecoPoints >= 3.5}">
+              <div class="grade-text">
+                {{track.ecoPoints | number : '1.1-1'}}
+              </div>
             </div>
-          </div>
-        </td>
-        <td>
-          <div [ngClass]="{'grade-none':track.safetyPoints === 0.0, 'grade-bad':track.safetyPoints > 0.0 && track.safetyPoints < 2.5, 'grade-medium':track.safetyPoints >= 2.5 && track.safetyPoints < 3.5, 'grade-good':track.safetyPoints >= 3.5}">
-            <div class="grade-text">
-              {{track.safetyPoints | number : '1.1-1'}}
+          </td>
+          <td>
+            <div [ngClass]="{'grade-none':track.safetyPoints === 0.0, 'grade-bad':track.safetyPoints > 0.0 && track.safetyPoints < 2.5, 'grade-medium':track.safetyPoints >= 2.5 && track.safetyPoints < 3.5, 'grade-good':track.safetyPoints >= 3.5}">
+              <div class="grade-text">
+                {{track.safetyPoints | number : '1.1-1'}}
+              </div>
             </div>
-          </div>
-        </td>
-        <td>
-          <div class="name">
-            {{track.listOfOffencess.length}}
-          </div>
-        </td>
-        <td>{{!track.locationFromL ? "Wczytywanie..." : track.locationFromL}}</td>
-        <td>{{!track.locationToL ? "Wczytywanie..." : track.locationToL}}</td>
-      </tr>
+          </td>
+          <td>
+            <div class="name">
+              {{track.listOfOffencess.length}}
+            </div>
+          </td>
+          <td>{{!track.locationFromL ? "Wczytywanie..." : track.locationFromL}}</td>
+          <td>{{!track.locationToL ? "Wczytywanie..." : track.locationToL}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
-
   <div id="pages" *ngIf="complete && summary.listOfTracks.length > 0">
     <div id="pagesWrapper">
       <i [ngClass]="page>1 ? '' : 'disableLink'" (click)="list(1)" class="far fa-chevron-double-left"></i>

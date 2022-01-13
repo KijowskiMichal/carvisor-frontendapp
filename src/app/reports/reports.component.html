@@ -72,23 +72,27 @@
 
   <div id="table">
     <table *ngIf="complete && listOfReports">
-      <tr id="firstRow">
-        <td>Nazwa</td>
-        <td>Opis</td>
-        <td>Typ</td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let report of listOfReports.listOfRaports">
-        <td>{{report.name}}</td>
-        <td>{{report.description}}</td>
-        <td [ngSwitch]="report.type">
-          <span *ngSwitchCase="'TRACK'">Raport tras</span>
-          <span *ngSwitchCase="'ECO'">Raport ekojazdy</span>
-          <span *ngSwitchCase="'SAFETY'">Raport bezpieczeństwa</span>
-          <span *ngSwitchDefault>Nieznany typ raportu</span>
-        </td>
-        <td><i class="far fa-file-download" (click)="getpdf(report.id)"></i><i class="far fa-trash-alt" (click)="popupDelete=true; idToDelete=report.id"></i></td>
-      </tr>
+      <thead>
+        <tr id="firstRow">
+          <td>Nazwa</td>
+          <td>Opis</td>
+          <td>Typ</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of listOfReports.listOfRaports">
+          <td>{{report.name}}</td>
+          <td>{{report.description}}</td>
+          <td [ngSwitch]="report.type">
+            <span *ngSwitchCase="'TRACK'">Raport tras</span>
+            <span *ngSwitchCase="'ECO'">Raport ekojazdy</span>
+            <span *ngSwitchCase="'SAFETY'">Raport bezpieczeństwa</span>
+            <span *ngSwitchDefault>Nieznany typ raportu</span>
+          </td>
+          <td><i class="far fa-file-download" (click)="getpdf(report.id)"></i><i class="far fa-trash-alt" (click)="popupDelete=true; idToDelete=report.id"></i></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 

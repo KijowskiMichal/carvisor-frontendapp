@@ -212,3 +212,16 @@
   box-sizing: border-box;
   height: 500px;
 }
+
+@media screen and (max-width: 992px) {
+  .main {
+    width: 100% !important;
+    margin-top: 7rem;
+  }
+  .panel {
+    width: 100%;
+  }
+  #buttons {
+    position: relative;
+  }
+}

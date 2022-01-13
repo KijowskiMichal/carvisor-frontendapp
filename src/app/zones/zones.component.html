@@ -72,18 +72,22 @@
 
   <div id="table">
     <table *ngIf="complete && listOfZones.length > 0">
-      <tr id="firstRow">
-        <td>Nazwa strefy</td>
-        <td>Lokalizacja</td>
-        <td>Promień</td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let zone of listOfZones">
-        <td>{{zone.name}}</td>
-        <td>{{!zone.location ? "Wczytywanie..." : zone.location}}</td>
-        <td>{{zone.radius}} m</td>
-        <td class="icons"><i class="far fa-pen" (click)="editZonePopup=true; zoneId=zone.id"></i><i class="far fa-trash-alt" (click)="popupDelete=true; zoneId=zone.id"></i></td>
-      </tr>
+      <thead>
+        <tr id="firstRow">
+          <td>Nazwa strefy</td>
+          <td>Lokalizacja</td>
+          <td>Promień</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let zone of listOfZones">
+          <td>{{zone.name}}</td>
+          <td>{{!zone.location ? "Wczytywanie..." : zone.location}}</td>
+          <td>{{zone.radius}} m</td>
+          <td class="icons"><i class="far fa-pen" (click)="editZonePopup=true; zoneId=zone.id"></i><i class="far fa-trash-alt" (click)="popupDelete=true; zoneId=zone.id"></i></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 

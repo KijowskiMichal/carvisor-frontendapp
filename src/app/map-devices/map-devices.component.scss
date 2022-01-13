@@ -148,3 +148,12 @@
 .devices {
   float: right;
 }
+
+@media screen and (max-width: 992px) {
+  #mapContainer {
+    width: 100%;
+  }
+  #chooserWrapper {
+    top: 7rem;
+  }
+}

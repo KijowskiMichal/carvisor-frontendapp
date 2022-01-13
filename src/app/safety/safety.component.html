@@ -24,28 +24,32 @@
 
   <div id="table">
     <table *ngIf="complete && listOfUsers">
-      <tr id="firstRow">
-        <td>Ocena</td>
-        <td>Kierowca</td>
-        <td>Liczba tras</td>
-        <td></td>
-      </tr>
-      <tr *ngFor="let safety of listOfUsers.listOfUsers | sortSafetyPoints">
-        <td>
-          <div [ngClass]="{'grade-none':safety.rate === 0.0, 'grade-bad':safety.rate > 0.0 && safety.rate < 2.5, 'grade-medium':safety.rate >= 2.5 && safety.rate < 3.5, 'grade-good':safety.rate >= 3.5}">
-            <div class="grade-text">
-              {{safety.rate | number : '1.1-1'}}
+      <thead>
+        <tr id="firstRow">
+          <td>Ocena</td>
+          <td>Kierowca</td>
+          <td>Liczba tras</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let safety of listOfUsers.listOfUsers | sortSafetyPoints">
+          <td>
+            <div [ngClass]="{'grade-none':safety.rate === 0.0, 'grade-bad':safety.rate > 0.0 && safety.rate < 2.5, 'grade-medium':safety.rate >= 2.5 && safety.rate < 3.5, 'grade-good':safety.rate >= 3.5}">
+              <div class="grade-text">
+                {{safety.rate | number : '1.1-1'}}
+              </div>
             </div>
-          </div>
-        </td>
-        <td>
-          <div class="name">
-            {{safety.name}} {{safety.surname}}
-          </div>
-        </td>
-        <td>{{safety.tracks}}</td>
-        <td><i class="far fa-info-circle" (click)="userId=safety.id; userPopup=true"></i></td>
-      </tr>
+          </td>
+          <td>
+            <div class="name">
+              {{safety.name}} {{safety.surname}}
+            </div>
+          </td>
+          <td>{{safety.tracks}}</td>
+          <td><i class="far fa-info-circle" (click)="userId=safety.id; userPopup=true"></i></td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div id="pages">

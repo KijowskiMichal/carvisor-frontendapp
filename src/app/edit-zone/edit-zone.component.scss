@@ -158,3 +158,19 @@ span {
   box-sizing: border-box;
   margin: 1.67rem 15%;
 }
+
+
+@media screen and (max-width: 992px) {
+  .popup {
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+    min-width: auto !important;
+  }
+  #panel-left {
+    width: 100%;
+  }
+  #panel-right {
+    width: 100%;
+  }
+}

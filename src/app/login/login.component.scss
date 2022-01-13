@@ -93,3 +93,13 @@
 #loginButton:hover {
   background: $ColorPinkHover;
 }
+
+@media screen and (max-width: 992px) {
+  #loginWrapper {
+    width: 80vw;
+  }
+  .pageWrapper > input {
+    line-height: 1.2rem;
+    font-size: 1.2rem;
+  }
+}

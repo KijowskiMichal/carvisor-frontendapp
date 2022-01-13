@@ -24,38 +24,42 @@
 
   <div id="table">
     <table *ngIf="complete && Warnings">
-      <tr id="firstRow">
-        <td class="col-notification">
-          Awaria / Naprawa
-        </td>
-        <td>Kierowca</td>
-        <td>Czas</td>
-        <td>Lokalizacja</td>
-      </tr>
-      <tr *ngFor="let warning of Warnings.listOfNotification">
-        <td>
-          <div class="alert-pink">
-            <i class="far fa-ban"></i>
-            <span>
-              {{warning.value}}
-            </span>
-          </div>
-        </td>
-        <td>
-          <div class="driver">
-            <div>
-              <div class="name">
-                {{warning.userName}}
-              </div>
-              <div class="vehicle">
-                {{warning.deviceLicensePlate}}
+      <thead>
+        <tr id="firstRow">
+          <td class="col-notification">
+            Awaria / Naprawa
+          </td>
+          <td>Kierowca</td>
+          <td>Czas</td>
+          <td>Lokalizacja</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let warning of Warnings.listOfNotification">
+          <td>
+            <div class="alert-pink">
+              <i class="far fa-ban"></i>
+              <span>
+                {{warning.value}}
+              </span>
+            </div>
+          </td>
+          <td>
+            <div class="driver">
+              <div>
+                <div class="name">
+                  {{warning.userName}}
+                </div>
+                <div class="vehicle">
+                  {{warning.deviceLicensePlate}}
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-        <td>{{warning.date * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
-        <td>{{!warning.locationEncoded ? "Wczytywanie..." : warning.locationEncoded}}</td>
-      </tr>
+          </td>
+          <td>{{warning.date * 1000 | date:'dd.MM.yyyy HH:mm'}}</td>
+          <td>{{!warning.locationEncoded ? "Wczytywanie..." : warning.locationEncoded}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 

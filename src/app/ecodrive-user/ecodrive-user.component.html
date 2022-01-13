@@ -26,30 +26,34 @@
   <div class="panel">
     <div id="table">
       <table *ngIf="userPoints?.listOfDays.length !== 0">
-        <tr id="firstRow">
-          <td>Data</td>
-          <td>Ocena</td>
-          <td>Liczba tras</td>
-          <td>Średnie spalanie</td>
-          <td>Średnie obroty</td>
-          <td>Średnia prędkość</td>
-          <td>Dystans</td>
-        </tr>
-        <tr *ngFor="let day of userPoints?.listOfDays">
-          <td>{{day.date * 1000 | date: 'dd.MM.yyyy HH:mm'}}</td>
-          <td>
-            <div [ngClass]="{'grade-none':day.ecoPoints === 0.0, 'grade-bad':day.ecoPoints > 0.0 && day.ecoPoints < 2.5, 'grade-medium':day.ecoPoints >= 2.5 && day.ecoPoints < 3.5, 'grade-good':day.ecoPoints >= 3.5}">
-              <div class="grade-text">
-                {{day.ecoPoints}}
+        <thead>
+          <tr id="firstRow">
+            <td>Data</td>
+            <td>Ocena</td>
+            <td>Liczba tras</td>
+            <td>Średnie spalanie</td>
+            <td>Średnie obroty</td>
+            <td>Średnia prędkość</td>
+            <td>Dystans</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let day of userPoints?.listOfDays">
+            <td>{{day.date * 1000 | date: 'dd.MM.yyyy HH:mm'}}</td>
+            <td>
+              <div [ngClass]="{'grade-none':day.ecoPoints === 0.0, 'grade-bad':day.ecoPoints > 0.0 && day.ecoPoints < 2.5, 'grade-medium':day.ecoPoints >= 2.5 && day.ecoPoints < 3.5, 'grade-good':day.ecoPoints >= 3.5}">
+                <div class="grade-text">
+                  {{day.ecoPoints}}
+                </div>
               </div>
-            </div>
-          </td>
-          <td>{{day.tracks}}</td>
-          <td>{{day.combustion}} l</td>
-          <td>{{day.revolution}} RPM</td>
-          <td>{{day.speed}} km/h</td>
-          <td>{{day.distance / 1000 | number : '1.2-2'}} km</td>
-        </tr>
+            </td>
+            <td>{{day.tracks}}</td>
+            <td>{{day.combustion}} l</td>
+            <td>{{day.revolution}} RPM</td>
+            <td>{{day.speed}} km/h</td>
+            <td>{{day.distance / 1000 | number : '1.2-2'}} km</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

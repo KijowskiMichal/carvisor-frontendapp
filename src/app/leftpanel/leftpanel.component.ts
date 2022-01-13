@@ -10,6 +10,8 @@ import {PageService} from "../services/page.service";
 })
 export class LeftpanelComponent implements OnInit {
 
+  mobileMenuFlag = false;
+
   options: MenuOption[] = [
     {
       title: "Podsumowanie",
@@ -107,6 +109,10 @@ export class LeftpanelComponent implements OnInit {
         this.router.navigate(['/']);
       }
     );
+  }
+
+  mobileMenu() {
+    this.mobileMenuFlag = !this.mobileMenuFlag;
   }
 }
 

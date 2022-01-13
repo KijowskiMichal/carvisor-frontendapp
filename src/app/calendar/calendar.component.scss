@@ -131,3 +131,17 @@ pre {
 .fa, .fas:hover {
   color: $ColorGrayDarkHover;
 }
+@media screen and (max-width: 992px) {
+  .main-map {
+    width: 100% !important;
+    margin-top: 7rem;
+  }
+  #calendar-header-wrapper {
+    top: 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    left: 57.5%;
+    transform: translate(-57.5%, 0);
+  }
+}
